@@ -3,29 +3,26 @@
 .hero {
   position: relative;
   height: 100vh;
+  background-image: url('/assets/images/home/background_hero_1.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   text-align: center;
 
-  .hero-overlay {
+  &::before {
+    content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      135deg,
-      rgba(44, 62, 80, 0.2) 0%,
-      rgba(139, 69, 19, 0.1) 50%,
-      rgba(212, 175, 55, 0.05) 100%
-    );
-    z-index: 2;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
   }
 
   .hero-content {
-    z-index: 3;
+    z-index: 2;
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
@@ -162,34 +159,6 @@
         }
       }
     }
-  }
-
-  .parallax-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-image: url('/assets/images/home/background_hero_1.jpg'), $modern-gradient;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    z-index: 1;
-    will-change: transform;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-      radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-      linear-gradient(45deg, rgba(44, 62, 80, 0.3) 0%, rgba(52, 73, 94, 0.4) 100%);
-    z-index: 2;
   }
 }
 

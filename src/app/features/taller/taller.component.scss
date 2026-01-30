@@ -2,22 +2,31 @@
 
 .taller {
   padding: $spacing-xl $spacing-lg;
-  background-image: url('/assets/images/home/background_hero_1.jpg');
+  /* Section-specific gradient background (distinct from hero image) */
+  background: $bohemian-gradient;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   text-align: center;
   position: relative;
-  color: white;
+  color: $text-light;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.05));
+    pointer-events: none;
+    z-index: 1;
+  }
 
   h2 {
     font-family: $font-family-secondary;
     font-size: $font-size-xl;
     margin-bottom: $spacing-xl;
-    color: $primary-color;
+    color: $accent-color;
     position: relative;
     z-index: 2;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
   }
 
   .feature-grid {
@@ -30,13 +39,13 @@
     z-index: 2;
 
     .feature {
-      background: linear-gradient(145deg, #2C3E50, #34495E);
+      background: linear-gradient(145deg, rgba(20,24,30,0.9), rgba(34,40,50,0.9));
       padding: $spacing-xl;
       border-radius: $border-radius-lg;
       box-shadow: $shadow-medium;
       transition: $transition-normal;
-      border: 1px solid rgba(210, 180, 140, 0.3);
-      backdrop-filter: blur(10px);
+      border: 1px solid rgba(210, 180, 140, 0.06);
+      backdrop-filter: none;
 
       &:hover {
         transform: translateY(-10px);
@@ -62,7 +71,7 @@
         font-size: 3rem;
         margin-bottom: $spacing-md;
         color: $accent-color;
-        opacity: 0.8;
+        opacity: 0.95;
       }
     }
   }
