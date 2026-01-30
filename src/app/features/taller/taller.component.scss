@@ -1,0 +1,78 @@
+@import 'variables';
+
+.taller {
+  padding: $spacing-xl $spacing-lg;
+  background-image: url('/assets/images/home/background_hero_1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  text-align: center;
+  position: relative;
+  color: white;
+
+  h2 {
+    font-family: $font-family-secondary;
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-xl;
+    color: $primary-color;
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $spacing-xl;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+
+    .feature {
+      background: linear-gradient(145deg, #2C3E50, #34495E);
+      padding: $spacing-xl;
+      border-radius: $border-radius-lg;
+      box-shadow: $shadow-medium;
+      transition: $transition-normal;
+      border: 1px solid rgba(210, 180, 140, 0.3);
+      backdrop-filter: blur(10px);
+
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: $shadow-heavy;
+        background: linear-gradient(145deg, #2C3E50, #34495E);
+      }
+
+      h3 {
+        font-family: $font-family-primary;
+        font-weight: 600;
+        color: white;
+        margin-bottom: $spacing-md;
+        font-size: $font-size-large;
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.9);
+        line-height: $line-height-base;
+        font-size: $font-size-base;
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: $spacing-md;
+        color: $accent-color;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .taller {
+    .feature-grid {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+}

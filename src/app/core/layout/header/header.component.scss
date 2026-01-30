@@ -27,6 +27,21 @@ nav {
     align-items: center;
   }
 
+  li.pay {
+    display: flex;
+    align-items: center;
+
+    .cafecito-btn {
+      display: inline-block;
+
+      img {
+        height: 34px;
+        width: auto;
+        display: block;
+      }
+    }
+  }
+
   a {
     color: $text-light;
     text-decoration: none;
@@ -78,6 +93,14 @@ nav {
   nav ul {
     gap: $spacing-md;
     flex-wrap: wrap;
+  }
+
+  li.pay {
+    order: 99; // move to end on small screens
+
+    .cafecito-btn img {
+      height: 30px;
+    }
   }
 
   nav a {

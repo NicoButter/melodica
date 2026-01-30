@@ -7,6 +7,7 @@ footer {
   padding: $spacing-xl $spacing-lg;
   margin-top: auto;
   position: relative;
+  z-index: 10;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 
   &::before {
@@ -67,6 +68,20 @@ footer {
           &::after {
             width: 100%;
           }
+        }
+      }
+    }
+    .pay {
+      display: flex;
+      align-items: center;
+
+      .cafecito-btn {
+        display: inline-block;
+
+        img {
+          height: 36px;
+          width: auto;
+          display: block;
         }
       }
     }

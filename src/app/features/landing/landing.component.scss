@@ -1,0 +1,21 @@
+/* Ensure landing page stretches so footer can stick to bottom
+	 The footer is rendered inside the landing component (not in app root),
+	 so make the host a column flex container and push the footer with margin-top:auto. */
+
+:host {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+/* If footer component uses margin-top:auto globally (app.scss), keep consistency */
+app-footer {
+	margin-top: auto;
+}
+
+/* keep components spacing natural */
+app-hero,
+app-taller,
+app-about {
+	width: 100%;
+}
