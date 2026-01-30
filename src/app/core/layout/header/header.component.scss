@@ -1,86 +1,305 @@
 @import 'variables';
 
 header {
-  background: $modern-gradient;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: $spacing-md $spacing-lg;
-  box-shadow: $shadow-medium;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
 nav {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+}
 
-  ul {
-    list-style: none;
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-xl;
+}
+
+// Brand/Logo
+.brand {
+  flex-shrink: 0;
+
+  .brand-link {
+    text-decoration: none;
     display: flex;
-    gap: $spacing-xl;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
     align-items: center;
-  }
+    gap: $spacing-sm;
 
-  li.pay {
-    display: flex;
-    align-items: center;
+    .brand-text {
+      font-family: $font-family-secondary;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: $text-light;
+      background: linear-gradient(45deg, $accent-color, $secondary-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: all 0.3s ease;
 
-    .cafecito-btn {
-      display: inline-block;
-
-      img {
-        height: 34px;
-        width: auto;
-        display: block;
+      &:hover {
+        transform: scale(1.05);
+        background: linear-gradient(45deg, $secondary-color, $accent-color);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
     }
   }
+}
 
-  a {
+// Navigation Links - REMOVED
+// .nav-links { ... }
+
+.social-icons {
+  display: flex;
+  gap: $spacing-md;
+  align-items: center;
+
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     color: $text-light;
     text-decoration: none;
-    font-family: $font-family-primary;
-    font-weight: 500;
-    font-size: $font-size-base;
-    padding: $spacing-sm $spacing-md;
-    border-radius: $border-radius-md;
-    transition: $transition-fast;
+    transition: all 0.4s ease;
     position: relative;
+    overflow: hidden;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: all 0.3s ease;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.6s ease;
+    }
+
+    &:hover {
+      transform: scale(1.1) rotate(5deg);
+
+      svg {
+        transform: scale(1.1);
+      }
+
+      &::before {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    // Specific colors for each social network
+    &.linkedin:hover {
+      background: linear-gradient(135deg, #0077b5, #005885);
+      box-shadow: 0 0 20px rgba(0, 119, 181, 0.4);
+    }
+
+    &.github:hover {
+      background: linear-gradient(135deg, #333, #24292e);
+      box-shadow: 0 0 20px rgba(51, 51, 51, 0.4);
+    }
+
+    &.soundcloud:hover {
+      background: linear-gradient(135deg, #ff5500, #ff3300);
+      box-shadow: 0 0 20px rgba(255, 85, 0, 0.4);
+    }
+  }
+}
+
+// Cafecito Button
+.cafecito-container {
+  display: flex;
+  align-items: center;
+
+  .cafecito-btn {
+    display: inline-block;
+    transition: transform 0.3s ease;
+
+    img {
+      height: 34px;
+      width: auto;
+      display: block;
+      border-radius: $border-radius-md;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// Action Buttons
+.action-buttons {
+  display: flex;
+  gap: $spacing-md;
+  align-items: center;
+
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-lg;
+    border: none;
+    border-radius: $border-radius-lg;
+    font-family: $font-family-primary;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-height: 44px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .btn-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    span {
+      position: relative;
+      z-index: 2;
+      font-weight: 700;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      transition: left 0.6s ease;
+    }
 
     &::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      top: 50%;
       left: 50%;
       width: 0;
-      height: 2px;
-      background: $accent-color;
-      transition: $transition-fast;
-      transform: translateX(-50%);
+      height: 0;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.6s ease;
+      z-index: 1;
     }
 
     &:hover {
-      color: $accent-color;
-      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px) scale(1.02);
+
+      .btn-icon {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      &::before {
+        left: 100%;
+      }
 
       &::after {
-        width: 100%;
+        width: 200px;
+        height: 200px;
       }
     }
 
-    &.active {
-      color: $accent-color;
-      background: rgba(255, 255, 255, 0.1);
+    &:active {
+      transform: translateY(-1px) scale(0.98);
+      transition: all 0.1s ease;
+    }
 
-      &::after {
-        width: 100%;
+    &.btn-primary {
+      background: linear-gradient(135deg,
+        #2d5a27 0%,
+        #3d7c3a 25%,
+        #4a8f4c 50%,
+        #5aa85d 75%,
+        #6bbf6e 100%);
+      color: white;
+      box-shadow:
+        0 4px 20px rgba(74, 143, 76, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+      &:hover {
+        background: linear-gradient(135deg,
+          #6bbf6e 0%,
+          #5aa85d 25%,
+          #4a8f4c 50%,
+          #3d7c3a 75%,
+          #2d5a27 100%);
+        box-shadow:
+          0 8px 30px rgba(74, 143, 76, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
       }
+    }
+
+    &.btn-secondary {
+      background: linear-gradient(135deg,
+        #8b4513 0%,
+        #a0551f 25%,
+        #b8652a 50%,
+        #cd7f32 75%,
+        #daa520 100%);
+      color: white;
+      box-shadow:
+        0 4px 20px rgba(184, 101, 42, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+      &:hover {
+        background: linear-gradient(135deg,
+          #daa520 0%,
+          #cd7f32 25%,
+          #b8652a 50%,
+          #a0551f 75%,
+          #8b4513 100%);
+        box-shadow:
+          0 8px 30px rgba(184, 101, 42, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .nav-container {
+    gap: $spacing-lg;
+  }
+
+  .action-buttons {
+    gap: $spacing-sm;
+
+    .btn {
+      padding: $spacing-xs $spacing-md;
+      font-size: 0.85rem;
     }
   }
 }
@@ -90,21 +309,56 @@ nav {
     padding: $spacing-sm $spacing-md;
   }
 
-  nav ul {
-    gap: $spacing-md;
+  .nav-container {
     flex-wrap: wrap;
+    gap: $spacing-md;
   }
 
-  li.pay {
-    order: 99; // move to end on small screens
+  .brand .brand-text {
+    font-size: 1.5rem;
+  }
 
-    .cafecito-btn img {
-      height: 30px;
+  .action-buttons {
+    order: 2;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .btn {
+      flex: 1;
+      min-width: 120px;
     }
   }
 
-  nav a {
-    font-size: 0.9rem;
+  .cafecito-container {
+    order: 3;
+  }
+
+  .social-icons {
+    order: 4;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-icons {
+    gap: $spacing-sm;
+
+    .social-icon {
+      width: 35px;
+      height: 35px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  .action-buttons .btn {
     padding: $spacing-xs $spacing-sm;
+    font-size: 0.8rem;
+  }
+
+  .cafecito-container .cafecito-btn img {
+    height: 30px;
   }
 }
