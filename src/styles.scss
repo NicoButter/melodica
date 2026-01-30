@@ -1,1 +1,92 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Google Fonts Import
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&family=Fira+Code:wght@300;400;500&display=swap');
+
+// Global Variables Import
+@import 'app/shared/styles/variables';
+
+// Global Modern Bohemian Styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-color;
+  background: $warm-gradient;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+// Custom scrollbar for bohemian touch
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $background-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $secondary-color;
+  border-radius: $border-radius-md;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $accent-color;
+}
+
+// Utility classes
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.font-primary { font-family: $font-family-primary; }
+.font-secondary { font-family: $font-family-secondary; }
+.font-mono { font-family: $font-family-mono; }
+
+.shadow-light { box-shadow: $shadow-light; }
+.shadow-medium { box-shadow: $shadow-medium; }
+.shadow-heavy { box-shadow: $shadow-heavy; }
+
+.btn-bohemian {
+  background: $bohemian-gradient;
+  color: $text-light;
+  border: none;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-lg;
+  font-family: $font-family-primary;
+  font-weight: 500;
+  cursor: pointer;
+  transition: $transition-normal;
+  box-shadow: $shadow-medium;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-heavy;
+    filter: brightness(1.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.section-padding {
+  padding: $spacing-xl $spacing-lg;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: $spacing-lg $spacing-md;
+  }
+}

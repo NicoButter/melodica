@@ -1,10 +1,48 @@
-// Global SCSS variables
-$primary-color: #007bff;
-$secondary-color: #6c757d;
-$accent-color: #28a745;
-$text-color: #333;
-$background-color: #f8f9fa;
+// Global SCSS variables - Modern Bohemian Theme
+$primary-color: #2C3E50; // Deep navy blue - modern elegance
+$secondary-color: #8B4513; // Saddle brown - bohemian earth tone
+$accent-color: #D4AF37; // Antique gold - bohemian luxury
+$tertiary-color: #6B8E23; // Olive drab - natural green
+$background-color: #F5F5DC; // Beige - warm, organic
+$background-dark: #2F2F2F; // Dark charcoal for contrast
+$text-color: #2C2C2C; // Dark charcoal text
+$text-light: #F5F5DC; // Light text on dark backgrounds
+$border-color: #D2B48C; // Tan borders
+
+// Gradients
+$bohemian-gradient: linear-gradient(135deg, $secondary-color 0%, $accent-color 50%, $tertiary-color 100%);
+$modern-gradient: linear-gradient(45deg, $primary-color 0%, #34495E 100%);
+$warm-gradient: linear-gradient(to bottom, #F5F5DC 0%, #D2B48C 100%);
 
 // Typography
-$font-family: 'Arial', sans-serif;
+$font-family-primary: 'Poppins', sans-serif; // Modern sans-serif
+$font-family-secondary: 'Dancing Script', cursive; // Bohemian script
+$font-family-mono: 'Fira Code', monospace; // For code elements
 $font-size-base: 16px;
+$font-size-large: 24px;
+$font-size-xl: 36px;
+$line-height-base: 1.6;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+
+// Shadows
+$shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
+$shadow-heavy: 0 8px 16px rgba(0, 0, 0, 0.2);
+$shadow-glow: 0 0 20px rgba(212, 175, 55, 0.3); // Gold glow
+
+// Borders
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+$border-radius-xl: 24px;
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;

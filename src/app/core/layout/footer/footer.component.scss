@@ -1,11 +1,91 @@
-@import '../../../shared/styles/variables';
+@import 'variables';
 
 footer {
-  background-color: $secondary-color;
-  color: white;
+  background: $bohemian-gradient;
+  color: $text-light;
   text-align: center;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  padding: $spacing-xl $spacing-lg;
+  margin-top: auto;
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $accent-color, $tertiary-color, $accent-color);
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+
+    .copyright {
+      font-family: $font-family-primary;
+      font-size: $font-size-base;
+      opacity: 0.9;
+    }
+
+    nav {
+      display: flex;
+      gap: $spacing-lg;
+
+      a {
+        color: $text-light;
+        text-decoration: none;
+        font-family: $font-family-primary;
+        font-weight: 500;
+        font-size: $font-size-base;
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $border-radius-md;
+        transition: $transition-fast;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: $accent-color;
+          transition: $transition-fast;
+        }
+
+        &:hover {
+          color: $accent-color;
+          background: rgba(255, 255, 255, 0.1);
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  footer {
+    padding: $spacing-lg $spacing-md;
+
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: $spacing-md;
+      }
+    }
+  }
 }

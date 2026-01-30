@@ -1,10 +1,63 @@
-@import '../../shared/styles/variables';
+@import 'variables';
 
 button {
-  background-color: $primary-color;
-  color: white;
+  background: $bohemian-gradient;
+  color: $text-light;
   border: none;
-  padding: 10px 20px;
+  padding: $spacing-sm $spacing-lg;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: $border-radius-lg;
+  font-family: $font-family-primary;
+  font-weight: 500;
+  transition: $transition-normal;
+  box-shadow: $shadow-medium;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-heavy;
+    filter: brightness(1.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+
+    &:hover {
+      transform: none;
+      box-shadow: $shadow-medium;
+    }
+  }
+
+  &.btn-secondary {
+    background: $modern-gradient;
+  }
+
+  &.btn-outline {
+    background: transparent;
+    color: $primary-color;
+    border: 2px solid $primary-color;
+    box-shadow: none;
+
+    &:hover {
+      background: $primary-color;
+      color: $text-light;
+    }
+  }
+
+  &.btn-small {
+    padding: $spacing-xs $spacing-sm;
+    font-size: 0.9rem;
+    min-width: 100px;
+  }
+
+  &.btn-large {
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-large;
+    min-width: 150px;
+  }
 }

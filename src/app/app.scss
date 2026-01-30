@@ -1,4 +1,12 @@
+// App-specific styles
 main {
-  min-height: calc(100vh - 100px); // Ajustar por header y footer
-  padding: 20px;
+  min-height: 100vh;
+  padding-top: 80px; // Space for fixed header
+  display: flex;
+  flex-direction: column;
+}
+
+// Ensure footer stays at bottom
+app-footer {
+  margin-top: auto;
 }
