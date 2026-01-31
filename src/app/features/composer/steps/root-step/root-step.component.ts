@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComposerService, RootNote } from '../../services/composer.service';
+import { MicCaptureComponent } from '../../../../shared/components/mic-capture/mic-capture.component';
+import { PitchDetection } from '../../../../services/pitch-detector.service';
 
 @Component({
   selector: 'app-root-step',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MicCaptureComponent],
   templateUrl: './root-step.component.html',
   styleUrls: ['./root-step.component.scss']
 })
@@ -28,6 +30,53 @@ export class RootStepComponent {
   selectedRoot: RootNote | null = null;
 
   constructor(private composerService: ComposerService) {}
+
+  // Preview de la detección (actualizaciones en tiempo real)
+  public micPreview: PitchDetection | null = null;
+
+  // Handler para detecciones continuas (solo preview)
+  onMicDetected(detection: PitchDetection) {
+    this.micPreview = detection;
+  }
+
+  // Handler cuando el usuario confirma la detección desde `MicCapture`
+  onMicConfirmed(detection: PitchDetection) {
+    if (!detection || !detection.note) return;
+    const mapped = this.mapDetectedToRoot(detection.note);
+    if (mapped) {
+      this.selectedRoot = mapped;
+      this.composerService.setRoot(mapped);
+      // Consideramos la acción de "Usar detección" como completar el paso
+      this.stepCompleted.emit();
+    }
+  }
+
+  private mapDetectedToRoot(noteWithOctave: string): RootNote | null {
+    // extrae la parte de nota (sin octava), por ejemplo 'A#4' -> 'A#'
+    const noteName = noteWithOctave.replace(/[0-9]/g, '');
+    const allowed = this.composerService.getAvailableRoots();
+
+    // Normal match
+    if ((allowed as string[]).includes(noteName)) return noteName as RootNote;
+
+    // Mapas simples de enarmónicos / fallback
+    const enharmonic: Record<string, RootNote> = {
+      'A#': 'Bb',
+      'D#': 'Eb',
+      'C#': 'C',
+      'G#': 'G',
+      'E#': 'F',
+      'B#': 'C'
+    };
+
+    if (enharmonic[noteName]) return enharmonic[noteName];
+
+    // Último recurso: usar la letra base sin alteraciones
+    const base = noteName.charAt(0);
+    if ((allowed as string[]).includes(base)) return base as RootNote;
+
+    return null;
+  }
 
   selectRoot(root: RootNote): void {
     this.selectedRoot = root;

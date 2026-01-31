@@ -1,0 +1,18 @@
+<div class="mic-capture">
+  <div class="controls">
+    <button (click)="start()" [disabled]="running">Iniciar micrófono</button>
+    <button (click)="stop()" [disabled]="!running">Detener</button>
+    <button (click)="useDetected()" [disabled]="!last.frequency">Usar detección</button>
+    <button (click)="toggleLock()" class="lock-btn">{{ locked ? '🔒 Bloqueado' : '🔓 Bloquear' }}</button>
+  </div>
+
+  <div class="status">
+    <div class="row"><strong>Frecuencia:</strong> {{ last.frequency || '-' }} Hz</div>
+    <div class="row"><strong>Frecuencia (suavizada):</strong> {{ smoothedFreqDisplay }}</div>
+    <div class="row"><strong>Nota:</strong> {{ last.note || '-' }} <span *ngIf="last.cents">({{ last.cents }}¢)</span></div>
+    <div class="row"><strong>Confianza:</strong>
+      <span class="conf-label">{{ smoothedConfPercent }}%</span>
+      <div class="conf-bar"><div class="conf-fill" [style.width.%]="smoothedConfPercent"></div></div>
+    </div>
+  </div>
+</div>

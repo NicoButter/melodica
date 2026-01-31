@@ -4,6 +4,16 @@
     <p>Elige la nota fundamental sobre la que se construirá tu composición</p>
   </div>
 
+  <div class="mic-section">
+    <p class="hint">¿Tocas un instrumento ahora? Detecta la nota raíz con el micrófono:</p>
+    <mic-capture (detected)="onMicDetected($event)" (confirmed)="onMicConfirmed($event)"></mic-capture>
+
+    <div class="mic-preview" *ngIf="micPreview">
+      <p><strong>Vista previa:</strong> {{ micPreview.note || '-' }} — Confianza: {{ (micPreview.smoothedConfidence ?? micPreview.confidence) | number:'1.0-0' }}%</p>
+      <p class="small">Pulsa "Usar detección" en el control del micrófono para confirmar.</p>
+    </div>
+  </div>
+
   <div class="root-grid">
     <button
       *ngFor="let root of roots"

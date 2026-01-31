@@ -1,59 +1,91 @@
-# Melodica
+# 🎵 Melodica
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+![Logo](src/assets/images/shared/logo.png)
 
-## Development server
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Angular](https://img.shields.io/badge/Angular-21.0.0-red.svg)](https://angular.io/)
 
-To start a local development server, run:
+Una aplicación web interactiva para amantes de la música, diseñada para ayudar en la composición, aprendizaje de acordes e instrumentos musicales. Construida con Angular, Melodica ofrece una experiencia intuitiva para crear melodías y explorar el mundo de la música.
 
+## ✨ Características
+
+- **Selector de Acordes**: Explora y selecciona acordes con sugerencias inteligentes.
+- **Compositor**: Crea melodías paso a paso con un asistente guiado.
+- **Cancionero**: Almacena y organiza tus composiciones.
+- **Instrumentos**: Visualiza acordes en guitarra y piano.
+- **Detección de Notas**: Usa el micrófono para detectar notas en tiempo real.
+- **Interfaz Responsiva**: Diseñada para desktop y móvil.
+
+## 🚀 Instalación
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/melodica.git
+   cd melodica
+   ```
+
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Inicia el servidor de desarrollo:
+   ```bash
+   npm start
+   ```
+
+4. Abre tu navegador en `http://localhost:4200/`.
+
+## 📖 Uso
+
+### Servidor de Desarrollo
+Para iniciar un servidor local:
 ```bash
 ng serve
 ```
+La aplicación se recargará automáticamente al modificar archivos.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
+### Construcción para Producción
 ```bash
 ng build
 ```
+Los archivos se generan en `dist/`.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Pruebas
+- Pruebas unitarias: `ng test`
+- Pruebas end-to-end: `ng e2e`
 
-## Running unit tests
+## 🎼 Detección de Notas con Micrófono
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Melodica incluye una funcionalidad avanzada de detección de notas en tiempo real:
 
-```bash
-ng test
-```
+- Activa el micrófono en el paso "Nota Raíz" del compositor.
+- Visualiza la nota detectada y el nivel de confianza.
+- Confirma para aplicar la nota a tu composición.
 
-## Running end-to-end tests
+**Notas técnicas:**
+- Implementado con Web Audio API y autocorrelación.
+- Suavizado EMA para estabilidad.
+- Editable en `src/app/services/pitch-detector.service.ts`.
 
-For end-to-end (e2e) testing, run:
+## 📸 Capturas de Pantalla
 
-```bash
-ng e2e
-```
+![Hero](src/assets/images/hero/background_hero_1.jpg)
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🤝 Contribuciones
 
-## Additional Resources
+¡Las contribuciones son bienvenidas! Por favor, sigue estos pasos:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Fork el proyecto.
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`).
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`).
+4. Push a la rama (`git push origin feature/AmazingFeature`).
+5. Abre un Pull Request.
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+---
+
+Hecho con ❤️ por Nicolás Butterfield
