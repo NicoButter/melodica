@@ -20,7 +20,7 @@ Una aplicación web interactiva para amantes de la música, diseñada para ayuda
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/melodica.git
+   git clone https://github.com/nicobutter/melodica.git
    cd melodica
    ```
 
@@ -88,4 +88,4 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ---
 
-Hecho con ❤️ por Nicolás Butterfield
+Hecho con ❤️ por Nicolás Butterfield (nicobutter@gmail.com)
