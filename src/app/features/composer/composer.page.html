@@ -1,0 +1,64 @@
+<div class="composer-container">
+  <header class="composer-header">
+    <h1 class="composer-title">🎼 Compositor Musical</h1>
+    <p class="composer-subtitle">Crea progresiones armónicas únicas paso a paso</p>
+  </header>
+
+  <div class="wizard-container">
+    <!-- Indicador de progreso -->
+    <div class="progress-indicator">
+      <div class="step" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
+        <span class="step-number">1</span>
+        <span class="step-label">Estado de Ánimo</span>
+      </div>
+      <div class="step-connector" [class.active]="currentStep > 1"></div>
+      <div class="step" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
+        <span class="step-number">2</span>
+        <span class="step-label">Nota Raíz</span>
+      </div>
+      <div class="step-connector" [class.active]="currentStep > 2"></div>
+      <div class="step" [class.active]="currentStep >= 3" [class.completed]="currentStep > 3">
+        <span class="step-number">3</span>
+        <span class="step-label">Tipo de Armonía</span>
+      </div>
+      <div class="step-connector" [class.active]="currentStep > 3"></div>
+      <div class="step" [class.active]="currentStep >= 4" [class.completed]="currentStep > 4">
+        <span class="step-number">4</span>
+        <span class="step-label">Resultados</span>
+      </div>
+    </div>
+
+    <!-- Contenedor de pasos -->
+    <div class="step-content">
+      <app-mood-step
+        *ngIf="currentStep === 1"
+        (stepCompleted)="onStepChange()">
+      </app-mood-step>
+
+      <app-root-step
+        *ngIf="currentStep === 2"
+        (stepCompleted)="onStepChange()">
+      </app-root-step>
+
+      <app-harmony-step
+        *ngIf="currentStep === 3"
+        (stepCompleted)="onStepChange()">
+      </app-harmony-step>
+
+      <app-result-step
+        *ngIf="currentStep === 4"
+        (stepCompleted)="onStepChange()">
+      </app-result-step>
+    </div>
+
+    <!-- Botón de reset -->
+    <div class="reset-section" *ngIf="currentStep > 1">
+      <button
+        class="btn-reset"
+        (click)="onReset()"
+        type="button">
+        🔄 Comenzar de Nuevo
+      </button>
+    </div>
+  </div>
+</div>

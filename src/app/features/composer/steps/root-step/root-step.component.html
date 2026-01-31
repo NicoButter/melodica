@@ -1,0 +1,39 @@
+<div class="root-step">
+  <div class="step-header">
+    <h2>¿Cuál será la nota raíz?</h2>
+    <p>Elige la nota fundamental sobre la que se construirá tu composición</p>
+  </div>
+
+  <div class="root-grid">
+    <button
+      *ngFor="let root of roots"
+      class="root-button"
+      [class.selected]="selectedRoot === root.value"
+      (click)="selectRoot(root.value)">
+
+      <div class="root-note">{{ root.label }}</div>
+      <div class="root-description">{{ root.description }}</div>
+
+      <div class="selection-indicator" *ngIf="selectedRoot === root.value">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </button>
+  </div>
+
+  <div class="step-actions">
+    <button
+      class="btn-previous"
+      (click)="previousStep()">
+      ← Volver
+    </button>
+
+    <button
+      class="btn-next"
+      [disabled]="!selectedRoot"
+      (click)="nextStep()">
+      Continuar →
+    </button>
+  </div>
+</div>

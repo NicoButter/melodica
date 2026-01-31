@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables' as *;
 
 .taller {
   padding: $spacing-xl $spacing-lg;

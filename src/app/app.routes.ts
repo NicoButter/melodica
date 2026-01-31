@@ -4,10 +4,12 @@ import { PianoComponent } from './features/instrumento/piano.component';
 import { SelectorAcordeComponent } from './features/acorde/selector-acorde.component';
 import { LandingComponent } from './features/landing/landing.component';
 import { AboutComponent } from './features/about/about.component';
+import { ComposerPageComponent } from './features/composer/composer.page';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'compose', component: ComposerPageComponent },
   { path: 'guitarra', component: GuitarraComponent },
   { path: 'piano', component: PianoComponent },
   { path: 'acorde', component: SelectorAcordeComponent },

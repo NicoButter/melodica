@@ -1,0 +1,102 @@
+<div class="result-step">
+  <div class="step-header">
+    <h2>¡Tus progresiones están listas! 🎉</h2>
+    <p>Aquí tienes sugerencias armónicas basadas en tus elecciones</p>
+  </div>
+
+  <!-- Resumen de elecciones -->
+  <div class="summary-card">
+    <h3>Tu configuración</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <span class="summary-label">Estado de ánimo:</span>
+        <span class="summary-value">
+          {{ getMoodEmoji(mood) }} {{ getMoodLabel(mood) }}
+        </span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Nota raíz:</span>
+        <span class="summary-value">{{ root }}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Tipo de armonía:</span>
+        <span class="summary-value">{{ getHarmonyLabel(harmonyType) }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progresiones Mayores -->
+  <div class="progressions-section" *ngIf="progressions">
+    <h3>Progresiones Mayores</h3>
+    <div class="progressions-grid">
+      <div
+        *ngFor="let progression of progressions.major; let i = index"
+        class="progression-card">
+
+        <div class="progression-header">
+          <span class="progression-number">#{{ i + 1 }}</span>
+          <button
+            class="btn-copy"
+            (click)="copyProgression(progression)"
+            title="Copiar progresión">
+            📋
+          </button>
+        </div>
+
+        <div class="progression-chords">
+          {{ formatProgression(progression) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progresiones Menores -->
+  <div class="progressions-section" *ngIf="progressions">
+    <h3>Progresiones Menores</h3>
+    <div class="progressions-grid">
+      <div
+        *ngFor="let progression of progressions.minor; let i = index"
+        class="progression-card">
+
+        <div class="progression-header">
+          <span class="progression-number">#{{ i + 1 }}</span>
+          <button
+            class="btn-copy"
+            (click)="copyProgression(progression)"
+            title="Copiar progresión">
+            📋
+          </button>
+        </div>
+
+        <div class="progression-chords">
+          {{ formatProgression(progression) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Consejos -->
+  <div class="tips-section">
+    <h3>💡 Consejos para usar estas progresiones</h3>
+    <ul class="tips-list">
+      <li>Experimenta cambiando el tempo para diferentes atmosferas</li>
+      <li>Prueba añadir acordes de extensión (7, 9, 11) para más color</li>
+      <li>Las progresiones son sugerencias - ¡adáptalas a tu estilo!</li>
+      <li>Combina progresiones mayores y menores para crear contrastes</li>
+    </ul>
+  </div>
+
+  <div class="step-actions">
+    <button
+      class="btn-previous"
+      (click)="previousStep()">
+      ← Cambiar configuración
+    </button>
+
+    <button
+      class="btn-new"
+      (click)="startOver()">
+      🎼 Crear nueva composición
+    </button>
+  </div>
+</div>

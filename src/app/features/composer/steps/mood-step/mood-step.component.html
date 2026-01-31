@@ -1,0 +1,34 @@
+<div class="mood-step">
+  <div class="step-header">
+    <h2>¿Qué estado de ánimo quieres transmitir?</h2>
+    <p>Elige el estilo musical que mejor represente la emoción de tu composición</p>
+  </div>
+
+  <div class="mood-grid">
+    <div
+      *ngFor="let mood of moods"
+      class="mood-card"
+      [class.selected]="selectedMood === mood.value"
+      (click)="selectMood(mood.value)">
+
+      <div class="mood-emoji">{{ mood.emoji }}</div>
+      <h3 class="mood-title">{{ mood.label }}</h3>
+      <p class="mood-description">{{ mood.description }}</p>
+
+      <div class="selection-indicator" *ngIf="selectedMood === mood.value">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-actions">
+    <button
+      class="btn-next"
+      [disabled]="!selectedMood"
+      (click)="nextStep()">
+      Continuar →
+    </button>
+  </div>
+</div>

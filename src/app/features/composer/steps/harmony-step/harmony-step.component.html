@@ -1,0 +1,40 @@
+<div class="harmony-step">
+  <div class="step-header">
+    <h2>¿Qué tipo de armonía prefieres?</h2>
+    <p>Elige el carácter armónico que dará personalidad a tu composición</p>
+  </div>
+
+  <div class="harmony-grid">
+    <div
+      *ngFor="let harmony of harmonyTypes"
+      class="harmony-card"
+      [class.selected]="selectedHarmonyType === harmony.value"
+      (click)="selectHarmonyType(harmony.value)">
+
+      <div class="harmony-emoji">{{ harmony.emoji }}</div>
+      <h3 class="harmony-title">{{ harmony.label }}</h3>
+      <p class="harmony-description">{{ harmony.description }}</p>
+
+      <div class="selection-indicator" *ngIf="selectedHarmonyType === harmony.value">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-actions">
+    <button
+      class="btn-previous"
+      (click)="previousStep()">
+      ← Volver
+    </button>
+
+    <button
+      class="btn-next"
+      [disabled]="!selectedHarmonyType"
+      (click)="nextStep()">
+      Generar Progresiones →
+    </button>
+  </div>
+</div>
