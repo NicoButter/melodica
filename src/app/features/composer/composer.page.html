@@ -46,7 +46,7 @@
       </app-harmony-step>
 
       <app-result-step
-        *ngIf="currentStep === 4"
+        *ngIf="currentStep >= 4"
         (stepCompleted)="onStepChange()">
       </app-result-step>
     </div>
