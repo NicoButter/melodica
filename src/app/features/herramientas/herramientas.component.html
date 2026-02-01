@@ -11,10 +11,12 @@
       </p>
     </div>
 
-    <div class="tools-grid">
+    <div class="tools-grid" #toolsGrid>
       <div 
         *ngFor="let tool of tools" 
         class="tool-card"
+        [attr.data-tool-id]="tool.id"
+        [class.revealed]="cardAnimationState[tool.id]"
         [attr.data-color]="tool.color"
         (click)="navigateTo(tool)"
         role="button"

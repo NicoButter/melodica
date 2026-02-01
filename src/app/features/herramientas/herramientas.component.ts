@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
   templateUrl: './herramientas.component.html',
   styleUrls: ['./herramientas.component.scss']
 })
-export class HerramientasComponent {
+export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('toolsGrid') toolsGrid!: ElementRef;
+  private intersectionObserver?: IntersectionObserver;
+  cardAnimationState: { [key: string]: boolean } = {};
+
   tools = [
     {
       id: 'composer',
@@ -38,6 +42,49 @@ export class HerramientasComponent {
   ];
 
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.initIntersectionObserver();
+  }
+
+  ngAfterViewInit(): void {
+    this.setupScrollReveal();
+  }
+
+  ngOnDestroy(): void {
+    if (this.intersectionObserver) {
+      this.intersectionObserver.disconnect();
+    }
+  }
+
+  private initIntersectionObserver(): void {
+    const options = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    this.intersectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const cardId = entry.target.getAttribute('data-tool-id');
+          if (cardId) {
+            this.cardAnimationState[cardId] = true;
+          }
+        }
+      });
+    }, options);
+  }
+
+  private setupScrollReveal(): void {
+    if (!this.toolsGrid) return;
+
+    const cards = this.toolsGrid.nativeElement.querySelectorAll('.tool-card');
+    cards.forEach((card: HTMLElement) => {
+      if (this.intersectionObserver) {
+        this.intersectionObserver.observe(card);
+      }
+    });
+  }
 
   navigateTo(tool: any) {
     if (tool.route.startsWith('#')) {
