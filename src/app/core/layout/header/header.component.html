@@ -6,11 +6,37 @@
         <a href="#hero" class="brand-link">
           <span class="brand-text">Melodica</span>
         </a>
-        <!-- Page Title (appears on shrink for specific pages) -->
+      </div>
+
+      <!-- Page Title & Wizard Progress (appears on shrink for specific pages) -->
+      <div class="page-context" *ngIf="isComposerPage">
         <div class="page-title-container" 
-             [class.visible]="isComposerPage && isShrunk"
-             *ngIf="isComposerPage">
+             [class.visible]="isComposerPage && isShrunk">
           <span class="page-title">{{ pageTitle }}</span>
+        </div>
+        <div class="wizard-progress-compact" 
+             [class.visible]="showWizardProgress">
+          <div class="progress-steps">
+            <div class="step-mini" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
+              <span class="step-number">1</span>
+              <span class="step-label">Estado de Ánimo</span>
+            </div>
+            <div class="connector-mini" [class.active]="currentStep > 1"></div>
+            <div class="step-mini" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
+              <span class="step-number">2</span>
+              <span class="step-label">Nota Raíz</span>
+            </div>
+            <div class="connector-mini" [class.active]="currentStep > 2"></div>
+            <div class="step-mini" [class.active]="currentStep >= 3" [class.completed]="currentStep > 3">
+              <span class="step-number">3</span>
+              <span class="step-label">Armonía</span>
+            </div>
+            <div class="connector-mini" [class.active]="currentStep > 3"></div>
+            <div class="step-mini" [class.active]="currentStep >= 4">
+              <span class="step-number">4</span>
+              <span class="step-label">Resultados</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -43,33 +69,6 @@
           <a href="https://cafecito.app/nicobutter" rel="noopener" target="_blank" class="cafecito-btn">
             <img srcset="https://cdn.cafecito.app/imgs/buttons/button_1.png 1x, https://cdn.cafecito.app/imgs/buttons/button_1_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_1_3.75x.png 3.75x" src="https://cdn.cafecito.app/imgs/buttons/button_1.png" alt="Invitame un café en cafecito.app" />
           </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Wizard Progress Bar (compact version for header) -->
-    <div class="wizard-progress-compact" 
-         [class.visible]="showWizardProgress"
-         *ngIf="isComposerPage">
-      <div class="progress-steps">
-        <div class="step-mini" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
-          <span class="step-number">1</span>
-          <span class="step-label">Estado de Ánimo</span>
-        </div>
-        <div class="connector-mini" [class.active]="currentStep > 1"></div>
-        <div class="step-mini" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
-          <span class="step-number">2</span>
-          <span class="step-label">Nota Raíz</span>
-        </div>
-        <div class="connector-mini" [class.active]="currentStep > 2"></div>
-        <div class="step-mini" [class.active]="currentStep >= 3" [class.completed]="currentStep > 3">
-          <span class="step-number">3</span>
-          <span class="step-label">Armonía</span>
-        </div>
-        <div class="connector-mini" [class.active]="currentStep > 3"></div>
-        <div class="step-mini" [class.active]="currentStep >= 4">
-          <span class="step-number">4</span>
-          <span class="step-label">Resultados</span>
         </div>
       </div>
     </div>

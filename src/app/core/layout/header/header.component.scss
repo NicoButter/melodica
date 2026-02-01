@@ -34,6 +34,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   gap: $spacing-xl;
+  width: 100%;
 }
 
 // Brand/Logo
@@ -62,39 +63,50 @@ nav {
     }
   }
 
-  .page-title-container {
-    opacity: 0;
-    transform: translateX(-20px);
-    margin-left: $spacing-md;
-    padding-left: $spacing-md;
-    border-left: 2px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-    max-width: 0;
-    overflow: hidden;
-
-    &.visible {
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: auto;
-      max-width: 400px;
-    }
-  }
-
-  .page-title {
-    font-family: $font-family-secondary;
-    font-size: 1.5rem;
-    font-weight: 600;
-    background: linear-gradient(135deg, #ffffff 0%, #f5deb3 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    white-space: nowrap;
-  }
-
   header.shrunk & .brand-text {
     font-size: 1.8rem;
   }
+}
+
+// Page Context (Title + Progress Bar Container)
+.page-context {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+  min-width: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.page-title-container {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  max-height: 0;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    max-height: 40px;
+  }
+}
+
+.page-title {
+  font-family: $font-family-secondary;
+  font-size: 1.4rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ffffff 0%, #f5deb3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
 }
 
 // Wizard Progress Bar (Compact)
@@ -105,7 +117,6 @@ nav {
   overflow: visible;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
-  order: -1;
 
   &.visible {
     opacity: 1;
