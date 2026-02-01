@@ -4,6 +4,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: $spacing-xl;
+  min-height: 100vh;
   animation: fadeInUp 0.6s ease-out;
 
   @media (max-width: 768px) {
@@ -14,7 +15,24 @@
 .detector-header {
   text-align: center;
   margin-bottom: $spacing-xl;
+  padding-top: 100px; // Space for fixed header
   animation: slideInDown 0.5s ease-out;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Hide title on scroll (moved to header)
+  :host-context(body.scrolled) & {
+    h1 {
+      opacity: 0;
+      transform: translateY(-30px);
+      max-height: 0;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+    
+    p {
+      margin-top: 0;
+    }
+  }
 
   h1 {
     font-size: 2.5rem;
@@ -24,6 +42,7 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: $spacing-sm;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
     @media (max-width: 768px) {
       font-size: 1.8rem;

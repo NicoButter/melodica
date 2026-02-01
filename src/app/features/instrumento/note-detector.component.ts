@@ -9,7 +9,10 @@ import { MicCaptureComponent } from '../../shared/components/mic-capture/mic-cap
   standalone: true,
   imports: [CommonModule, MicCaptureComponent],
   templateUrl: './note-detector.component.html',
-  styleUrls: ['./note-detector.component.scss']
+  styleUrls: ['./note-detector.component.scss'],
+  host: {
+    '(window:scroll)': 'onScroll()'
+  }
 })
 export class NoteDetectorComponent implements OnInit, OnDestroy {
   currentDetection: PitchDetection | null = null;
@@ -29,6 +32,16 @@ export class NoteDetectorComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopRecording();
+    document.body.classList.remove('scrolled');
+  }
+
+  onScroll(): void {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    if (scrollTop > 50) {
+      document.body.classList.add('scrolled');
+    } else {
+      document.body.classList.remove('scrolled');
+    }
   }
 
   startRecording(): void {

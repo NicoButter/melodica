@@ -9,12 +9,13 @@
       </div>
 
       <!-- Page Title & Wizard Progress (appears on shrink for specific pages) -->
-      <div class="page-context" *ngIf="isComposerPage">
+      <div class="page-context" *ngIf="isSpecialPage">
         <div class="page-title-container" 
-             [class.visible]="isComposerPage && isShrunk">
+             [class.visible]="isSpecialPage && isShrunk">
           <span class="page-title">{{ pageTitle }}</span>
         </div>
         <div class="wizard-progress-compact" 
+             *ngIf="isComposerPage"
              [class.visible]="showWizardProgress">
           <div class="progress-steps">
             <div class="step-mini" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">

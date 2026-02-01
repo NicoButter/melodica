@@ -15,6 +15,8 @@ import { WizardStateService } from '../../services/wizard-state.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   isShrunk = false;
   isComposerPage = false;
+  isNoteDetectorPage = false;
+  isSpecialPage = false; // true si estamos en composer o note-detector
   pageTitle = '';
   currentStep = 1;
   showWizardProgress = false;
@@ -61,9 +63,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private updatePageContext(url: string): void {
     this.isComposerPage = url.includes('/compose');
+    this.isNoteDetectorPage = url.includes('/note-detector');
+    this.isSpecialPage = this.isComposerPage || this.isNoteDetectorPage;
     
     if (this.isComposerPage) {
       this.pageTitle = '🎼 Compositor Musical';
+    } else if (this.isNoteDetectorPage) {
+      this.pageTitle = '🎤 Detección de Nota';
     } else {
       this.pageTitle = '';
     }
