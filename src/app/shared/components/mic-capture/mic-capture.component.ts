@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PitchDetectorService, PitchDetection } from '../../../services/pitch-detector.service';
+import { PitchDetectorService, PitchDetection } from '../../../core/services/pitch-detector.service';
 
 @Component({
   selector: 'mic-capture',

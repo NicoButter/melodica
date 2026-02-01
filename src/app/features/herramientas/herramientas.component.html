@@ -1,0 +1,47 @@
+<section class="herramientas" id="herramientas">
+  <div class="container">
+    <div class="header-section">
+      <h2 class="section-title">
+        <span class="title-decoration">♪</span>
+        Tus Herramientas Creativas
+        <span class="title-decoration">♫</span>
+      </h2>
+      <p class="section-subtitle">
+        Explora nuestras herramientas diseñadas para despertar tu creatividad musical
+      </p>
+    </div>
+
+    <div class="tools-grid">
+      <div 
+        *ngFor="let tool of tools" 
+        class="tool-card"
+        [attr.data-color]="tool.color"
+        (click)="navigateTo(tool)"
+        role="button"
+        tabindex="0"
+        [attr.aria-label]="'Ir a ' + tool.title">
+        
+        <div class="tool-icon">
+          <span class="icon-emoji">{{ tool.icon }}</span>
+          <div class="icon-glow"></div>
+        </div>
+        
+        <div class="tool-content">
+          <h3 class="tool-title">{{ tool.title }}</h3>
+          <p class="tool-description">{{ tool.description }}</p>
+        </div>
+        
+        <div class="tool-action">
+          <span class="action-text">Explorar</span>
+          <span class="action-arrow">→</span>
+        </div>
+        
+        <div class="card-decoration" aria-hidden="true">
+          <span class="note">♪</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="background-pattern" aria-hidden="true"></div>
+</section>

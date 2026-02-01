@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComposerService, RootNote } from '../../services/composer.service';
 import { MicCaptureComponent } from '../../../../shared/components/mic-capture/mic-capture.component';
-import { PitchDetection } from '../../../../services/pitch-detector.service';
+import { PitchDetection } from '../../../../core/services/pitch-detector.service';
 
 @Component({
   selector: 'app-root-step',

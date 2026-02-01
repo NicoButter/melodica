@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./hero.component.scss']
 })
 export class HeroComponent {
-
+  scrollToHerramientas() {
+    const element = document.querySelector('#herramientas');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 }
