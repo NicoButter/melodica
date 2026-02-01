@@ -25,6 +25,8 @@ header {
 nav {
   max-width: 1400px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav-container {
@@ -37,6 +39,9 @@ nav {
 // Brand/Logo
 .brand {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   .brand-link {
@@ -57,13 +62,149 @@ nav {
     }
   }
 
+  .page-title-container {
+    opacity: 0;
+    transform: translateX(-20px);
+    margin-left: $spacing-md;
+    padding-left: $spacing-md;
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    max-width: 0;
+    overflow: hidden;
+
+    &.visible {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+      max-width: 400px;
+    }
+  }
+
+  .page-title {
+    font-family: $font-family-secondary;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ffffff 0%, #f5deb3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+  }
+
   header.shrunk & .brand-text {
     font-size: 1.8rem;
   }
 }
 
-// Navigation Links - REMOVED
-// .nav-links { ... }
+// Wizard Progress Bar (Compact)
+.wizard-progress-compact {
+  opacity: 0;
+  transform: translateY(10px);
+  max-height: 0;
+  overflow: visible;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  order: -1;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 70px;
+  }
+
+  .progress-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 0;
+    flex-wrap: nowrap;
+  }
+
+  .step-mini {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 3px 5px;
+    border-radius: $border-radius-md;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 65px;
+    flex-shrink: 0;
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.5);
+      font-family: $font-family-primary;
+      transition: all 0.3s ease;
+    }
+
+    .step-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      font-family: $font-family-primary;
+      text-align: center;
+      line-height: 1.1;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    &.active {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: $accent-color;
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+      transform: scale(1.02);
+
+      .step-number {
+        background: $bohemian-gradient;
+        color: white;
+      }
+
+      .step-label {
+        color: $accent-color;
+        font-weight: 700;
+      }
+    }
+
+    &.completed {
+      background: rgba(107, 142, 35, 0.15);
+      border-color: $tertiary-color;
+
+      .step-number {
+        background: linear-gradient(135deg, $tertiary-color 0%, #9caf88 100%);
+        color: white;
+      }
+
+      .step-label {
+        color: #9caf88;
+      }
+    }
+  }
+
+  .connector-mini {
+    width: 18px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+
+    &.active {
+      background: $bohemian-gradient;
+    }
+  }
+}
 
 // Social and Support Container
 .social-and-support {

@@ -20,7 +20,7 @@ export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
       title: 'Compositor',
       description: 'Crea tus propias melodías con nuestro compositor intuitivo',
       icon: '🎼',
-      route: '/composer',
+      route: '/compose',
       color: 'bohemian-gold'
     },
     {

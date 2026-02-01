@@ -2,8 +2,16 @@
 
 .composer-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: $spacing-xl;
+  background: linear-gradient(135deg, 
+    rgba(44, 62, 80, 0.95) 0%, 
+    rgba(52, 73, 94, 0.97) 50%,
+    rgba(44, 62, 80, 0.95) 100%
+  ),
+  url('/assets/images/hero/background_hero_1.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  padding: 100px 0 $spacing-xl 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,29 +21,61 @@
   text-align: center;
   margin-bottom: $spacing-xl;
   color: white;
+  max-width: 1400px;
+  width: 100%;
+  padding: 0 $spacing-xl;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   .composer-title {
-    font-size: 3rem;
+    font-family: $font-family-secondary;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
     margin-bottom: $spacing-sm;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #ffffff 0%, #f5deb3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .composer-subtitle {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    font-weight: 300;
+    font-family: $font-family-primary;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    opacity: 0.95;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  // Hide title on scroll (when it appears in header)
+  @media (min-width: 769px) {
+    .composer-title {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// Add scroll detection for hiding title
+:host-context(body.scrolled) .composer-header {
+  .composer-title {
+    opacity: 0;
+    transform: translateY(-30px);
+    pointer-events: none;
+  }
+  
+  .composer-subtitle {
+    opacity: 0;
+    transform: translateY(-20px);
   }
 }
 
 .wizard-container {
-  max-width: 800px;
+  max-width: 1400px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: $border-radius-xl;
-  padding: $spacing-xl;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 0 $spacing-xl;
 }
 
 .progress-indicator {
@@ -44,6 +84,22 @@
   justify-content: center;
   margin-bottom: $spacing-xl;
   position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: $border-radius-xl;
+  padding: $spacing-lg;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Hide when scrolled (it's now in the header)
+  :host-context(body.scrolled) & {
+    opacity: 0;
+    transform: translateY(-30px);
+    max-height: 0;
+    padding: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
 
   .step {
     display: flex;
@@ -52,110 +108,150 @@
     gap: $spacing-xs;
     padding: $spacing-md;
     border-radius: $border-radius-lg;
-    transition: all 0.3s ease;
-    min-width: 120px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 140px;
 
     .step-number {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
+      font-weight: 700;
+      font-size: 1.2rem;
+      font-family: $font-family-primary;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .step-label {
-      font-size: 0.9rem;
-      font-weight: 500;
+      font-size: 0.85rem;
+      font-weight: 600;
       text-align: center;
+      font-family: $font-family-primary;
+      letter-spacing: 0.3px;
     }
 
     &.active {
-      background: rgba(102, 126, 234, 0.1);
-      border: 2px solid #667eea;
+      background: rgba(212, 175, 55, 0.15);
+      border: 2px solid $accent-color;
+      transform: scale(1.05);
 
       .step-number {
-        background: #667eea;
+        background: $bohemian-gradient;
         color: white;
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
       }
 
       .step-label {
-        color: #667eea;
+        color: $accent-color;
+        font-weight: 700;
       }
     }
 
     &.completed {
-      background: rgba(72, 187, 120, 0.1);
-      border: 2px solid #48bb78;
+      background: rgba(107, 142, 35, 0.15);
+      border: 2px solid $tertiary-color;
 
       .step-number {
-        background: #48bb78;
+        background: linear-gradient(135deg, $tertiary-color 0%, #9caf88 100%);
         color: white;
       }
 
       .step-label {
-        color: #48bb78;
+        color: #9caf88;
       }
     }
 
     &:not(.active):not(.completed) {
       .step-number {
-        background: #e2e8f0;
-        color: #718096;
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        border: 2px solid rgba(255, 255, 255, 0.2);
       }
 
       .step-label {
-        color: #718096;
+        color: rgba(255, 255, 255, 0.6);
       }
     }
   }
 
   .step-connector {
-    width: 60px;
-    height: 2px;
-    background: #e2e8f0;
-    transition: all 0.3s ease;
+    width: 80px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.6s ease;
+    }
 
     &.active {
-      background: #667eea;
+      background: $bohemian-gradient;
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+
+      &::after {
+        left: 100%;
+      }
     }
   }
 }
 
 .step-content {
-  min-height: 400px;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border-radius: $border-radius-xl;
+  padding: $spacing-xl;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .reset-section {
   text-align: center;
   margin-top: $spacing-xl;
-  padding-top: $spacing-xl;
-  border-top: 1px solid #e2e8f0;
+  padding: $spacing-lg;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: $border-radius-lg;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   .btn-reset {
-    background: linear-gradient(135deg, #e53e3e, #c53030);
+    background: linear-gradient(135deg, #c53030, #e53e3e);
     color: white;
     border: none;
     padding: $spacing-md $spacing-xl;
     border-radius: $border-radius-lg;
-    font-weight: 600;
+    font-weight: 700;
+    font-family: $font-family-primary;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
+    text-transform: uppercase;
 
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(229, 62, 62, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(229, 62, 62, 0.5);
+      filter: brightness(1.1);
     }
 
     &:active {
-      transform: translateY(0);
+      transform: translateY(-1px);
     }
   }
 }
@@ -163,45 +259,61 @@
 // Responsive design
 @media (max-width: 768px) {
   .composer-container {
-    padding: $spacing-lg;
+    padding: 80px $spacing-md $spacing-lg $spacing-md;
   }
 
   .composer-header {
+    padding: 0 $spacing-md;
+    margin-bottom: $spacing-lg;
+
     .composer-title {
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
 
     .composer-subtitle {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
   }
 
   .wizard-container {
-    padding: $spacing-lg;
+    padding: 0 $spacing-md;
   }
 
   .progress-indicator {
     flex-direction: column;
-    gap: $spacing-md;
+    gap: $spacing-sm;
+    padding: $spacing-md;
 
     .step {
       flex-direction: row;
       min-width: auto;
       width: 100%;
-      justify-content: center;
+      justify-content: flex-start;
+      padding: $spacing-sm $spacing-md;
+
+      .step-number {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
 
       .step-label {
         margin-left: $spacing-sm;
+        text-align: left;
+        flex: 1;
+        font-size: 0.9rem;
       }
     }
 
     .step-connector {
-      width: 2px;
-      height: 40px;
+      width: 3px;
+      height: 30px;
+      margin-left: 22px;
     }
   }
 
   .step-content {
-    min-height: 300px;
+    min-height: 400px;
+    padding: $spacing-lg;
   }
 }
