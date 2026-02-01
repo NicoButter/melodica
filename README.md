@@ -4,17 +4,40 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-21.0.0-red.svg)](https://angular.io/)
+[![Node](https://img.shields.io/badge/Node.js-20%2B-green.svg)](https://nodejs.org/)
 
-Una aplicación web interactiva para amantes de la música, diseñada para ayudar en la composición, aprendizaje de acordes e instrumentos musicales. Construida con Angular, Melodica ofrece una experiencia intuitiva para crear melodías y explorar el mundo de la música.
+Una aplicación web interactiva para amantes de la música, diseñada para ayudar en la composición, aprendizaje de acordes e instrumentos musicales. Construida con Angular, Melodica ofrece una experiencia intuitiva y bohemia para crear melodías y explorar el mundo de la música.
 
-## ✨ Características
+## ✨ Características Principales
 
-- **Selector de Acordes**: Explora y selecciona acordes con sugerencias inteligentes.
-- **Compositor**: Crea melodías paso a paso con un asistente guiado.
-- **Cancionero**: Almacena y organiza tus composiciones.
-- **Instrumentos**: Visualiza acordes en guitarra y piano.
-- **Detección de Notas**: Usa el micrófono para detectar notas en tiempo real.
-- **Interfaz Responsiva**: Diseñada para desktop y móvil.
+### 🎼 **Herramientas Creativas**
+Accesibles desde la sección principal después del hero:
+- **Compositor**: Crea melodías paso a paso con un asistente guiado interactivo
+- **Cancionero**: Almacena y organiza tus composiciones
+- **Taller Musical**: Aprende y practica con instrumentos interactivos
+
+### 🎸 **Instrumentos Interactivos**
+- **Guitarra**: Visualiza acordes y practica técnicas
+- **Piano**: Explora notas y acordes en las teclas
+
+### 🎵 **Detección de Notas**
+- Usa el micrófono para detectar notas en tiempo real
+- Visualiza confianza y precisión de la detección
+- Integrado en el paso "Nota Raíz" del compositor
+
+### 🎯 **Selector de Acordes**
+- Explora acordes con sugerencias inteligentes
+- Visualización en guitarra y piano
+
+### 🎨 **Interfaz Bohemia**
+- Diseño elegante con paleta de colores tierra y dorado
+- Animaciones suaves y transiciones fluidas
+- Completamente responsiva (desktop, tablet, móvil)
+
+### 📚 **Contenido Musical**
+- Página "Acerca de" con información del compositor
+- Gemas sonoras alojadas en SoundCloud
+- Taller y recursos educativos
 
 ## 🚀 Instalación
 
@@ -39,7 +62,11 @@ Una aplicación web interactiva para amantes de la música, diseñada para ayuda
 ## 📖 Uso
 
 ### Servidor de Desarrollo
-Para iniciar un servidor local:
+Para iniciar un servidor local con hot reload:
+```bash
+npm start
+```
+o
 ```bash
 ng serve
 ```
@@ -47,26 +74,113 @@ La aplicación se recargará automáticamente al modificar archivos.
 
 ### Construcción para Producción
 ```bash
+npm run build
+```
+o
+```bash
 ng build
 ```
-Los archivos se generan en `dist/`.
+Los archivos optimizados se generan en `dist/`.
 
 ### Pruebas
-- Pruebas unitarias: `ng test`
-- Pruebas end-to-end: `ng e2e`
+- Pruebas unitarias: `npm test`
+- Pruebas end-to-end: `npm run e2e`
 
 ## 🎼 Detección de Notas con Micrófono
 
 Melodica incluye una funcionalidad avanzada de detección de notas en tiempo real:
 
-- Activa el micrófono en el paso "Nota Raíz" del compositor.
-- Visualiza la nota detectada y el nivel de confianza.
-- Confirma para aplicar la nota a tu composición.
+**Características:**
+- Ac�️ Stack Tecnológico
 
-**Notas técnicas:**
-- Implementado con Web Audio API y autocorrelación.
-- Suavizado EMA para estabilidad.
-- Editable en `src/app/services/pitch-detector.service.ts`.
+- **Framework**: Angular 21+ (Standalone Components)
+- **Lenguaje**: TypeScript
+- **Estilos**: SCSS con variables globales
+- **Build Tool**: Angular CLI
+- **Node.js**: 20+
+
+## 📋 Requisitos
+
+- Node.js 20 o superior
+- npm 10 o superior
+- Angular CLI 18+
+
+## 🚀 Deployment
+
+La aplicación está optimizada para SSR (Server-Side Rendering) y puede desplegarse en:
+- Vercel
+- Netlify
+- Firebase Hosting
+- Cualquier servidor Node.js
+
+**Comandos de build:**
+```bash
+# Build normal
+npm run build
+
+# Build con SSR
+npm run build:ssr
+
+# Serve con SSR
+npm run serve:ssr
+```
+
+## 📸 Captura de Pantalla
+
+![Hero](src/assets/images/hero/background_hero_1.jpg)
+
+## 🤝 Contribuciones
+
+¡Las contribuciones son bienvenidas! Por favor, sigue estos pasos:
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Realiza tus cambios manteniendo la estructura del proyecto
+4. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+5. Push a la rama (`git push origin feature/AmazingFeature`)
+6. Abre un Pull Request
+
+Asegúrate de:
+- Respetar la arquitectura modular del proyecto
+- Mantener la consistencia de estilos
+- Incluir pruebas unitarias si es posible
+
+## 📚 Documentación Adicional
+
+- [Arquitectura del Proyecto](src/app/ARCHITECTURE.md) - Guía detallada de la estructura
+- [Angular Docs](https://angular.io/docs) - Documentación oficial de Angular
+- [TypeScript Docs](https://www.typescriptlang.org/docs/) - Documentación de TypeScript
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## 💬 Soporte
+
+¿Preguntas o sugerencias? Contacta a:
+- **Email**: nicobutter@gmail.com
+- **LinkedIn**: [Nicolás Butterfield](https://www.linkedin.com/in/nicolás-butterfield-9964aa1a3/)
+- **GitHub**: [@nicobutter](https://github.com/nicobutter)
+
+---
+
+Hecho con ❤️ y 🎵 por Nicolás Butterfield
+
+© 2024 Melodica. Todos los derechos reservados.
+│   └── styles/           # Variables SCSS y estilos globales
+└── features/              # Features específicos
+    ├── about/            # Página Acerca de
+    ├── acorde/           # Selector y sugerencias de acordes
+    ├── composer/         # Feature de composición musical
+    ├── herramientas/     # Sección de herramientas creativas
+    ├── hero/             # Hero section
+    ├── instrumento/      # Guitarra y Piano
+    ├── landing/          # Página principal
+    ├── songbook/         # Cancionero
+    └── taller/           # Taller y recursos
+```
+
+Consulta [src/app/ARCHITECTURE.md](src/app/ARCHITECTURE.md) para una guía detallada de la arquitectura.
 
 ## 📸 Capturas de Pantalla
 
