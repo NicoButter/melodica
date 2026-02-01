@@ -65,10 +65,13 @@ export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.intersectionObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const cardId = entry.target.getAttribute('data-tool-id');
-          if (cardId) {
+        const cardId = entry.target.getAttribute('data-tool-id');
+        if (cardId) {
+          if (entry.isIntersecting) {
             this.cardAnimationState[cardId] = true;
+          } else {
+            // Reset animation when card leaves viewport
+            this.cardAnimationState[cardId] = false;
           }
         }
       });
