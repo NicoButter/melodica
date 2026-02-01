@@ -1,0 +1,116 @@
+<div class="note-detector-container">
+  <header class="detector-header">
+    <h1>🎤 Detección de Nota en Tiempo Real</h1>
+    <p>Toca una nota en tu instrumento o canta, y recibe sugerencias de progresiones harmónicas</p>
+  </header>
+
+  <!-- Mic Capture -->
+  <div class="capture-section">
+    <mic-capture 
+      (detected)="onDetectionUpdate($event)"
+      (confirmed)="onDetectionUpdate($event)">
+    </mic-capture>
+  </div>
+
+  <!-- Current Detection Display -->
+  <div class="detection-display" *ngIf="currentDetection">
+    <div class="detection-card">
+      <div class="detection-content">
+        <div class="note-display">
+          <span class="note-label">Nota Detectada:</span>
+          <span class="note-value">{{ formatNote(currentDetection.note) }}</span>
+        </div>
+
+        <div class="confidence-meter">
+          <span class="confidence-label">Confianza:</span>
+          <div class="confidence-bar">
+            <div class="confidence-fill" 
+                 [style.width.%]="getConfidencePercentage()"
+                 [style.background-color]="getConfidenceColor()">
+            </div>
+          </div>
+          <span class="confidence-value">{{ getConfidencePercentage() }}%</span>
+        </div>
+
+        <div class="frequency-info" *ngIf="currentDetection.frequency">
+          <span class="freq-label">Frecuencia:</span>
+          <span class="freq-value">{{ currentDetection.frequency | number:'1.0-0' }} Hz</span>
+          <span class="cents-value" *ngIf="currentDetection.cents">
+            ({{ currentDetection.cents | number:'+1.0-0' }}¢)
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Harmony Type Selection -->
+  <div class="harmony-selector" *ngIf="currentDetection?.note">
+    <h3>Tipo de Armonía</h3>
+    <div class="harmony-buttons">
+      <button 
+        class="harmony-btn"
+        [class.active]="harmonyType === 'major'"
+        (click)="changeHarmonyType('major')">
+        Mayor
+      </button>
+      <button 
+        class="harmony-btn"
+        [class.active]="harmonyType === 'minor'"
+        (click)="changeHarmonyType('minor')">
+        Menor
+      </button>
+      <button 
+        class="harmony-btn"
+        [class.active]="harmonyType === 'mixed'"
+        (click)="changeHarmonyType('mixed')">
+        Mixto
+      </button>
+    </div>
+  </div>
+
+  <!-- Suggested Progressions -->
+  <div class="progressions-section" *ngIf="suggestedProgressions && suggestedProgressions.length > 0">
+    <h2>📊 Progresiones Sugeridas</h2>
+    <div class="progressions-grid">
+      <div 
+        *ngFor="let progression of suggestedProgressions; let i = index"
+        class="progression-card">
+        <div class="progression-header">
+          <span class="progression-number">#{{ i + 1 }}</span>
+          <button 
+            class="btn-copy"
+            (click)="copyProgression(progression)"
+            title="Copiar progresión">
+            📋
+          </button>
+        </div>
+        <div class="progression-chords">
+          {{ formatProgression(progression) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detection History -->
+  <div class="history-section" *ngIf="detectionHistory.length > 0">
+    <h3>Historial de Detecciones</h3>
+    <div class="history-list">
+      <div *ngFor="let record of detectionHistory" class="history-item">
+        <span class="history-note">{{ record.note }}</span>
+        <span class="history-time">{{ (record.timestamp | date:'short') }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tips Section -->
+  <div class="tips-section">
+    <h3>💡 Consejos para mejores detecciones</h3>
+    <ul class="tips-list">
+      <li>Toca una nota sostenida en tu instrumento</li>
+      <li>Mantén el micrófono a unos 20-30cm de distancia</li>
+      <li>Evita ruido de fondo para mejores resultados</li>
+      <li>Una confianza superior al 70% indica una buena detección</li>
+      <li>Experimenta con diferentes tipos de armonía</li>
+    </ul>
+  </div>
+</div>

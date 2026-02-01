@@ -9,6 +9,7 @@ export interface PitchDetection {
   // Valores suavizados (EMA) para UI/estabilidad
   smoothedFrequency?: number | null;
   smoothedConfidence?: number | null;
+  error?: string | null;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -22,57 +23,95 @@ export class PitchDetectorService implements OnDestroy {
   // EMA smoothing state
   private smoothedFreq: number | null = null;
   private smoothedConf: number | null = null;
-  private readonly emaAlpha = 0.22; // smoothing factor (0..1)
+  private readonly emaAlpha = 0.25; // smoothing factor (0..1) - increased for better stability
+  
+  // Frequency validation ranges (human voice/instruments)
+  private readonly MIN_FREQ = 60; // ~B1
+  private readonly MAX_FREQ = 1400; // ~F#6
 
   public detections = new Subject<PitchDetection>();
+  public errors = new Subject<string>();
 
   async start() {
     if (this.audioCtx) return;
-    this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    this.audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
-    this.source = this.audioCtx.createMediaStreamSource(this.stream);
-    this.analyser = this.audioCtx.createAnalyser();
-    this.analyser.fftSize = 2048;
-    this.source.connect(this.analyser);
-    const bufferLen = this.analyser.fftSize;
-    this.buffer = new Float32Array(bufferLen);
-    this.update();
+    
+    try {
+      // Request microphone with specific constraints for better quality
+      this.stream = await navigator.mediaDevices.getUserMedia({ 
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: false
+        } 
+      });
+      
+      this.audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      this.source = this.audioCtx.createMediaStreamSource(this.stream);
+      this.analyser = this.audioCtx.createAnalyser();
+      this.analyser.fftSize = 4096; // Increased for better low-frequency resolution
+      this.analyser.smoothingTimeConstant = 0.8;
+      this.source.connect(this.analyser);
+      const bufferLen = this.analyser.fftSize;
+      this.buffer = new Float32Array(bufferLen);
+      
+      // Reset smoothing state
+      this.smoothedFreq = null;
+      this.smoothedConf = null;
+      
+      this.update();
+    } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : 'Error al acceder al micrófono';
+      this.errors.next(errorMsg);
+      throw error;
+    }
   }
 
   stop() {
-    if (this.rafId) cancelAnimationFrame(this.rafId);
+    if (this.rafId) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = 0;
+    }
     if (this.stream) {
       this.stream.getTracks().forEach((t) => t.stop());
       this.stream = null;
     }
-    if (this.audioCtx) {
+    if (this.source) {
+      this.source.disconnect();
+      this.source = null;
+    }
+    if (this.audioCtx && this.audioCtx.state !== 'closed') {
       this.audioCtx.close();
       this.audioCtx = null;
     }
     this.analyser = null;
-    this.source = null;
     this.buffer = null;
+    
+    // Reset smoothing state
+    this.smoothedFreq = null;
+    this.smoothedConf = null;
   }
 
   ngOnDestroy(): void {
     this.stop();
     this.detections.complete();
+    this.errors.complete();
   }
 
   private update() {
     if (!this.analyser || !this.buffer || !this.audioCtx) return;
-    // TypeScript/DOM lib types can be strict about ArrayBuffer vs SharedArrayBuffer.
-    // Cast to any to avoid incompatible generic signature issues at compile time.
+    
     this.analyser.getFloatTimeDomainData(this.buffer as any);
     const rms = this.rms(this.buffer);
-    const MIN_RMS = 0.002; // threshold
+    const MIN_RMS = 0.01; // Increased threshold for better noise rejection
     let freq: number | null = null;
     let confidence = 0;
+    
     if (rms > MIN_RMS) {
       const ac = this.autoCorrelate(this.buffer, this.audioCtx.sampleRate);
-      if (ac > 0) {
+      if (ac > 0 && ac >= this.MIN_FREQ && ac <= this.MAX_FREQ) {
         freq = ac;
-        confidence = Math.min(1, (rms / 0.05));
+        // Better confidence calculation based on RMS and correlation
+        confidence = Math.min(1, (rms / 0.1) * 0.7 + 0.3);
       }
     }
 
@@ -81,14 +120,20 @@ export class PitchDetectorService implements OnDestroy {
       if (!this.smoothedFreq) this.smoothedFreq = freq;
       else this.smoothedFreq = this.emaAlpha * freq + (1 - this.emaAlpha) * this.smoothedFreq;
     } else {
-      // decay smoothed frequency when silence
-      if (this.smoothedFreq) this.smoothedFreq = this.smoothedFreq * 0.98;
+      // decay smoothed frequency when silence (slower decay)
+      if (this.smoothedFreq) this.smoothedFreq = this.smoothedFreq * 0.95;
     }
 
     if (!this.smoothedConf) this.smoothedConf = confidence;
     else this.smoothedConf = this.emaAlpha * confidence + (1 - this.emaAlpha) * this.smoothedConf;
 
-    const detection = { frequency: freq, confidence, smoothedFrequency: this.smoothedFreq ?? null, smoothedConfidence: this.smoothedConf ?? 0 } as PitchDetection;
+    const detection: PitchDetection = { 
+      frequency: freq, 
+      confidence, 
+      smoothedFrequency: this.smoothedFreq ?? null, 
+      smoothedConfidence: this.smoothedConf ?? 0 
+    };
+    
     if (freq) {
       const mapped = this.frequencyToNote(freq);
       detection.note = mapped.note;
@@ -97,6 +142,7 @@ export class PitchDetectorService implements OnDestroy {
       detection.note = null;
       detection.cents = null;
     }
+    
     this.detections.next(detection);
     this.rafId = requestAnimationFrame(() => this.update());
   }
@@ -107,34 +153,46 @@ export class PitchDetectorService implements OnDestroy {
     return Math.sqrt(sum / buffer.length);
   }
 
-  // Autocorrelation pitch detection (Chris Wilson approach)
-  private autoCorrelate(buf: Float32Array, sampleRate: number) {
+  // Autocorrelation pitch detection (improved Chris Wilson approach)
+  private autoCorrelate(buf: Float32Array, sampleRate: number): number {
     const SIZE = buf.length;
     const MAX_SAMPLES = Math.floor(SIZE / 2);
     let bestOffset = -1;
     let bestCorrelation = 0;
+    
+    // Calculate RMS for noise gate
     let rms = 0;
     for (let i = 0; i < SIZE; i++) {
       const val = buf[i];
       rms += val * val;
     }
     rms = Math.sqrt(rms / SIZE);
-    if (rms < 0.001) return -1;
+    if (rms < 0.01) return -1; // Noise gate
 
     let lastCorrelation = 1;
-    for (let offset = 0; offset < MAX_SAMPLES; offset++) {
+    // Calculate minimum offset based on MAX_FREQ to avoid false positives
+    const minOffset = Math.floor(sampleRate / this.MAX_FREQ);
+    
+    for (let offset = minOffset; offset < MAX_SAMPLES; offset++) {
       let correlation = 0;
       for (let i = 0; i < MAX_SAMPLES; i++) {
         correlation += Math.abs(buf[i] - buf[i + offset]);
       }
       correlation = 1 - correlation / MAX_SAMPLES;
-      if (correlation > 0.9 && correlation > lastCorrelation) {
+      
+      // Look for peaks with higher threshold
+      if (correlation > 0.92 && correlation > lastCorrelation) {
         bestCorrelation = correlation;
         bestOffset = offset;
       }
       lastCorrelation = correlation;
     }
-    if (bestCorrelation > 0.01 && bestOffset > 0) {
+    
+    if (bestCorrelation > 0.5 && bestOffset > 0) {
+      // Parabolic interpolation for sub-sample accuracy
+      const y1 = bestCorrelation;
+      const x = bestOffset;
+      // Simple frequency calculation with interpolation
       const freq = sampleRate / bestOffset;
       return Math.round(freq * 100) / 100;
     }

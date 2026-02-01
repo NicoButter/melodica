@@ -1,4 +1,10 @@
 <div class="mic-capture">
+  <!-- Error display -->
+  <div class="error-message" *ngIf="errorMessage">
+    <span>⚠️ {{ errorMessage }}</span>
+    <button (click)="clearError()" class="btn-close">✕</button>
+  </div>
+
   <div class="controls">
     <button (click)="start()" [disabled]="running">Iniciar micrófono</button>
     <button (click)="stop()" [disabled]="!running">Detener</button>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 import { PitchDetectorService, PitchDetection } from '../../../core/services/pitch-detector.service';
 
 @Component({
@@ -15,13 +16,20 @@ export class MicCaptureComponent implements OnDestroy {
 
   public running = false;
   public last: PitchDetection = { frequency: null, note: null, cents: null, confidence: 0, smoothedFrequency: null, smoothedConfidence: 0 };
-  public locked = false; // cuando true, no actualiza la última detección
+  public locked = false;
+  public errorMessage: string | null = null;
+  
+  private detectionSubscription?: Subscription;
+  private errorSubscription?: Subscription;
 
   constructor(private pitch: PitchDetectorService) {
-    this.pitch.detections.subscribe((d: PitchDetection) => {
-      // Si está bloqueado, no actualizamos ni emitimos
+    this.setupSubscriptions();
+  }
+
+  private setupSubscriptions(): void {
+    this.detectionSubscription = this.pitch.detections.subscribe((d: PitchDetection) => {
       if (this.locked) return;
-      // Guardamos la detección suavizada si existe
+      
       this.last = {
         frequency: d.frequency,
         note: d.note ?? null,
@@ -32,25 +40,44 @@ export class MicCaptureComponent implements OnDestroy {
       };
       this.detected.emit(this.last);
     });
+
+    this.errorSubscription = this.pitch.errors.subscribe((error: string) => {
+      this.errorMessage = error;
+      this.running = false;
+    });
   }
 
   async start() {
-    await this.pitch.start();
-    this.running = true;
+    try {
+      this.errorMessage = null;
+      await this.pitch.start();
+      this.running = true;
+    } catch (error) {
+      this.errorMessage = 'No se pudo acceder al micrófono. Verifica los permisos.';
+      this.running = false;
+    }
   }
 
   stop() {
     this.pitch.stop();
     this.running = false;
+    this.errorMessage = null;
   }
 
   useDetected() {
-    // emits a confirmed detection (user pressed 'Usar detección')
+    if (!this.last.note || !this.last.frequency) {
+      this.errorMessage = 'No hay detección válida para confirmar';
+      return;
+    }
     this.confirmed.emit(this.last);
   }
 
   toggleLock() {
     this.locked = !this.locked;
+  }
+
+  clearError() {
+    this.errorMessage = null;
   }
 
   // Helpers para plantilla que evitan verificaciones nulas en expressions
@@ -65,5 +92,7 @@ export class MicCaptureComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.pitch.stop();
+    this.detectionSubscription?.unsubscribe();
+    this.errorSubscription?.unsubscribe();
   }
 }

@@ -32,6 +32,14 @@ export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
       color: 'bohemian-brown'
     },
     {
+      id: 'note-detector',
+      title: 'Detección de Nota',
+      description: 'Detecta notas con tu micrófono y obtén sugerencias de progresiones en tiempo real',
+      icon: '🎤',
+      route: '/note-detector',
+      color: 'bohemian-accent'
+    },
+    {
       id: 'workshop',
       title: 'Taller Musical',
       description: 'Afina tu instrumento y practica con ejercicios guiados',
