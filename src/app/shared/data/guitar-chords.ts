@@ -44,29 +44,30 @@ export const GUITAR_CHORDS: Record<string, GuitarChord> = {
   },
   B: {
     name: 'B',
-    positions: [-1, 0, 4, 4, 4, 2],
+    positions: [-1, 2, 4, 4, 3, 2],
+    barre: 2,
   },
 
   // Flat Chords (bemoles)
   'Bb': {
     name: 'Bb',
-    positions: [-1, 1, 3, 3, 3, 1],
+    positions: [-1, 1, 3, 3, 2, 1],
     barre: 1,
   },
   'Bbm': {
     name: 'Bbm',
-    positions: [-1, 1, 3, 3, 2, 1],
+    positions: [-1, 1, 3, 3, 1, 1],
     barre: 1,
   },
   'Eb': {
     name: 'Eb',
-    positions: [-1, 6, 8, 8, 8, 6],
+    positions: [-1, 6, 8, 8, 7, 6],
     barre: 6,
   },
   'Ebm': {
     name: 'Ebm',
-    positions: [3, 1, 1, 0, 2, 3],
-    barre: 1,
+    positions: [-1, 6, 8, 8, 6, 6],
+    barre: 6,
   },
   'Ab': {
     name: 'Ab',
@@ -80,12 +81,12 @@ export const GUITAR_CHORDS: Record<string, GuitarChord> = {
   },
   'Db': {
     name: 'Db',
-    positions: [-1, 4, 6, 6, 6, 4],
+    positions: [-1, 4, 6, 6, 5, 4],
     barre: 4,
   },
   'Dbm': {
     name: 'Dbm',
-    positions: [-1, 4, 6, 5, 6, 4],
+    positions: [-1, 4, 6, 6, 4, 4],
     barre: 4,
   },
   'Gb': {
@@ -95,7 +96,7 @@ export const GUITAR_CHORDS: Record<string, GuitarChord> = {
   },
   'Gbm': {
     name: 'Gbm',
-    positions: [2, 4, 4, 2, 2, 2],
+    positions: [2, 4, 4, 4, 2, 2],
     barre: 2,
   },
 
@@ -107,22 +108,22 @@ export const GUITAR_CHORDS: Record<string, GuitarChord> = {
   },
   'F#m': {
     name: 'F#m',
-    positions: [2, 4, 4, 2, 2, 2],
+    positions: [2, 4, 4, 4, 2, 2],
     barre: 2,
   },
   'C#': {
     name: 'C#',
-    positions: [4, 6, 6, 6, 6, 4],
+    positions: [4, 6, 6, 5, 6, 4],
     barre: 4,
   },
   'C#m': {
     name: 'C#m',
-    positions: [4, 6, 6, 4, 4, 4],
+    positions: [-1, 4, 6, 6, 5, 4],
     barre: 4,
   },
   'G#': {
     name: 'G#',
-    positions: [4, 6, 6, 5, 4, 4],
+    positions: [4, 6, 6, 5, 6, 4],
     barre: 4,
   },
   'G#m': {
@@ -132,22 +133,22 @@ export const GUITAR_CHORDS: Record<string, GuitarChord> = {
   },
   'D#': {
     name: 'D#',
-    positions: [-1, 6, 8, 8, 8, 6],
+    positions: [-1, 6, 8, 8, 7, 6],
     barre: 6,
   },
   'D#m': {
     name: 'D#m',
-    positions: [-1, 6, 8, 7, 8, 6],
+    positions: [-1, 6, 8, 8, 6, 6],
     barre: 6,
   },
   'A#': {
     name: 'A#',
-    positions: [-1, 1, 3, 3, 3, 1],
+    positions: [-1, 1, 3, 3, 2, 1],
     barre: 1,
   },
   'A#m': {
     name: 'A#m',
-    positions: [-1, 1, 3, 3, 2, 1],
+    positions: [-1, 1, 3, 3, 1, 1],
     barre: 1,
   },
   Am: {
@@ -156,7 +157,7 @@ export const GUITAR_CHORDS: Record<string, GuitarChord> = {
   },
   Cm: {
     name: 'Cm',
-    positions: [3, 3, 5, 5, 4, 3],
+    positions: [3, 3, 5, 5, 3, 3],
     barre: 3,
   },
   Dm: {
@@ -179,7 +180,7 @@ export const GUITAR_CHORDS: Record<string, GuitarChord> = {
   },
   Bm: {
     name: 'Bm',
-    positions: [2, 3, 4, 4, 3, 2],
+    positions: [2, 2, 4, 4, 2, 2],
     barre: 2,
   },
 
@@ -221,12 +222,12 @@ export const GUITAR_CHORDS: Record<string, GuitarChord> = {
   },
   Bm7: {
     name: 'Bm7',
-    positions: [2, 3, 4, 2, 3, 2],
+    positions: [2, 3, 4, 4, 2, 2],
     barre: 2,
   },
   Cm7: {
     name: 'Cm7',
-    positions: [3, 3, 5, 3, 4, 3],
+    positions: [3, 3, 5, 5, 3, 3],
     barre: 3,
   },
   Dm7: {
@@ -239,12 +240,12 @@ export const GUITAR_CHORDS: Record<string, GuitarChord> = {
   },
   Fm7: {
     name: 'Fm7',
-    positions: [1, 3, 1, 1, 1, 1],
+    positions: [1, 3, 3, 1, 1, 1],
     barre: 1,
   },
   Gm7: {
     name: 'Gm7',
-    positions: [3, 5, 3, 3, 3, 3],
+    positions: [3, 5, 5, 3, 3, 3],
     barre: 3,
   },
 
