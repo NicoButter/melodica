@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ComposerService, RootNote } from '../composer/services/composer.service';
+import { formatChordName } from '../../shared/utils/chord-formatter';
 
 export interface NoteDetectionState {
   detectedNote: string | null;
@@ -129,9 +130,10 @@ export class NoteDetectorService {
   }
 
   /**
-   * Formatea una progresión para mostrar
+   * Formatea una progresión para mostrar con notación musical correcta
    */
   formatProgression(progression: string[]): string {
-    return progression.join(' → ');
+    const formattedChords = progression.map(chord => formatChordName(chord));
+    return formattedChords.join(' → ');
   }
 }

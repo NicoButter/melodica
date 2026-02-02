@@ -8,8 +8,8 @@
     font-size: 1.1rem;
     font-weight: 600;
     color: #d4af37;
-    text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-family: 'Noto Music', 'Georgia', 'Garamond', serif;
   }
 
   .chord-diagram {
@@ -97,7 +97,17 @@
     .fret-labels {
       .fret-label {
         font-size: 10px;
-        color: #7f8c8d;
+        fill: #7f8c8d;
+        font-weight: 600;
+        font-family: monospace;
+      }
+    }
+
+    // String names
+    .string-labels {
+      .string-label {
+        font-size: 10px;
+        fill: #7f8c8d;
         font-weight: 600;
         font-family: monospace;
       }

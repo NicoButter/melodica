@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PitchDetectorService, PitchDetection } from '../../core/services/pitch-detector.service';
 import { NoteDetectorService } from './note-detector.service';
 import { MicCaptureComponent } from '../../shared/components/mic-capture/mic-capture.component';
+import { formatChordName } from '../../shared/utils/chord-formatter';
 
 @Component({
   selector: 'app-note-detector',
@@ -114,7 +115,8 @@ export class NoteDetectorComponent implements OnInit, OnDestroy {
   }
 
   copyProgression(progression: string[]): void {
-    const text = this.noteDetector.formatProgression(progression);
+    const formattedChords = progression.map(chord => formatChordName(chord));
+    const text = formattedChords.join(' → ');
     navigator.clipboard.writeText(text).then(() => {
       alert('Progresión copiada al portapapeles');
     });
@@ -125,6 +127,7 @@ export class NoteDetectorComponent implements OnInit, OnDestroy {
   }
 
   formatProgression(progression: string[]): string {
-    return this.noteDetector.formatProgression(progression);
+    const formattedChords = progression.map(chord => formatChordName(chord));
+    return formattedChords.join(' → ');
   }
 }

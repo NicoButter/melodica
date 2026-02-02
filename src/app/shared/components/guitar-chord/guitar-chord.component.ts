@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { getChordData } from '../../data/guitar-chords';
+import { formatChordName } from '../../utils/chord-formatter';
 
 /**
  * Guitar Chord Diagram Component
@@ -25,9 +26,18 @@ export class GuitarChordComponent {
   readonly dotRadius = 7;
   readonly nutHeight = 4;
   readonly topMargin = 25;
+  readonly bottomMargin = 20;
+  readonly stringNames = ['E', 'A', 'D', 'G', 'B', 'e'];
 
   get chordData() {
     return getChordData(this.chordName);
+  }
+
+  /**
+   * Get formatted chord name with proper musical notation
+   */
+  get formattedChordName(): string {
+    return formatChordName(this.chordData.name);
   }
 
   get maxFret() {
@@ -40,7 +50,7 @@ export class GuitarChordComponent {
 
   get svgHeight() {
     const fretRows = Math.max(this.maxFret, this.numFrets);
-    return this.topMargin + this.nutHeight + fretRows * this.fretHeight + 10;
+    return this.topMargin + this.nutHeight + fretRows * this.fretHeight + this.bottomMargin;
   }
 
   /**

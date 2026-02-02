@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComposerService, ProgressionResult } from '../../services/composer.service';
 import { GuitarChordComponent } from '../../../../shared/components/guitar-chord/guitar-chord.component';
+import { formatChordName } from '../../../../shared/utils/chord-formatter';
 
 @Component({
   selector: 'app-result-step',
@@ -58,7 +59,8 @@ export class ResultStepComponent implements OnInit {
   }
 
   formatProgression(progression: string[]): string {
-    return progression.join(' - ');
+    const formattedChords = progression.map(chord => formatChordName(chord));
+    return formattedChords.join(' - ');
   }
 
   startOver(): void {
@@ -71,7 +73,8 @@ export class ResultStepComponent implements OnInit {
   }
 
   copyProgression(progression: string[]): void {
-    const progressionText = progression.join(' - ');
+    const formattedChords = progression.map(chord => formatChordName(chord));
+    const progressionText = formattedChords.join(' - ');
     navigator.clipboard.writeText(progressionText).then(() => {
       // Podríamos mostrar un toast de éxito aquí
       console.log('Progresión copiada:', progressionText);

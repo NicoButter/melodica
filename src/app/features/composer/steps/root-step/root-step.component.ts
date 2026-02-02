@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ComposerService, RootNote } from '../../services/composer.service';
 import { MicCaptureComponent } from '../../../../shared/components/mic-capture/mic-capture.component';
 import { PitchDetection } from '../../../../core/services/pitch-detector.service';
+import { formatChordName } from '../../../../shared/utils/chord-formatter';
 
 @Component({
   selector: 'app-root-step',
@@ -22,9 +23,9 @@ export class RootStepComponent {
     { value: 'G', label: 'Sol (G)', description: 'Cálida y equilibrada' },
     { value: 'A', label: 'La (A)', description: 'Clara y resonante' },
     { value: 'B', label: 'Si (B)', description: 'Intensa y dramática' },
-    { value: 'Bb', label: 'Si bemol (Bb)', description: 'Suave y nostálgica' },
-    { value: 'Eb', label: 'Mi bemol (Eb)', description: 'Elegante y sofisticada' },
-    { value: 'F#', label: 'Fa sostenido (F#)', description: 'Aguda y misteriosa' }
+    { value: 'Bb', label: `Si bemol (${formatChordName('Bb')})`, description: 'Suave y nostálgica' },
+    { value: 'Eb', label: `Mi bemol (${formatChordName('Eb')})`, description: 'Elegante y sofisticada' },
+    { value: 'F#', label: `Fa sostenido (${formatChordName('F#')})`, description: 'Aguda y misteriosa' }
   ];
 
   selectedRoot: RootNote | null = null;

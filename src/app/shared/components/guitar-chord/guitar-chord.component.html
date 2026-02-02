@@ -1,9 +1,22 @@
 <div class="guitar-chord-container" [class.compact]="compact">
   <!-- Chord Name -->
-  <div class="chord-name">{{ chordData.name }}</div>
+  <div class="chord-name">{{ formattedChordName }}</div>
 
   <!-- SVG Diagram -->
   <svg [attr.viewBox]="'0 0 ' + svgWidth + ' ' + svgHeight" class="chord-diagram">
+    <!-- String names at the top -->
+    <g class="string-labels">
+      <text
+        *ngFor="let stringIdx of [0, 1, 2, 3, 4, 5]"
+        [attr.x]="getStringX(stringIdx)"
+        [attr.y]="12"
+        text-anchor="middle"
+        class="string-label"
+      >
+        {{ stringNames[stringIdx] }}
+      </text>
+    </g>
+
     <!-- String indicators (X for muted, O for open) - Above the nut -->
     <g class="indicators">
       <ng-container *ngFor="let stringIdx of [0, 1, 2, 3, 4, 5]">
@@ -85,16 +98,16 @@
       />
     </g>
 
-    <!-- Fret numbers on the left (optional, not in compact mode) -->
-    <g *ngIf="!compact" class="fret-labels">
+    <!-- String names at the bottom -->
+    <g class="string-labels">
       <text
-        *ngFor="let fret of getFretRange()"
-        x="5"
-        [attr.y]="getFingerDotY(fret) + 4"
+        *ngFor="let stringIdx of [0, 1, 2, 3, 4, 5]"
+        [attr.x]="getStringX(stringIdx)"
+        [attr.y]="getFretLineY(getFretRange()[getFretRange().length - 1]) + 15"
         text-anchor="middle"
-        class="fret-label"
+        class="string-label"
       >
-        {{ fret }}
+        {{ stringNames[stringIdx] }}
       </text>
     </g>
   </svg>

@@ -47,7 +47,49 @@ export const GUITAR_CHORDS: Record<string, GuitarChord> = {
     positions: [-1, 0, 4, 4, 4, 2],
   },
 
-  // Minor Chords
+  // Flat Chords (bemoles)
+  'Bb': {
+    name: 'Bb',
+    positions: [-1, 1, 3, 3, 3, 1],
+    barre: 1,
+  },
+  'Ebm': {
+    name: 'Ebm',
+    positions: [3, 1, 1, 0, 2, 3],
+    barre: 1,
+  },
+  'Ab': {
+    name: 'Ab',
+    positions: [4, 6, 6, 5, 4, 4],
+    barre: 4,
+  },
+  'Db': {
+    name: 'Db',
+    positions: [-1, 4, 6, 6, 6, 4],
+    barre: 4,
+  },
+  'Gb': {
+    name: 'Gb',
+    positions: [2, 4, 4, 3, 2, 2],
+    barre: 2,
+  },
+
+  // Sharp Chords (sostenidos)
+  'F#': {
+    name: 'F#',
+    positions: [2, 4, 4, 3, 2, 2],
+    barre: 2,
+  },
+  'C#': {
+    name: 'C#',
+    positions: [4, 6, 6, 6, 6, 4],
+    barre: 4,
+  },
+  'G#': {
+    name: 'G#',
+    positions: [4, 6, 6, 5, 4, 4],
+    barre: 4,
+  },
   Am: {
     name: 'Am',
     positions: [0, 0, 2, 2, 1, 0],
