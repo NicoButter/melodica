@@ -43,8 +43,17 @@
           </button>
         </div>
 
-        <div class="progression-chords">
-          {{ formatProgression(progression) }}
+        <div class="progression-chords-with-diagrams">
+          <div class="chords-list">
+            {{ formatProgression(progression) }}
+          </div>
+          <div class="guitar-diagrams">
+            <app-guitar-chord 
+              *ngFor="let chord of progression"
+              [chordName]="chord"
+              [compact]="true">
+            </app-guitar-chord>
+          </div>
         </div>
       </div>
     </div>
@@ -68,8 +77,17 @@
           </button>
         </div>
 
-        <div class="progression-chords">
-          {{ formatProgression(progression) }}
+        <div class="progression-chords-with-diagrams">
+          <div class="chords-list">
+            {{ formatProgression(progression) }}
+          </div>
+          <div class="guitar-diagrams">
+            <app-guitar-chord 
+              *ngFor="let chord of progression"
+              [chordName]="chord"
+              [compact]="true">
+            </app-guitar-chord>
+          </div>
         </div>
       </div>
     </div>

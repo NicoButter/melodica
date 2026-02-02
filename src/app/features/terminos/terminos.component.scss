@@ -1,0 +1,121 @@
+.terminos {
+  min-height: 100vh;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .content {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .disclaimer-section {
+    margin-bottom: 2.5rem;
+
+    h2 {
+      font-size: 1.5rem;
+      color: #667eea;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #764ba2;
+      padding-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      color: #764ba2;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+
+      strong {
+        color: #764ba2;
+        font-weight: 600;
+      }
+
+      a {
+        color: #667eea;
+        text-decoration: none;
+        border-bottom: 1px solid #667eea;
+
+        &:hover {
+          color: #764ba2;
+          border-bottom-color: #764ba2;
+        }
+      }
+    }
+
+    ul {
+      list-style-position: inside;
+      margin-left: 1rem;
+
+      li {
+        line-height: 1.8;
+        color: #333;
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+
+        &::marker {
+          color: #667eea;
+          font-weight: bold;
+        }
+      }
+    }
+
+    &.acceptance {
+      background: #f0f4ff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+
+      p {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  .disclaimer-section:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .terminos {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .content {
+      padding: 1.5rem;
+    }
+
+    .disclaimer-section {
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      ul {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}

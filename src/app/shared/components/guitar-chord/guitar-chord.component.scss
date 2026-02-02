@@ -1,0 +1,116 @@
+.guitar-chord-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  .chord-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .chord-diagram {
+    width: 100%;
+    max-width: 130px;
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    }
+
+    // String indicators (X or O)
+    .indicators {
+      .indicator {
+        &.muted {
+          font-size: 16px;
+          font-weight: bold;
+          color: #e74c3c;
+          fill: #e74c3c;
+        }
+
+        &.open {
+          fill: none;
+          stroke: #27ae60;
+          stroke-width: 2;
+        }
+      }
+    }
+
+    // Nut line (top thick line)
+    .nut {
+      stroke: #2c3e50;
+      stroke-width: 4;
+      stroke-linecap: round;
+    }
+
+    // Fret lines (horizontal)
+    .frets {
+      .fret-line {
+        stroke: #95a5a6;
+        stroke-width: 1.5;
+      }
+    }
+
+    // Strings (vertical)
+    .strings {
+      .string {
+        stroke: #34495e;
+        stroke-width: 1;
+
+        &:first-child,
+        &:last-child {
+          stroke-width: 1.5; // E strings slightly thicker
+        }
+      }
+    }
+
+    // Barre indicator (horizontal bar)
+    .barre {
+      .barre-bar {
+        fill: #d4af37;
+        stroke: #2c3e50;
+        stroke-width: 0.5;
+        opacity: 0.9;
+      }
+    }
+
+    // Finger dots (centered between frets)
+    .fingers {
+      .finger-dot {
+        fill: #d4af37;
+        stroke: #2c3e50;
+        stroke-width: 1;
+        transition: fill 0.2s ease;
+
+        &:hover {
+          fill: #f39c12;
+        }
+      }
+    }
+
+    // Fret numbers
+    .fret-labels {
+      .fret-label {
+        font-size: 10px;
+        color: #7f8c8d;
+        font-weight: 600;
+        font-family: monospace;
+      }
+    }
+  }
+
+  &.compact {
+    .chord-diagram {
+      max-width: 100px;
+    }
+
+    .chord-name {
+      font-size: 0.95rem;
+    }
+  }
+}

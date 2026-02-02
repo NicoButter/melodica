@@ -66,6 +66,15 @@ export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private initIntersectionObserver(): void {
+    // Check if IntersectionObserver is available (not available in SSR or older browsers)
+    if (typeof IntersectionObserver === 'undefined') {
+      // Fallback: trigger animations immediately for all cards
+      this.tools.forEach(tool => {
+        this.cardAnimationState[tool.id] = true;
+      });
+      return;
+    }
+
     const options = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -99,8 +108,11 @@ export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
 
   navigateTo(tool: any) {
     if (tool.route.startsWith('#')) {
-      const element = document.querySelector(tool.route);
-      element?.scrollIntoView({ behavior: 'smooth' });
+      // Ensure we're in browser environment
+      if (typeof document !== 'undefined') {
+        const element = document.querySelector(tool.route);
+        element?.scrollIntoView({ behavior: 'smooth' });
+      }
     } else {
       this.router.navigate([tool.route]);
     }

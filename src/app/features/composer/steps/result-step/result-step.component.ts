@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComposerService, ProgressionResult } from '../../services/composer.service';
+import { GuitarChordComponent } from '../../../../shared/components/guitar-chord/guitar-chord.component';
 
 @Component({
   selector: 'app-result-step',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, GuitarChordComponent],
   templateUrl: './result-step.component.html',
   styleUrls: ['./result-step.component.scss']
 })

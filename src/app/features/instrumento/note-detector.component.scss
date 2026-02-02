@@ -1,4 +1,4 @@
-@import '../../shared/styles/variables';
+@use '../../shared/styles/variables' as *;
 
 .note-detector-container {
   max-width: 1200px;

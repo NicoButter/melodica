@@ -34,12 +34,20 @@ export class ComposerPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    document.body.classList.remove('scrolled');
+    // Ensure we're in browser environment
+    if (typeof document !== 'undefined') {
+      document.body.classList.remove('scrolled');
+    }
     this.wizardStateService.setWizardActive(false);
   }
 
   @HostListener('window:scroll')
   onWindowScroll(): void {
+    // Ensure we're in browser environment
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     if (scrollTop > 50) {
       document.body.classList.add('scrolled');

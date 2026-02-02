@@ -1,0 +1,101 @@
+<div class="guitar-chord-container" [class.compact]="compact">
+  <!-- Chord Name -->
+  <div class="chord-name">{{ chordData.name }}</div>
+
+  <!-- SVG Diagram -->
+  <svg [attr.viewBox]="'0 0 ' + svgWidth + ' ' + svgHeight" class="chord-diagram">
+    <!-- String indicators (X for muted, O for open) - Above the nut -->
+    <g class="indicators">
+      <ng-container *ngFor="let stringIdx of [0, 1, 2, 3, 4, 5]">
+        <!-- Muted string (X) -->
+        <text
+          *ngIf="isMuted(stringIdx)"
+          [attr.x]="getStringX(stringIdx)"
+          [attr.y]="getIndicatorY()"
+          text-anchor="middle"
+          class="indicator muted"
+        >
+          ✕
+        </text>
+        <!-- Open string (circle) -->
+        <circle
+          *ngIf="isOpen(stringIdx)"
+          [attr.cx]="getStringX(stringIdx)"
+          [attr.cy]="getIndicatorY()"
+          r="5"
+          class="indicator open"
+        />
+      </ng-container>
+    </g>
+
+    <!-- Nut (thick line at top) -->
+    <line 
+      [attr.x1]="getStringX(0)" 
+      [attr.y1]="topMargin" 
+      [attr.x2]="getStringX(5)" 
+      [attr.y2]="topMargin" 
+      class="nut" 
+    />
+
+    <!-- Fret lines (horizontal) -->
+    <g class="frets">
+      <line
+        *ngFor="let fret of getFretRange()"
+        [attr.x1]="getStringX(0)"
+        [attr.y1]="getFretLineY(fret)"
+        [attr.x2]="getStringX(5)"
+        [attr.y2]="getFretLineY(fret)"
+        class="fret-line"
+      />
+    </g>
+
+    <!-- Strings (vertical) -->
+    <g class="strings">
+      <line
+        *ngFor="let stringIdx of [0, 1, 2, 3, 4, 5]"
+        [attr.x1]="getStringX(stringIdx)"
+        [attr.y1]="topMargin"
+        [attr.x2]="getStringX(stringIdx)"
+        [attr.y2]="getFretLineY(getFretRange()[getFretRange().length - 1])"
+        class="string"
+      />
+    </g>
+
+    <!-- Barre indicator (horizontal bar across strings) -->
+    <g *ngIf="getBarreInfo() as barreInfo" class="barre">
+      <rect
+        [attr.x]="getStringX(barreInfo.startString) - 4"
+        [attr.y]="barreInfo.y - 4"
+        [attr.width]="getStringX(barreInfo.endString) - getStringX(barreInfo.startString) + 8"
+        [attr.height]="8"
+        rx="4"
+        class="barre-bar"
+      />
+    </g>
+
+    <!-- Finger dots (fretted notes) - BETWEEN fret lines -->
+    <g class="fingers">
+      <circle
+        *ngFor="let stringIdx of [0, 1, 2, 3, 4, 5]"
+        [attr.cx]="getStringX(stringIdx)"
+        [attr.cy]="getFingerDotY(getFretNumber(stringIdx))"
+        [attr.r]="dotRadius"
+        class="finger-dot"
+        [attr.style]="shouldShowDot(stringIdx) ? '' : 'display:none'"
+      />
+    </g>
+
+    <!-- Fret numbers on the left (optional, not in compact mode) -->
+    <g *ngIf="!compact" class="fret-labels">
+      <text
+        *ngFor="let fret of getFretRange()"
+        x="5"
+        [attr.y]="getFingerDotY(fret) + 4"
+        text-anchor="middle"
+        class="fret-label"
+      >
+        {{ fret }}
+      </text>
+    </g>
+  </svg>
+</div>

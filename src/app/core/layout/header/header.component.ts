@@ -56,6 +56,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll')
   onWindowScroll() {
+    // Ensure we're in browser environment
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     this.isShrunk = scrollTop > 50;
     this.showWizardProgress = this.isComposerPage && this.isShrunk;

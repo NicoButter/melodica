@@ -7,10 +7,12 @@ import { LandingComponent } from './features/landing/landing.component';
 import { AboutComponent } from './features/about/about.component';
 import { ComposerPageComponent } from './features/composer/composer.page';
 import { SongbookPageComponent } from './features/songbook/songbook.page';
+import { TerminosComponent } from './features/terminos/terminos.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'terminos', component: TerminosComponent },
   { path: 'compose', component: ComposerPageComponent },
   { path: 'songbook', component: SongbookPageComponent },
   { path: 'note-detector', component: NoteDetectorComponent },
