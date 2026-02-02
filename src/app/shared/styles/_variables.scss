@@ -2,11 +2,13 @@
 $primary-color: #2C3E50; // Deep navy blue - modern elegance
 $secondary-color: #8B4513; // Saddle brown - bohemian earth tone
 $accent-color: #D4AF37; // Antique gold - bohemian luxury
+$gold: $accent-color; // Alias for accent color
 $tertiary-color: #6B8E23; // Olive drab - natural green
 $background-color: #F5F5DC; // Beige - warm, organic
 $background-dark: #2F2F2F; // Dark charcoal for contrast
 $text-color: #2C2C2C; // Dark charcoal text
 $text-light: #F5F5DC; // Light text on dark backgrounds
+$text-muted: #7A7A7A; // Muted gray for secondary text
 $border-color: #D2B48C; // Tan borders
 
 // Gradients
@@ -17,6 +19,7 @@ $warm-gradient: linear-gradient(to bottom, #F5F5DC 0%, #D2B48C 100%);
 // Typography
 $font-family-primary: 'Poppins', sans-serif; // Modern sans-serif
 $font-family-secondary: 'Dancing Script', cursive; // Bohemian script
+$font-family-heading: $font-family-primary; // Alias for headings
 $font-family-mono: 'Fira Code', monospace; // For code elements
 $font-size-base: 16px;
 $font-size-large: 24px;

@@ -1,0 +1,101 @@
+<div class="pentagrama-container">
+  <header class="section-header">
+    <h1>♬ Pentagrama</h1>
+    <p>Haz clic en cada nota para escuchar su sonido</p>
+  </header>
+
+  <div class="staff-wrapper">
+    <svg [attr.viewBox]="'0 0 ' + staffWidth + ' ' + (staffHeight + 60)" class="staff-svg">
+      <!-- Treble clef -->
+      <text x="20" y="70" class="clef-symbol">𝄞</text>
+
+      <!-- Staff lines -->
+      <g class="staff-lines">
+        <line 
+          *ngFor="let line of staffLines"
+          [attr.x1]="leftMargin"
+          [attr.y1]="line * lineSpacing + 40"
+          [attr.x2]="staffWidth - 50"
+          [attr.y2]="line * lineSpacing + 40"
+          class="staff-line" />
+      </g>
+
+      <!-- Notes -->
+      <g class="notes-group">
+        <g *ngFor="let note of notes; let i = index" class="note-group">
+          <!-- Ledger line if needed -->
+          <line 
+            *ngIf="shouldShowLedgerLine(note.position)"
+            [attr.x1]="getNoteX(i) - 15"
+            [attr.y1]="getLedgerLineY(note.position) + 40"
+            [attr.x2]="getNoteX(i) + 15"
+            [attr.y2]="getLedgerLineY(note.position) + 40"
+            class="ledger-line" />
+
+          <!-- Note head -->
+          <ellipse
+            [attr.cx]="getNoteX(i)"
+            [attr.cy]="getNoteY(note.position) + 40"
+            rx="10"
+            ry="8"
+            class="note-head"
+            [class.active]="activeNote === note.id"
+            (click)="playNote(note)" />
+
+          <!-- Note stem -->
+          <line
+            [attr.x1]="getNoteX(i) + 10"
+            [attr.y1]="getNoteY(note.position) + 40"
+            [attr.x2]="getNoteX(i) + 10"
+            [attr.y2]="getNoteY(note.position) - 30"
+            class="note-stem" />
+
+          <!-- Note label (below staff) -->
+          <text
+            [attr.x]="getNoteX(i)"
+            [attr.y]="staffHeight + 40"
+            class="note-label"
+            [class.active]="activeNote === note.id">
+            {{ note.name }}
+          </text>
+        </g>
+      </g>
+
+      <!-- End bar line -->
+      <line 
+        [attr.x1]="staffWidth - 50"
+        [attr.y1]="40"
+        [attr.x2]="staffWidth - 50"
+        [attr.y2]="staffLines.length * lineSpacing + 20"
+        class="bar-line" />
+      <line 
+        [attr.x1]="staffWidth - 45"
+        [attr.y1]="40"
+        [attr.x2]="staffWidth - 45"
+        [attr.y2]="staffLines.length * lineSpacing + 20"
+        class="bar-line-thin" />
+    </svg>
+  </div>
+
+  <div class="info-box">
+    <h3>💡 El Pentagrama</h3>
+    <p>
+      El pentagrama tiene 5 líneas y 4 espacios.<br>
+      Cada línea y espacio representa una nota musical diferente.<br>
+      La clave de sol (𝄞) nos dice dónde está la nota Sol.
+    </p>
+  </div>
+
+  <div class="keyboard-guide">
+    <h3>🎹 Equivalencia en el teclado</h3>
+    <div class="keyboard">
+      <div 
+        *ngFor="let note of notes" 
+        class="key"
+        [class.active]="activeNote === note.id"
+        (click)="playNote(note)">
+        <span class="key-label">{{ note.name }}{{ note.octave }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="compas-container">
+  <header class="section-header">
+    <h1>| Compás |</h1>
+    <p>Selecciona un tipo de compás y observa cómo se organizan los tiempos</p>
+  </header>
+
+  <!-- Time Signature Selector -->
+  <div class="signatures-grid">
+    <div
+      *ngFor="let signature of timeSignatures"
+      class="signature-card"
+      [class.selected]="selectedSignature?.id === signature.id"
+      (click)="selectSignature(signature)">
+      
+      <div class="signature-symbol">
+        <div class="numerator">{{ signature.numerator }}</div>
+        <div class="divider"></div>
+        <div class="denominator">{{ signature.denominator }}</div>
+      </div>
+
+      <h3 class="signature-name">{{ signature.name }}</h3>
+      <p class="signature-description">{{ signature.description }}</p>
+    </div>
+  </div>
+
+  <!-- Player Controls -->
+  <div class="player-controls" *ngIf="selectedSignature">
+    <button 
+      class="control-btn play-btn" 
+      (click)="play()" 
+      [disabled]="isPlaying">
+      ▶ Reproducir
+    </button>
+    <button 
+      class="control-btn stop-btn" 
+      (click)="stop()" 
+      [disabled]="!isPlaying">
+      ■ Detener
+    </button>
+  </div>
+
+  <!-- Measures Visualization -->
+  <div class="measures-section" *ngIf="selectedSignature && getCurrentMeasures().length > 0">
+    <h2>Ejemplos de compases:</h2>
+    
+    <div class="measures-container">
+      <div 
+        *ngFor="let measure of getCurrentMeasures(); let mi = index" 
+        class="measure"
+        [class.active]="currentMeasure === mi && isPlaying">
+        
+        <!-- Bar line (left) -->
+        <div class="bar-line"></div>
+
+        <!-- Beats -->
+        <div class="beats">
+          <div 
+            *ngFor="let beat of measure.beats; let bi = index"
+            class="beat"
+            [class.active]="isBeatActive(mi, bi)"
+            [style.flex]="beat.duration">
+            <div class="beat-symbol">{{ beat.note }}</div>
+          </div>
+        </div>
+
+        <!-- Bar line (right) -->
+        <div class="bar-line"></div>
+      </div>
+    </div>
+
+    <!-- Beat Indicators -->
+    <div class="beat-indicators" *ngIf="isPlaying && selectedSignature">
+      <div 
+        *ngFor="let beat of [].constructor(selectedSignature.numerator); let i = index"
+        class="beat-indicator"
+        [class.active]="currentBeat === i">
+        {{ i + 1 }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="info-box" *ngIf="selectedSignature">
+    <h3>💡 Sobre {{ selectedSignature.name }}</h3>
+    <p>
+      El numerador ({{ selectedSignature.numerator }}) indica cuántos tiempos hay por compás.<br>
+      El denominador ({{ selectedSignature.denominator }}) indica qué tipo de nota recibe un tiempo.
+    </p>
+  </div>
+</div>

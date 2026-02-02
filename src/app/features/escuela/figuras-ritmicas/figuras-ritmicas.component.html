@@ -1,0 +1,50 @@
+<div class="figuras-container">
+  <header class="section-header">
+    <h1>♪ Figuras Rítmicas</h1>
+    <p>Haz clic en cada figura para escuchar su duración</p>
+  </header>
+
+  <div class="figures-grid">
+    <div
+      *ngFor="let figure of figures"
+      class="figure-card"
+      [class.active]="activeFigure === figure.id"
+      (click)="playFigure(figure)">
+      
+      <div class="figure-symbol" [style.transform]="'scale(' + getScale(figure.duration) + ')'">
+        {{ figure.symbol }}
+      </div>
+
+      <h3 class="figure-name">{{ figure.name }}</h3>
+      <p class="figure-description">{{ figure.description }}</p>
+
+      <!-- Duration visualizer -->
+      <div class="duration-bar">
+        <div 
+          class="duration-fill" 
+          [class.animating]="activeFigure === figure.id"
+          [style.width.%]="(figure.duration / 4) * 100">
+        </div>
+      </div>
+
+      <!-- Pulse indicators -->
+      <div class="pulse-indicators">
+        <span 
+          *ngFor="let pulse of [].constructor(Math.ceil(figure.duration)); let i = index"
+          class="pulse-dot"
+          [class.active]="activeFigure === figure.id && pulseAnimation">
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h3>💡 ¿Cómo funciona?</h3>
+    <p>Cada figura representa una duración diferente:</p>
+    <ul>
+      <li>Más grande = más larga</li>
+      <li>Los puntos muestran los pulsos</li>
+      <li>La barra muestra la duración relativa</li>
+    </ul>
+  </div>
+</div>

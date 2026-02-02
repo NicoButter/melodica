@@ -103,6 +103,16 @@
       }
     }
 
+    // Fret numbers on the left
+    .fret-numbers {
+      .fret-number {
+        font-size: 9px;
+        fill: #7f8c8d;
+        font-weight: 600;
+        font-family: monospace;
+      }
+    }
+
     // String names
     .string-labels {
       .string-label {

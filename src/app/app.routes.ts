@@ -8,6 +8,11 @@ import { AboutComponent } from './features/about/about.component';
 import { ComposerPageComponent } from './features/composer/composer.page';
 import { SongbookPageComponent } from './features/songbook/songbook.page';
 import { TerminosComponent } from './features/terminos/terminos.component';
+import { EscuelaComponent } from './features/escuela/escuela.component';
+import { FigurasRitmicasComponent } from './features/escuela/figuras-ritmicas/figuras-ritmicas.component';
+import { CompasComponent } from './features/escuela/compas/compas.component';
+import { PentagramaComponent } from './features/escuela/pentagrama/pentagrama.component';
+import { RitmoComponent } from './features/escuela/ritmo/ritmo.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -19,6 +24,16 @@ export const routes: Routes = [
   { path: 'guitarra', component: GuitarraComponent },
   { path: 'piano', component: PianoComponent },
   { path: 'acorde', component: SelectorAcordeComponent },
+  {
+    path: 'escuela',
+    component: EscuelaComponent,
+    children: [
+      { path: 'figuras', component: FigurasRitmicasComponent },
+      { path: 'compas', component: CompasComponent },
+      { path: 'pentagrama', component: PentagramaComponent },
+      { path: 'ritmo', component: RitmoComponent }
+    ]
+  },
   // Lazy loading example
   // { path: 'piano', loadComponent: () => import('./features/instrumento/piano.component').then(m => m.PianoComponent) }
 ];

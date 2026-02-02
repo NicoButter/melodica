@@ -1,0 +1,97 @@
+<div class="ritmo-container">
+  <header class="section-header">
+    <h1>♫ Patrones Rítmicos</h1>
+    <p>Selecciona un patrón y escucha cómo suena</p>
+  </header>
+
+  <!-- Patterns Grid -->
+  <div class="patterns-grid">
+    <div
+      *ngFor="let pattern of patterns"
+      class="pattern-card"
+      [class.selected]="selectedPattern?.id === pattern.id"
+      (click)="selectPattern(pattern)">
+      
+      <div class="pattern-header">
+        <h3 class="pattern-name">{{ pattern.name }}</h3>
+        <span 
+          class="difficulty-badge"
+          [style.background]="getDifficultyColor(pattern.difficulty)">
+          {{ getDifficultyLabel(pattern.difficulty) }}
+        </span>
+      </div>
+
+      <p class="pattern-description">{{ pattern.description }}</p>
+
+      <!-- Visual representation -->
+      <div class="beats-visual">
+        <div 
+          *ngFor="let beat of pattern.beats; let i = index"
+          class="beat-item"
+          [class.active]="selectedPattern?.id === pattern.id && currentBeat === i && isPlaying"
+          [style.flex]="beat.duration">
+          <div class="beat-symbol">{{ beat.symbol }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Player Section -->
+  <div class="player-section" *ngIf="selectedPattern">
+    <div class="player-header">
+      <h2>{{ selectedPattern.name }}</h2>
+      <p>{{ selectedPattern.description }}</p>
+    </div>
+
+    <!-- Large beats display -->
+    <div class="beats-display">
+      <div 
+        *ngFor="let beat of selectedPattern.beats; let i = index"
+        class="beat-display-item"
+        [class.active]="currentBeat === i && isPlaying">
+        <div class="beat-symbol-large">{{ beat.symbol }}</div>
+        <div class="beat-duration">{{ beat.duration }}t</div>
+      </div>
+    </div>
+
+    <!-- Tempo control -->
+    <div class="tempo-control">
+      <label for="tempo">Tempo: {{ tempo }} BPM</label>
+      <input 
+        type="range" 
+        id="tempo"
+        [value]="tempo"
+        min="60"
+        max="180"
+        step="10"
+        (input)="changeTempo($event)"
+        class="tempo-slider" />
+    </div>
+
+    <!-- Controls -->
+    <div class="player-controls">
+      <button 
+        class="control-btn play-btn" 
+        (click)="play()" 
+        [disabled]="isPlaying">
+        ▶ Reproducir
+      </button>
+      <button 
+        class="control-btn stop-btn" 
+        (click)="stop()" 
+        [disabled]="!isPlaying">
+        ■ Detener
+      </button>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="info-box">
+    <h3>💡 Practica ritmos</h3>
+    <p>
+      Cada patrón rítmico tiene un carácter único.<br>
+      Intenta palmear o tocar junto con los patrones.<br>
+      Cambia el tempo para practicar a diferentes velocidades.
+    </p>
+  </div>
+</div>

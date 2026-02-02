@@ -114,8 +114,16 @@
       border-top-color: #d4af37;
     }
 
+    &[data-color="bohemian-purple"] {
+      border-top-color: #8e6c88;
+    }
+
     &[data-color="bohemian-brown"] {
       border-top-color: #8b4513;
+    }
+
+    &[data-color="bohemian-accent"] {
+      border-top-color: #d4af37;
     }
 
     &[data-color="bohemian-sage"] {
@@ -317,6 +325,18 @@
   &:nth-child(3) {
     &.revealed {
       animation: revealSlideInRight 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+    }
+  }
+
+  &:nth-child(4) {
+    &.revealed {
+      animation: revealSlideInLeft 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.45s forwards;
+    }
+  }
+
+  &:nth-child(5) {
+    &.revealed {
+      animation: revealFadeInScale 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards;
     }
   }
 }

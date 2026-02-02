@@ -50,6 +50,19 @@
       class="nut" 
     />
 
+    <!-- Fret numbers on the left -->
+    <g class="fret-numbers">
+      <text
+        *ngFor="let fret of getFretRange()"
+        [attr.x]="2"
+        [attr.y]="getFretLineY(fret) + 5"
+        text-anchor="middle"
+        class="fret-number"
+      >
+        {{ fret }}
+      </text>
+    </g>
+
     <!-- Fret lines (horizontal) -->
     <g class="frets">
       <line
