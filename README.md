@@ -91,7 +91,11 @@ Los archivos optimizados se generan en `dist/`.
 Melodica incluye una funcionalidad avanzada de detección de notas en tiempo real:
 
 **Características:**
-- Ac�️ Stack Tecnológico
+- Detección precisa de notas musicales
+- Visualización de confianza y precisión
+- Integración con el compositor
+
+## 🛠️ Stack Tecnológico
 
 - **Framework**: Angular 21+ (Standalone Components)
 - **Lenguaje**: TypeScript
@@ -166,40 +170,4 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 Hecho con ❤️ y 🎵 por Nicolás Butterfield
 
-© 2024 Melodica. Todos los derechos reservados.
-│   └── styles/           # Variables SCSS y estilos globales
-└── features/              # Features específicos
-    ├── about/            # Página Acerca de
-    ├── acorde/           # Selector y sugerencias de acordes
-    ├── composer/         # Feature de composición musical
-    ├── herramientas/     # Sección de herramientas creativas
-    ├── hero/             # Hero section
-    ├── instrumento/      # Guitarra y Piano
-    ├── landing/          # Página principal
-    ├── songbook/         # Cancionero
-    └── taller/           # Taller y recursos
-```
-
-Consulta [src/app/ARCHITECTURE.md](src/app/ARCHITECTURE.md) para una guía detallada de la arquitectura.
-
-## 📸 Capturas de Pantalla
-
-![Hero](src/assets/images/hero/background_hero_1.jpg)
-
-## 🤝 Contribuciones
-
-¡Las contribuciones son bienvenidas! Por favor, sigue estos pasos:
-
-1. Fork el proyecto.
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`).
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`).
-4. Push a la rama (`git push origin feature/AmazingFeature`).
-5. Abre un Pull Request.
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
-
----
-
-Hecho con ❤️ por Nicolás Butterfield (nicobutter@gmail.com)
+© 2026 Melodica. Todos los derechos reservados.
