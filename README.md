@@ -39,6 +39,27 @@ Accesibles desde la sección principal después del hero:
 - Gemas sonoras alojadas en SoundCloud
 - Taller y recursos educativos
 
+### 🎸 **Base de Datos de Acordes**
+Melodica incluye una base de datos completa de acordes para guitarra, ubicada en [`src/app/shared/data/guitar-chords.ts`](src/app/shared/data/guitar-chords.ts).
+
+**Características:**
+- Más de 80 acordes diferentes
+- Acordes mayores, menores, séptimas, disminuidos, aumentados, etc.
+- Posiciones para afinación estándar (E A D G B e)
+- Información de cejilla y digitación
+- Funciones para acceder a los acordes por nombre
+
+**Categorías de acordes:**
+- Mayores (C, D, E, F, G, A, B)
+- Menores (Am, Bm, etc.)
+- Bemoles y sostenidos
+- Séptimas (7, m7, maj7)
+- Suspendidos (sus2, sus4)
+- Power chords (5)
+- Disminuidos y aumentados
+- Sextas y novenas
+- Otros acordes útiles
+
 ## 🚀 Instalación
 
 1. Clona el repositorio:
