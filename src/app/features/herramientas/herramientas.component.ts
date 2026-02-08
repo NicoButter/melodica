@@ -25,7 +25,7 @@ export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       id: 'escuela',
-      title: 'Escuela de Música',
+      title: 'Escuelita',
       description: 'Aprende teoría musical de forma interactiva y visual',
       icon: '🎓',
       route: '/escuela',
