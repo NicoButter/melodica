@@ -1,4 +1,4 @@
-# Arquitectura de la Aplicación Melodica
+# Arquitectura de la Aplicación Melódica
 
 ## 📁 Estructura de Directorios
 

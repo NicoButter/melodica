@@ -1,6 +1,6 @@
 # Assets Directory
 
-Esta carpeta contiene todos los recursos estáticos de la aplicación Melodica.
+Esta carpeta contiene todos los recursos estáticos de la aplicación Melódica.
 
 ## Estructura
 
