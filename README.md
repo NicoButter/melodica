@@ -16,6 +16,13 @@ Accesibles desde la sección principal después del hero:
 - **Cancionero**: Almacena y organiza tus composiciones
 - **Taller Musical**: Aprende y practica con instrumentos interactivos
 
+### 📚 **Escuela Musical**
+Sección educativa completa para aprender teoría musical:
+- **Figuras Rítmicas**: Aprende las duraciones de las notas
+- **Compás**: Entiende los compases y tiempos musicales
+- **Pentagrama**: Explora el pentagrama y la notación musical
+- **Ritmo**: Practica patrones rítmicos interactivos
+
 ### 🎸 **Instrumentos Interactivos**
 - **Guitarra**: Visualiza acordes y practica técnicas
 - **Piano**: Explora notas y acordes en las teclas
@@ -38,6 +45,7 @@ Accesibles desde la sección principal después del hero:
 - Página "Acerca de" con información del compositor
 - Gemas sonoras alojadas en SoundCloud
 - Taller y recursos educativos
+- Términos y condiciones de uso
 
 ### 🎸 **Base de Datos de Acordes**
 Melodica incluye una base de datos completa de acordes para guitarra, ubicada en [`src/app/shared/data/guitar-chords.ts`](src/app/shared/data/guitar-chords.ts).
@@ -93,6 +101,12 @@ ng serve
 ```
 La aplicación se recargará automáticamente al modificar archivos.
 
+### Desarrollo con Auto-rebuild
+Para desarrollo con reconstrucción automática:
+```bash
+npm run watch
+```
+
 ### Construcción para Producción
 ```bash
 npm run build
@@ -104,8 +118,8 @@ ng build
 Los archivos optimizados se generan en `dist/`.
 
 ### Pruebas
-- Pruebas unitarias: `npm test`
-- Pruebas end-to-end: `npm run e2e`
+- Pruebas unitarias con Vitest: `npm test`
+- Las pruebas usan Vitest para mejor rendimiento y experiencia de desarrollo
 
 ## 🎼 Detección de Notas con Micrófono
 
@@ -119,10 +133,13 @@ Melodica incluye una funcionalidad avanzada de detección de notas en tiempo rea
 ## 🛠️ Stack Tecnológico
 
 - **Framework**: Angular 21+ (Standalone Components)
-- **Lenguaje**: TypeScript
+- **Lenguaje**: TypeScript 5.9+
 - **Estilos**: SCSS con variables globales
 - **Build Tool**: Angular CLI
 - **Node.js**: 20+
+- **Testing**: Vitest 4.0+
+- **Linting**: Prettier (configurado)
+- **SSR**: Express 5+ con Angular SSR
 
 ## 📋 Requisitos
 
@@ -143,16 +160,22 @@ La aplicación está optimizada para SSR (Server-Side Rendering) y puede despleg
 # Build normal
 npm run build
 
-# Build con SSR
-npm run build:ssr
-
-# Serve con SSR
-npm run serve:ssr
+# Servir aplicación con SSR
+npm run serve:ssr:melodica
 ```
 
-## 📸 Captura de Pantalla
+## 📸 Capturas de Pantalla
 
+### Hero Principal
 ![Hero](src/assets/images/hero/background_hero_1.jpg)
+
+### Otras Secciones
+La aplicación incluye interfaces visuales para:
+- Compositor interactivo con wizard de pasos
+- Instrumentos (guitarra y piano) con visualización de acordes
+- Escuela musical con contenido educativo
+- Detector de notas en tiempo real
+- Selector de acordes con sugerencias
 
 ## 🤝 Contribuciones
 
@@ -167,8 +190,9 @@ npm run serve:ssr
 
 Asegúrate de:
 - Respetar la arquitectura modular del proyecto
-- Mantener la consistencia de estilos
-- Incluir pruebas unitarias si es posible
+- Mantener la consistencia de estilos (usa Prettier: formato automático configurado)
+- Incluir pruebas unitarias con Vitest
+- Seguir las convenciones de TypeScript y Angular
 
 ## 📚 Documentación Adicional
 
