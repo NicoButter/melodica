@@ -46,15 +46,15 @@ export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
       icon: '🎤',
       route: '/note-detector',
       color: 'bohemian-accent'
-    },
-    {
-      id: 'workshop',
-      title: 'Taller Musical',
-      description: 'Afina tu instrumento y practica con ejercicios guiados',
-      icon: '🎸',
-      route: '#taller',
-      color: 'bohemian-sage'
     }
+    // {
+    //   id: 'workshop',
+    //   title: 'Taller Musical',
+    //   description: 'Afina tu instrumento y practica con ejercicios guiados',
+    //   icon: '🎸',
+    //   route: '#taller',
+    //   color: 'bohemian-sage'
+    // }
   ];
 
   constructor(private router: Router) {}
