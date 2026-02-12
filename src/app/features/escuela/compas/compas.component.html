@@ -25,18 +25,29 @@
 
   <!-- Player Controls -->
   <div class="player-controls" *ngIf="selectedSignature">
-    <button 
-      class="control-btn play-btn" 
-      (click)="play()" 
-      [disabled]="isPlaying">
-      ▶ Reproducir
-    </button>
-    <button 
-      class="control-btn stop-btn" 
-      (click)="stop()" 
-      [disabled]="!isPlaying">
-      ■ Detener
-    </button>
+    <div class="control-group">
+      <button 
+        class="control-btn play-btn" 
+        (click)="play()" 
+        [disabled]="isPlaying">
+        ▶ Reproducir
+      </button>
+      <button 
+        class="control-btn stop-btn" 
+        (click)="stop()" 
+        [disabled]="!isPlaying">
+        ■ Detener
+      </button>
+    </div>
+    <div class="metronome-display" [class.active]="isPlaying">
+      <div class="metronome-top"></div>
+      <div class="metronome-body">
+        <div class="metronome-rod"></div>
+        <div class="metronome-weight"></div>
+      </div>
+      <div class="metronome-base"></div>
+      <div class="metronome-glow"></div>
+    </div>
   </div>
 
   <!-- Measures Visualization -->
