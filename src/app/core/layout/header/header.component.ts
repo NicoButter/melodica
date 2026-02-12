@@ -16,7 +16,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isShrunk = false;
   isComposerPage = false;
   isNoteDetectorPage = false;
-  isSpecialPage = false; // true si estamos en composer o note-detector
+  isEscuelaPage = false;
+  isSpecialPage = false; // true si estamos en composer, note-detector o escuela
   pageTitle = '';
   currentStep = 1;
   showWizardProgress = false;
@@ -69,12 +70,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private updatePageContext(url: string): void {
     this.isComposerPage = url.includes('/compose');
     this.isNoteDetectorPage = url.includes('/note-detector');
-    this.isSpecialPage = this.isComposerPage || this.isNoteDetectorPage;
+    this.isEscuelaPage = url.includes('/escuela');
+    this.isSpecialPage = this.isComposerPage || this.isNoteDetectorPage || this.isEscuelaPage;
     
     if (this.isComposerPage) {
       this.pageTitle = '🎼 Compositor Musical';
     } else if (this.isNoteDetectorPage) {
       this.pageTitle = '🎤 Detección de Nota';
+    } else if (this.isEscuelaPage) {
+      this.pageTitle = '🎓 Escuela Musical';
     } else {
       this.pageTitle = '';
     }

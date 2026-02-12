@@ -10,6 +10,7 @@
       [routerLink]="section.route"
       class="section-card"
       [attr.data-id]="section.id">
+      <img [src]="'assets/images/escuela/' + section.id + '.svg'" alt="{{ section.title }}" class="section-image">
       <div class="section-icon">{{ section.icon }}</div>
       <h2 class="section-title">{{ section.title }}</h2>
       <p class="section-description">{{ section.description }}</p>
