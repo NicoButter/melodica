@@ -25,7 +25,8 @@ export class PentagramaComponent {
   readonly lineSpacing = 20;
   readonly staffWidth = 800;
   readonly staffHeight = 160;
-  readonly leftMargin = 100;
+  // Leave extra room for the treble clef so notes do not overlap it
+  readonly leftMargin = 160;
 
   // Notes on the staff (treble clef)
   notes: StaffNote[] = [

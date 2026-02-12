@@ -6,8 +6,8 @@
 
   <div class="staff-wrapper">
     <svg [attr.viewBox]="'0 0 ' + staffWidth + ' ' + (staffHeight + 60)" class="staff-svg">
-      <!-- Treble clef -->
-      <text x="20" y="70" class="clef-symbol">𝄞</text>
+      <!-- Treble clef: anchor on second line from bottom (line index 3 -> y=100) -->
+      <text x="110" y="100" class="clef-symbol" dominant-baseline="middle">𝄞</text>
 
       <!-- Staff lines -->
       <g class="staff-lines">

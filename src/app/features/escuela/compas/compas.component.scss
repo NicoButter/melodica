@@ -14,12 +14,12 @@
 
   h1 {
     font-size: 2rem;
-    color: $gold;
+    color: #1E90FF;
     margin-bottom: 0.5rem;
   }
 
   p {
-    color: $text-muted;
+    color: #D4E4FF;
     font-size: 1.1rem;
   }
 }
@@ -33,7 +33,7 @@
 
 .signature-card {
   background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(212, 175, 55, 0.2);
+  border: 2px solid rgba(65, 105, 225, 0.3);
   border-radius: 12px;
   padding: 1.5rem;
   text-align: center;
@@ -42,19 +42,19 @@
 
   &:hover {
     transform: translateY(-3px);
-    border-color: $gold;
+    border-color: #1E90FF;
   }
 
   &.selected {
-    border-color: $gold;
-    background: rgba(212, 175, 55, 0.1);
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    border-color: #1E90FF;
+    background: rgba(65, 105, 225, 0.1);
+    box-shadow: 0 4px 12px rgba(65, 105, 225, 0.3);
   }
 
   .signature-symbol {
     font-size: 3rem;
     font-weight: 700;
-    color: $gold;
+    color: #1E90FF;
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
@@ -64,20 +64,20 @@
     .divider {
       width: 60px;
       height: 3px;
-      background: $gold;
+      background: #1E90FF;
     }
   }
 
   .signature-name {
     font-size: 1.2rem;
     font-weight: 600;
-    color: $gold;
+    color: #FFFFFF;
     margin-bottom: 0.5rem;
   }
 
   .signature-description {
     font-size: 0.9rem;
-    color: $text-muted;
+    color: #D4E4FF;
   }
 }
 
@@ -90,9 +90,9 @@
 
 .control-btn {
   padding: 1rem 2rem;
-  border: 2px solid $gold;
-  background: rgba(212, 175, 55, 0.1);
-  color: $gold;
+  border: 2px solid #1E90FF;
+  background: rgba(65, 105, 225, 0.1);
+  color: #1E90FF;
   border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
@@ -100,7 +100,7 @@
   transition: all 0.3s ease;
 
   &:hover:not(:disabled) {
-    background: rgba(212, 175, 55, 0.2);
+    background: rgba(65, 105, 225, 0.2);
     transform: translateY(-2px);
   }
 
@@ -111,8 +111,8 @@
 
   &.play-btn:not(:disabled) {
     &:hover {
-      background: $gold;
-      color: #1a1a1a;
+      background: #1E90FF;
+      color: #FFFFFF;
     }
   }
 }
@@ -122,7 +122,7 @@
 
   h2 {
     text-align: center;
-    color: $gold;
+    color: #1E90FF;
     margin-bottom: 2rem;
     font-size: 1.5rem;
   }
@@ -140,22 +140,22 @@
   display: flex;
   align-items: center;
   background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(212, 175, 55, 0.2);
+  border: 2px solid rgba(65, 105, 225, 0.3);
   border-radius: 8px;
   padding: 1.5rem 1rem;
   transition: all 0.3s ease;
   min-width: 300px;
 
   &.active {
-    border-color: $gold;
-    background: rgba(212, 175, 55, 0.1);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    border-color: #1E90FF;
+    background: rgba(65, 105, 225, 0.1);
+    box-shadow: 0 0 20px rgba(65, 105, 225, 0.3);
   }
 
   .bar-line {
     width: 3px;
     height: 80px;
-    background: $gold;
+    background: #1E90FF;
     margin: 0 1rem;
   }
 
@@ -177,14 +177,14 @@
       animation: beat-pulse 0.5s ease-in-out;
 
       .beat-symbol {
-        color: $gold;
+        color: #1E90FF;
         transform: scale(1.3);
       }
     }
 
     .beat-symbol {
       font-size: 3rem;
-      color: rgba(212, 175, 55, 0.7);
+      color: rgba(65, 105, 225, 0.7);
       transition: all 0.3s ease;
     }
   }

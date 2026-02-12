@@ -14,19 +14,19 @@
 
   h1 {
     font-size: 2rem;
-    color: $gold;
+    color: #FFFFFF;
     margin-bottom: 0.5rem;
   }
 
   p {
-    color: $text-muted;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 1.1rem;
   }
 }
 
 .staff-wrapper {
   background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(212, 175, 55, 0.2);
+  border: 2px solid #FFFFFF;
   border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
@@ -40,19 +40,19 @@
 
   .clef-symbol {
     font-size: 80px;
-    fill: $gold;
+    fill: #FFFFFF;
     font-family: 'Noto Music', serif;
   }
 
   .staff-lines {
     .staff-line {
-      stroke: rgba(212, 175, 55, 0.4);
+      stroke: #FFFFFF;
       stroke-width: 2;
     }
   }
 
   .ledger-line {
-    stroke: rgba(212, 175, 55, 0.4);
+    stroke: #FFFFFF;
     stroke-width: 2;
   }
 
@@ -62,42 +62,42 @@
 
     &:hover {
       .note-head {
-        fill: rgba(212, 175, 55, 0.8);
+        fill: #FFFFFF;
         transform: scale(1.2);
       }
 
       .note-label {
-        fill: $gold;
+        fill: #FFFFFF;
         font-weight: 700;
       }
     }
 
     .note-head {
-      fill: rgba(212, 175, 55, 0.6);
-      stroke: $gold;
+      fill: rgba(255, 255, 255, 0.7);
+      stroke: #FFFFFF;
       stroke-width: 1.5;
       transition: all 0.3s ease;
       transform-origin: center;
 
       &.active {
-        fill: $gold;
+        fill: #FFFFFF;
         animation: note-pulse 0.5s ease-in-out;
       }
     }
 
     .note-stem {
-      stroke: rgba(212, 175, 55, 0.6);
+      stroke: #FFFFFF;
       stroke-width: 2;
     }
 
     .note-label {
-      fill: $text-muted;
+      fill: rgba(255, 255, 255, 0.8);
       font-size: 14px;
       text-anchor: middle;
       transition: all 0.3s ease;
 
       &.active {
-        fill: $gold;
+        fill: #FFFFFF;
         font-weight: 700;
         font-size: 16px;
       }
@@ -105,31 +105,31 @@
   }
 
   .bar-line {
-    stroke: $gold;
+    stroke: #FFFFFF;
     stroke-width: 3;
   }
 
   .bar-line-thin {
-    stroke: $gold;
+    stroke: #FFFFFF;
     stroke-width: 1.5;
   }
 }
 
 .info-box {
-  background: rgba(212, 175, 55, 0.1);
-  border: 2px solid rgba(212, 175, 55, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #FFFFFF;
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 2rem;
 
   h3 {
-    color: $gold;
+    color: #FFFFFF;
     margin-bottom: 1rem;
     font-size: 1.2rem;
   }
 
   p {
-    color: $text-muted;
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.8;
   }
 }
@@ -139,7 +139,7 @@
 
   h3 {
     text-align: center;
-    color: $gold;
+    color: #1E90FF;
     margin-bottom: 1.5rem;
     font-size: 1.3rem;
   }
@@ -153,13 +153,13 @@
   padding: 1rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  border: 2px solid rgba(212, 175, 55, 0.2);
+  border: 2px solid #FFFFFF;
 
   .key {
     width: 60px;
     height: 80px;
     background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(212, 175, 55, 0.3);
+    border: 2px solid #FFFFFF;
     border-radius: 4px;
     display: flex;
     align-items: flex-end;
@@ -169,26 +169,26 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background: rgba(212, 175, 55, 0.2);
-      border-color: $gold;
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #FFFFFF;
       transform: translateY(-3px);
     }
 
     &.active {
-      background: $gold;
-      border-color: $gold;
+      background: #FFFFFF;
+      border-color: #FFFFFF;
       transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
 
       .key-label {
-        color: #1a1a1a;
+        color: #0047AB;
         font-weight: 700;
       }
     }
 
     .key-label {
       font-size: 0.85rem;
-      color: $text-muted;
+      color: #FFFFFF;
       font-weight: 600;
       transition: all 0.3s ease;
     }
