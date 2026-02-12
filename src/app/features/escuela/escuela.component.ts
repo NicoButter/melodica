@@ -1,6 +1,7 @@
-import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-escuela',
@@ -9,37 +10,74 @@ import { RouterModule } from '@angular/router';
   templateUrl: './escuela.component.html',
   styleUrls: ['./escuela.component.scss']
 })
-export class EscuelaComponent implements OnDestroy {
+export class EscuelaComponent implements OnInit, OnDestroy {
+  @ViewChild('contentArea', { static: false }) contentArea: ElementRef | undefined;
   sections = [
     {
       id: 'figuras',
       title: 'Figuras Rítmicas',
       icon: '♪',
       description: 'Aprende las duraciones de las notas',
-      route: '/escuela/figuras'
+      route: '/escuela/figuras',
+      image: 'assets/images/escuela/figuras.png'
     },
     {
       id: 'compas',
       title: 'Compás',
       icon: '|',
       description: 'Entiende los compases y tiempos',
-      route: '/escuela/compas'
+      route: '/escuela/compas',
+      image: 'assets/images/escuela/compas.png'
     },
     {
       id: 'pentagrama',
       title: 'Pentagrama',
       icon: '♬',
       description: 'Explora el pentagrama y las notas',
-      route: '/escuela/pentagrama'
+      route: '/escuela/pentagrama',
+      image: 'assets/images/escuela/pentagrama.png'
     },
     {
       id: 'ritmo',
       title: 'Ritmo',
       icon: '♫',
       description: 'Practica patrones rítmicos',
-      route: '/escuela/ritmo'
+      route: '/escuela/ritmo',
+      image: 'assets/images/escuela/ritmo.png'
     }
   ];
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    // Hacer scroll cuando hay cambio de ruta
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.scrollToContent();
+      });
+  }
+
+  navigateToSection(route: string): void {
+    this.router.navigate([route]);
+  }
+
+  private scrollToContent(): void {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
+    // Esperar a que el contenido se renderice antes de hacer scroll
+    setTimeout(() => {
+      const container = document.querySelector('.escuela-container');
+      if (container) {
+        const outlet = container.querySelector('router-outlet')?.nextElementSibling;
+        if (outlet) {
+          outlet.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }, 100);
+  }
 
   ngOnDestroy(): void {
     // Ensure we're in browser environment
