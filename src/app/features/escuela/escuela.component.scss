@@ -1,10 +1,143 @@
 @use '../../shared/styles/variables' as *;
 
+// Animated decorative background pattern
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-40px) rotate(360deg);
+    opacity: 0.7;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes drift {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  25% {
+    transform: translateX(30px) translateY(-15px);
+  }
+  50% {
+    transform: translateX(60px) translateY(0px);
+  }
+  75% {
+    transform: translateX(30px) translateY(15px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
 .escuela-container {
   min-height: 100vh;
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  background: linear-gradient(135deg, #0047AB 0%, #4169E1 50%, #1E90FF 100%);
+  overflow: hidden;
+
+  // Decorative animated background pattern
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(65, 105, 225, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(100, 149, 237, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+    animation: pulse 8s ease-in-out infinite;
+  }
+
+  // Floating animated music notes - Primary
+  &::after {
+    content: '♫';
+    position: fixed;
+    top: 10%;
+    left: 15%;
+    font-size: 4.5rem;
+    color: rgba(65, 105, 225, 0.25);
+    pointer-events: none;
+    z-index: 1;
+    animation: float 6s ease-in-out infinite, sway 4s ease-in-out infinite;
+    font-weight: 300;
+  }
+
+  // Additional floating notes with pseudo-elements styling via JS or multiple decorative elements
+  // Using box-shadows and gradients to create multiple notes effect
+  
+  // Content wrapper
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  // Extra floating notes - using background positioning trick
+  background-attachment: fixed;
+}
+
+// Create floating notes with additional pseudo decorative approach
+.escuela-header {
+  position: relative;
+  z-index: 2;
+
+  &::before {
+    content: '♪';
+    position: absolute;
+    top: -2rem;
+    right: 10%;
+    font-size: 3.5rem;
+    color: rgba(65, 105, 225, 0.2);
+    animation: float 7s ease-in-out infinite 1s, bounce 3s ease-in-out infinite 0.5s;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '♫';
+    position: absolute;
+    bottom: -1.5rem;
+    left: 5%;
+    font-size: 3rem;
+    color: rgba(30, 144, 255, 0.2);
+    animation: float 8s ease-in-out infinite 2s, bounce 4s ease-in-out infinite 1s;
+    pointer-events: none;
+  }
 }
 
 .escuela-header {
@@ -15,14 +148,15 @@
   .title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: $gold;
+    color: #FFFFFF;
     margin-bottom: 0.5rem;
     font-family: $font-family-heading;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   .subtitle {
     font-size: 1.1rem;
-    color: $text-muted;
+    color: #E0E6FF;
     font-weight: 300;
   }
 }
@@ -32,11 +166,13 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
 }
 
 .section-card {
   background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(212, 175, 55, 0.2);
+  border: 2px solid rgba(65, 105, 225, 0.3);
   border-radius: 16px;
   padding: 2rem;
   text-decoration: none;
@@ -53,18 +189,36 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+    background: linear-gradient(135deg, rgba(65, 105, 225, 0.1), transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
+  // Floating musical notes on cards
+  &::after {
+    content: '♫';
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2.5rem;
+    color: rgba(65, 105, 225, 0.15);
+    opacity: 0;
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
   &:hover {
     transform: translateY(-5px);
-    border-color: $gold;
-    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
+    border-color: rgba(65, 105, 225, 0.8);
+    box-shadow: 0 8px 24px rgba(65, 105, 225, 0.3);
 
     &::before {
       opacity: 1;
+    }
+
+    &::after {
+      opacity: 0.4;
     }
 
     .section-arrow {
@@ -86,13 +240,13 @@
   .section-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: $gold;
+    color: #FFFFFF;
     margin-bottom: 0.5rem;
   }
 
   .section-description {
     font-size: 0.95rem;
-    color: $text-muted;
+    color: #D4E4FF;
     margin-bottom: 1rem;
   }
 
@@ -101,7 +255,7 @@
     bottom: 1.5rem;
     right: 1.5rem;
     font-size: 1.5rem;
-    color: $gold;
+    color: #1E90FF;
     transition: transform 0.3s ease;
   }
 }
@@ -114,6 +268,7 @@
   .escuela-header {
     .title {
       font-size: 2rem;
+      color: #FFFFFF;
     }
   }
 
