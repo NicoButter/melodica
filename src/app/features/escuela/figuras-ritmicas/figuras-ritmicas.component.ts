@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AudioService } from '../services/audio.service';
 
@@ -20,6 +20,10 @@ interface RhythmFigure {
 export class FigurasRitmicasComponent {
   activeFigure: string | null = null;
   pulseAnimation: boolean = false;
+  isPlayingPattern: boolean = false;
+  noteActive: boolean[] = [];
+  currentPattern: RhythmFigure | null = null;
+  noteSlots: number[] = [];
   readonly Math = Math;
 
   figures: RhythmFigure[] = [
@@ -60,22 +64,54 @@ export class FigurasRitmicasComponent {
     }
   ];
 
-  constructor(private audio: AudioService) {}
+  constructor(
+    private audio: AudioService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   playFigure(figure: RhythmFigure): void {
+    if (this.isPlayingPattern) {
+      return;
+    }
+
     this.audio.resume();
     this.activeFigure = figure.id;
     this.pulseAnimation = true;
+    this.currentPattern = figure;
 
-    // Play rhythm pattern based on duration
-    const pattern = Array(Math.ceil(figure.duration * 4)).fill(figure.duration / 4);
-    this.audio.playRhythm(pattern, 120);
+    const noteCount = Math.max(1, Math.round(4 / figure.duration));
+    const noteDurationMs = figure.duration * 1000;
+    this.noteSlots = Array.from({ length: noteCount }, (_, i) => i);
+    this.noteActive = new Array(noteCount).fill(false);
+    this.isPlayingPattern = true;
+    this.cdr.detectChanges();
 
-    // Reset after animation
+    for (let i = 0; i < noteCount; i++) {
+      // Activate note
+      setTimeout(() => {
+        this.noteActive = [...this.noteActive];
+        this.noteActive[i] = true;
+        this.audio.playNote('A4', figure.duration);
+        this.cdr.detectChanges();
+      }, i * noteDurationMs);
+
+      // Deactivate note
+      setTimeout(() => {
+        this.noteActive = [...this.noteActive];
+        this.noteActive[i] = false;
+        this.cdr.detectChanges();
+      }, (i + 1) * noteDurationMs - 50);
+    }
+
+    const totalDurationMs = noteCount * noteDurationMs;
+
     setTimeout(() => {
+      this.isPlayingPattern = false;
+      this.noteActive = [];
       this.activeFigure = null;
       this.pulseAnimation = false;
-    }, figure.duration * 500);
+      this.cdr.detectChanges();
+    }, totalDurationMs);
   }
 
   getScale(duration: number): number {

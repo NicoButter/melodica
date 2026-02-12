@@ -47,4 +47,49 @@
       <li>La barra muestra la duración relativa</li>
     </ul>
   </div>
+
+  <div class="pentagrama-demo">
+    <h2>Pentagrama en compás 4/4</h2>
+    <p>Selecciona una figura para verla dentro del compás de 4 segundos</p>
+
+    <div class="pentagrama-content" *ngIf="currentPattern; else pentagramaEmpty">
+      <div class="pentagrama-meta">
+        <span class="figure-label">{{ currentPattern.name }}</span>
+        <span class="figure-detail">
+          {{ noteSlots.length }} nota{{ noteSlots.length === 1 ? '' : 's' }} de {{ currentPattern.duration }}s
+        </span>
+      </div>
+
+      <div class="staff">
+        <div class="staff-lines">
+          <span class="staff-line" *ngFor="let line of [1, 2, 3, 4, 5]"></span>
+        </div>
+        <span class="measure-bar left"></span>
+        <span class="measure-bar right"></span>
+
+        <div
+          class="notes"
+          [style.gridTemplateColumns]="'repeat(' + noteSlots.length + ', 1fr)'">
+          <div
+            *ngFor="let note of noteSlots; let i = index"
+            class="note"
+            [class.active]="noteActive[i]">
+            <span class="note-symbol">{{ currentPattern.symbol }}</span>
+            <span class="note-time">{{ currentPattern.duration }}s</span>
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="play-button"
+        (click)="playFigure(currentPattern!)"
+        [disabled]="isPlayingPattern">
+        {{ isPlayingPattern ? 'Reproduciendo...' : 'Repetir' }}
+      </button>
+    </div>
+
+    <ng-template #pentagramaEmpty>
+      <div class="pentagrama-empty">Selecciona una figura para ver el compás.</div>
+    </ng-template>
+  </div>
 </div>
