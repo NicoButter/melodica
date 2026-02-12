@@ -100,7 +100,7 @@ export class FigurasRitmicasComponent {
       setTimeout(() => {
         this.noteActive = [...this.noteActive];
         this.noteActive[i] = true;
-        this.audio.playNote('A4', figure.duration);
+        this.audio.playNote('B4', figure.duration);
         this.cdr.detectChanges();
       }, i * noteDurationMs);
 

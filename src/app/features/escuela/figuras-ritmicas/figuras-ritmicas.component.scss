@@ -296,7 +296,7 @@
   &.right {
     right: 1rem;
     width: 6px;
-    box-shadow: -8px 0 0 -3px rgba(212, 228, 255, 0.8);
+    box-shadow: -8px 0 0 -3px rgba(212, 228, 255, 0.8), 0 0 0 1px rgba(212, 228, 255, 0.6);
   }
 }
 
@@ -307,6 +307,7 @@
   gap: 0.5rem;
   align-items: center;
   height: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
 }
 
 .note {
@@ -318,6 +319,12 @@
   opacity: 1;
   transition: all 0.15s ease;
   min-height: 90px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-20%);
+  left: 0;
+  right: 0;
+  width: 100%;
 
   .note-symbol {
     font-size: 4.8rem;
@@ -333,8 +340,7 @@
 
   &.active {
     opacity: 1;
-    transform: scale(1.25);
-    animation: pulse-beat var(--pulse-interval) infinite;
+    animation: pulse-beat 1s infinite;
 
     .note-symbol {
       color: #4ECDC4;
@@ -378,12 +384,12 @@
 
 @keyframes pulse-beat {
   0%, 100% {
-    transform: scale(1.25);
+    transform: translateY(-20%) scale(1.25);
     filter: drop-shadow(0 0 0 rgba(78, 205, 196, 0.4))
            drop-shadow(0 0 4px rgba(30, 144, 255, 0.2));
   }
   50% {
-    transform: scale(1.35);
+    transform: translateY(-20%) scale(1.35);
     filter: drop-shadow(0 0 12px rgba(78, 205, 196, 1))
            drop-shadow(0 0 20px rgba(30, 144, 255, 0.6))
            drop-shadow(0 0 28px rgba(78, 205, 196, 0.5));

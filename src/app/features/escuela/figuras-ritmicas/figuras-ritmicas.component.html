@@ -74,7 +74,7 @@
             *ngFor="let note of noteSlots; let i = index"
             class="note"
             [class.active]="noteActive[i]"
-            [style.--pulse-interval]="(currentPattern.duration / 4) + 's'">
+            [style.--pulse-interval]="'1s'">
             <span class="note-symbol">{{ currentPattern.symbol }}</span>
             <span class="note-time">{{ currentPattern.duration }}s</span>
           </div>
