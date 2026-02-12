@@ -48,7 +48,7 @@
     </ul>
   </div>
 
-  <div class="pentagrama-demo">
+  <div class="pentagrama-demo" #pentagramaSection>
     <h2>Pentagrama en compás 4/4</h2>
     <p>Selecciona una figura para verla dentro del compás de 4 segundos</p>
 
@@ -73,7 +73,8 @@
           <div
             *ngFor="let note of noteSlots; let i = index"
             class="note"
-            [class.active]="noteActive[i]">
+            [class.active]="noteActive[i]"
+            [style.--pulse-interval]="(currentPattern.duration / 4) + 's'">
             <span class="note-symbol">{{ currentPattern.symbol }}</span>
             <span class="note-time">{{ currentPattern.duration }}s</span>
           </div>

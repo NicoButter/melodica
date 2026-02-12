@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AudioService } from '../services/audio.service';
 
@@ -18,6 +18,8 @@ interface RhythmFigure {
   styleUrls: ['./figuras-ritmicas.component.scss']
 })
 export class FigurasRitmicasComponent {
+  @ViewChild('pentagramaSection') pentagramaSection: ElementRef | undefined;
+  
   activeFigure: string | null = null;
   pulseAnimation: boolean = false;
   isPlayingPattern: boolean = false;
@@ -85,6 +87,13 @@ export class FigurasRitmicasComponent {
     this.noteActive = new Array(noteCount).fill(false);
     this.isPlayingPattern = true;
     this.cdr.detectChanges();
+
+    // Scroll to pentagrama section
+    setTimeout(() => {
+      if (this.pentagramaSection) {
+        this.pentagramaSection.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 100);
 
     for (let i = 0; i < noteCount; i++) {
       // Activate note
