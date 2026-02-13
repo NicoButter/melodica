@@ -22,6 +22,7 @@ export class RitmoComponent implements OnDestroy {
   isPlaying: boolean = false;
   currentBeat: number = -1;
   private intervalId: any = null;
+  private timeouts: number[] = [];
   tempo: number = 100;
 
   patterns: RhythmPattern[] = [
@@ -122,33 +123,51 @@ export class RitmoComponent implements OnDestroy {
 
     this.audio.resume();
     this.isPlaying = true;
-    this.currentBeat = 0;
+    this.currentBeat = -1;
 
     const beatDuration = (60 / this.tempo) * 1000; // ms per quarter note
+    this.playPattern();
+  }
+
+  private playPattern(): void {
+    if (!this.isPlaying || !this.selectedPattern) return;
+
+    const beatDuration = (60 / this.tempo) * 1000;
     let totalTime = 0;
 
+    // Limpiar timeouts anteriores
+    this.clearAllTimeouts();
+
+    // Programar cada beat con su duración correspondiente
     this.selectedPattern.beats.forEach((beat, index) => {
-      setTimeout(() => {
+      const timeout = window.setTimeout(() => {
         if (this.isPlaying) {
           this.currentBeat = index;
           this.audio.playMetronome(index, this.selectedPattern!.beats.length);
         }
       }, totalTime);
 
+      this.timeouts.push(timeout);
       totalTime += beat.duration * beatDuration;
     });
 
-    // Loop the pattern
-    this.intervalId = setTimeout(() => {
+    // Programar el siguiente ciclo del patrón
+    this.intervalId = window.setTimeout(() => {
       if (this.isPlaying) {
-        this.play();
+        this.playPattern();
       }
     }, totalTime);
+  }
+
+  private clearAllTimeouts(): void {
+    this.timeouts.forEach(timeout => clearTimeout(timeout));
+    this.timeouts = [];
   }
 
   stop(): void {
     this.isPlaying = false;
     this.currentBeat = -1;
+    this.clearAllTimeouts();
     if (this.intervalId) {
       clearTimeout(this.intervalId);
       this.intervalId = null;
