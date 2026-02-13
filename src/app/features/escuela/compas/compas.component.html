@@ -39,14 +39,31 @@
         ■ Detener
       </button>
     </div>
-    <div class="metronome-display" [class.active]="isPlaying">
-      <div class="metronome-top"></div>
-      <div class="metronome-body">
-        <div class="metronome-rod"></div>
-        <div class="metronome-weight"></div>
+    <div class="metronome" [class.active]="isPlaying">
+      <!-- Carcasa trapezoidal -->
+      <div class="metronome__case">
+        <!-- Escala de tempo decorativa -->
+        <div class="metronome__scale">
+          <span class="metronome__tick" *ngFor="let t of [1,2,3,4,5,6,7,8,9]"></span>
+        </div>
+
+        <!-- Péndulo centrado, oscila desde abajo -->
+        <div class="metronome__pendulum">
+          <div class="metronome__rod"></div>
+          <div class="metronome__weight"></div>
+        </div>
+
+        <!-- Indicador de beat -->
+        <div class="metronome__beat-flash"></div>
       </div>
-      <div class="metronome-base"></div>
-      <div class="metronome-glow"></div>
+
+      <!-- Base del metrónomo -->
+      <div class="metronome__base">
+        <div class="metronome__base-highlight"></div>
+      </div>
+
+      <!-- Halo de energía inferior -->
+      <div class="metronome__halo"></div>
     </div>
   </div>
 

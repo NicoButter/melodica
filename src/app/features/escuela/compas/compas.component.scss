@@ -82,16 +82,11 @@
 }
 
 .player-controls {
-  display: grid;
-  grid-template-columns: auto minmax(160px, 220px);
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  margin: 2rem 0;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
+  gap: 2rem;
+  margin: 2.5rem 0;
 }
 
 .control-group {
@@ -130,113 +125,226 @@
   }
 }
 
-.metronome-display {
+/* ─── Metrónomo rediseñado ─── */
+.metronome {
   position: relative;
-  width: 200px;
-  height: 220px;
-  background: linear-gradient(180deg, rgba(30, 144, 255, 0.08), rgba(0, 0, 0, 0.35));
-  border: 2px solid rgba(30, 144, 255, 0.4);
-  border-radius: 18px;
+  width: 140px;
+  height: 260px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding-top: 1rem;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+  transition: transform 0.3s ease;
+}
+
+/* Carcasa trapezoidal tipo metrónomo clásico */
+.metronome__case {
+  position: relative;
+  width: 100%;
+  height: 210px;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(20, 25, 45, 0.95) 0%,
+    rgba(10, 15, 35, 0.98) 100%
+  );
+  border-radius: 0 0 6px 6px;
   overflow: hidden;
 
-  &::after {
+  /* Borde luminoso */
+  &::before {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 18px;
-    box-shadow: inset 0 0 30px rgba(30, 144, 255, 0.5);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(30, 144, 255, 0.5) 0%,
+      rgba(30, 144, 255, 0.1) 40%,
+      rgba(30, 144, 255, 0.3) 100%
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    padding: 2px;
+    pointer-events: none;
+  }
+
+  /* Reflejo superior */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.12),
+      transparent 70%
+    );
     pointer-events: none;
   }
 }
 
-.metronome-top {
-  width: 70px;
-  height: 10px;
-  background: linear-gradient(90deg, #92f4ff, #1E90FF);
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(144, 197, 255, 0.6);
-  margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.metronome-body {
-  position: relative;
-  width: 70px;
-  height: 160px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(30, 144, 255, 0.1));
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 12px;
+/* Escala decorativa de ticks */
+.metronome__scale {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  overflow: visible;
-  z-index: 2;
-}
-
-.metronome-rod {
-  position: absolute;
-  width: 6px;
-  height: 120px;
-  background: #fefefe;
-  border-radius: 4px;
-  top: 10px;
-  transform-origin: top center;
-  animation: swing 1.2s ease-in-out infinite;
-  animation-play-state: paused;
-  z-index: 3;
-}
-
-.metronome-weight {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ffd966, #ffc107);
-  box-shadow: 0 0 12px rgba(255, 205, 0, 0.8);
-  bottom: 12px;
-  right: -12px;
-  z-index: 3;
-}
-
-.metronome-base {
-  position: absolute;
-  bottom: 0;
-  width: 140px;
-  height: 30px;
-  border-radius: 50px;
-  background: #1E90FF;
-  box-shadow: 0 10px 20px rgba(30, 144, 255, 0.4);
+  gap: 14px;
   z-index: 1;
 }
 
-.metronome-glow {
+.metronome__tick {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: rgba(30, 144, 255, 0.25);
+  border-radius: 2px;
+  transition: background 0.3s ease;
+
+  &:nth-child(5) {
+    width: 36px;
+    height: 3px;
+    background: rgba(30, 144, 255, 0.5);
+  }
+}
+
+/* Péndulo – pivotea desde la base-centro del case */
+.metronome__pendulum {
   position: absolute;
-  top: 20px;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), rgba(30, 144, 255, 0));
-  opacity: 0;
-  z-index: 0;
-  animation: pulse-glow 1.2s ease-in-out infinite;
+  bottom: 8px;
+  left: 50%;
+  transform-origin: bottom center;
+  transform: translateX(-50%) rotate(0deg);
+  z-index: 4;
+  animation: metronome-swing 1s ease-in-out infinite;
   animation-play-state: paused;
 }
 
-.metronome-display.active {
-  .metronome-rod {
+.metronome__rod {
+  width: 4px;
+  height: 160px;
+  margin: 0 auto;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(200, 220, 255, 0.7)
+  );
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+.metronome__weight {
+  width: 28px;
+  height: 16px;
+  margin: -2px auto 0;
+  background: linear-gradient(180deg, #ffd54f, #ffb300);
+  border-radius: 4px;
+  box-shadow:
+    0 0 16px rgba(255, 193, 7, 0.7),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Flash de beat al golpear */
+.metronome__beat-flash {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(30, 144, 255, 0.5),
+    transparent 70%
+  );
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.1s ease;
+}
+
+/* Base sólida del metrónomo */
+.metronome__base {
+  position: relative;
+  width: 130%;
+  height: 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(30, 144, 255, 0.9),
+    rgba(20, 100, 200, 0.95)
+  );
+  border-radius: 0 0 10px 10px;
+  box-shadow:
+    0 8px 25px rgba(30, 144, 255, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  z-index: 5;
+}
+
+.metronome__base-highlight {
+  position: absolute;
+  top: 4px;
+  left: 15%;
+  width: 70%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  filter: blur(1px);
+}
+
+/* Halo de energía debajo */
+.metronome__halo {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.7);
+  width: 200px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(30, 144, 255, 0.35),
+    transparent 70%
+  );
+  opacity: 0;
+  z-index: 0;
+}
+
+/* ─── Estado activo ─── */
+.metronome.active {
+  transform: scale(1.03);
+
+  .metronome__pendulum {
     animation-play-state: running;
-    animation-duration: 1s;
   }
 
-  .metronome-glow {
-    animation-play-state: running;
+  .metronome__rod {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+  }
+
+  .metronome__weight {
+    box-shadow:
+      0 0 24px rgba(255, 193, 7, 1),
+      inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  }
+
+  .metronome__beat-flash {
+    animation: beat-flash 1s ease-in-out infinite;
+  }
+
+  .metronome__halo {
     opacity: 1;
+    animation: halo-pulse 1s ease-in-out infinite;
+  }
+
+  .metronome__tick {
+    animation: tick-glow 1s ease-in-out infinite;
   }
 }
 
@@ -370,27 +478,69 @@
   }
 }
 
-@keyframes swing {
-  0%, 100% {
-    transform: rotate(15deg);
+@keyframes metronome-swing {
+  0% {
+    transform: translateX(-50%) rotate(30deg);
   }
   50% {
-    transform: rotate(-15deg);
+    transform: translateX(-50%) rotate(-30deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(30deg);
   }
 }
 
-@keyframes pulse-glow {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.35;
+@keyframes beat-flash {
+  0%, 100% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  40% {
+    opacity: 0;
   }
   50% {
-    transform: scale(1.1);
-    opacity: 0.85;
+    opacity: 0;
+  }
+  65% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0;
+  }
+}
+
+@keyframes halo-pulse {
+  0% {
+    transform: translateX(-50%) scale(0.7);
+    opacity: 0.25;
+  }
+  25% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.7);
+    opacity: 0.25;
+  }
+  75% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.8;
   }
   100% {
-    transform: scale(0.9);
-    opacity: 0.35;
+    transform: translateX(-50%) scale(0.7);
+    opacity: 0.25;
+  }
+}
+
+@keyframes tick-glow {
+  0%, 100% {
+    background: rgba(30, 144, 255, 0.25);
+  }
+  25%, 75% {
+    background: rgba(30, 144, 255, 0.7);
+    box-shadow: 0 0 8px rgba(30, 144, 255, 0.5);
   }
 }
 
