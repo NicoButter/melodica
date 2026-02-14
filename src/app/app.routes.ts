@@ -13,6 +13,8 @@ import { FigurasRitmicasComponent } from './features/escuela/figuras-ritmicas/fi
 import { CompasComponent } from './features/escuela/compas/compas.component';
 import { PentagramaComponent } from './features/escuela/pentagrama/pentagrama.component';
 import { RitmoComponent } from './features/escuela/ritmo/ritmo.component';
+import { SolfeoComponent } from './features/escuela/solfeo/solfeo.component';
+import { ClavesComponent } from './features/escuela/claves/claves.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -31,7 +33,9 @@ export const routes: Routes = [
       { path: 'figuras', component: FigurasRitmicasComponent },
       { path: 'compas', component: CompasComponent },
       { path: 'pentagrama', component: PentagramaComponent },
-      { path: 'ritmo', component: RitmoComponent }
+      { path: 'ritmo', component: RitmoComponent },
+      { path: 'solfeo', component: SolfeoComponent },
+      { path: 'claves', component: ClavesComponent }
     ]
   },
   // Lazy loading example

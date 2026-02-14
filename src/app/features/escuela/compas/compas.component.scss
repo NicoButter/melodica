@@ -149,7 +149,7 @@
     rgba(10, 15, 35, 0.98) 100%
   );
   border-radius: 0 0 6px 6px;
-  overflow: hidden;
+  overflow: visible;
 
   /* Borde luminoso */
   &::before {

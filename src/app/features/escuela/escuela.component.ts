@@ -44,6 +44,22 @@ export class EscuelaComponent implements OnInit, OnDestroy {
       description: 'Practica patrones rítmicos',
       route: '/escuela/ritmo',
       image: 'assets/images/escuela/ritmo.png'
+    },
+    {
+      id: 'solfeo',
+      title: 'Solfeo',
+      icon: '🎵',
+      description: 'Practica la lectura y entonación de notas',
+      route: '/escuela/solfeo',
+      image: 'assets/images/escuela/solfeo.png'
+    },
+    {
+      id: 'claves',
+      title: 'Claves Musicales',
+      icon: '🎼',
+      description: 'Aprende a leer e identificar las claves',
+      route: '/escuela/claves',
+      image: 'assets/images/escuela/claves.png'
     }
   ];
 

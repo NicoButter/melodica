@@ -1,0 +1,310 @@
+@use '../../../shared/styles/variables' as *;
+
+.solfeo-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  h1 {
+    font-size: 2rem;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: #FFFFFF;
+    font-size: 1.1rem;
+  }
+}
+
+.exercises-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.exercise-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(65, 105, 225, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(65, 105, 225, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: #1E90FF;
+    background: rgba(65, 105, 225, 0.1);
+    box-shadow: 0 8px 24px rgba(65, 105, 225, 0.3);
+
+    &::before {
+      left: 100%;
+    }
+
+    .exercise-arrow {
+      transform: translateX(5px);
+    }
+  }
+
+  .exercise-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .exercise-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+  }
+
+  .exercise-description {
+    font-size: 0.95rem;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+  }
+
+  .exercise-arrow {
+    display: inline-block;
+    color: #1E90FF;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+}
+
+.practice-section {
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(65, 105, 225, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.practice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  h2 {
+    color: #FFFFFF;
+    font-size: 1.5rem;
+  }
+
+  .practice-stats {
+    display: flex;
+    gap: 2rem;
+
+    .stat {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+
+      .stat-label {
+        color: #FFFFFF;
+        opacity: 0.8;
+        font-weight: 500;
+      }
+
+      .stat-value {
+        color: #1E90FF;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.sequence-display {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(30, 144, 255, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid #1E90FF;
+
+  h3 {
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .sequence-notes {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .sequence-note {
+      min-width: 50px;
+      padding: 0.75rem 1.25rem;
+      background: rgba(65, 105, 225, 0.2);
+      border: 2px solid rgba(65, 105, 225, 0.5);
+      border-radius: 8px;
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+
+      &.completed {
+        background: rgba(76, 175, 80, 0.3);
+        border-color: #4CAF50;
+        box-shadow: 0 0 12px rgba(76, 175, 80, 0.3);
+      }
+    }
+  }
+}
+
+.user-progress {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 193, 7, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid #FFD54F;
+
+  p {
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .user-notes {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+
+    .user-note {
+      padding: 0.5rem 1rem;
+      background: rgba(255, 193, 7, 0.2);
+      border: 1px solid rgba(255, 193, 7, 0.5);
+      border-radius: 6px;
+      color: #FFD54F;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+.note-selector {
+  margin-bottom: 2rem;
+
+  h3 {
+    color: #FFFFFF;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .note-btn {
+    padding: 1rem;
+    background: rgba(65, 105, 225, 0.2);
+    border: 2px solid rgba(65, 105, 225, 0.5);
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(65, 105, 225, 0.4);
+      border-color: #1E90FF;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(65, 105, 225, 0.3);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+.practice-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.control-btn {
+  padding: 0.75rem 1.5rem;
+  background: rgba(76, 175, 80, 0.2);
+  border: 2px solid rgba(76, 175, 80, 0.5);
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(76, 175, 80, 0.4);
+    border-color: #4CAF50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.info-box {
+  background: rgba(255, 193, 7, 0.1);
+  border: 2px solid rgba(255, 193, 7, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+
+  h3 {
+    color: #FFD54F;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  p {
+    color: #FFFFFF;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .exercises-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .note-selector .notes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  }
+}

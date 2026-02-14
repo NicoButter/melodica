@@ -1,0 +1,96 @@
+<div class="solfeo-container">
+  <header class="section-header">
+    <h1>🎵 Solfeo</h1>
+    <p>Practica la lectura y entonación de notas musicales</p>
+  </header>
+
+  <!-- Exercises Grid -->
+  <div class="exercises-grid">
+    <div
+      *ngFor="let exercise of exercises"
+      class="exercise-card"
+      (click)="startPractice(exercise.id)">
+      
+      <div class="exercise-icon">{{ exercise.icon }}</div>
+      <h3 class="exercise-title">{{ exercise.title }}</h3>
+      <p class="exercise-description">{{ exercise.description }}</p>
+      <div class="exercise-arrow">→</div>
+    </div>
+  </div>
+
+  <!-- Practice Section -->
+  <div class="practice-section" *ngIf="score >= 0">
+    <div class="practice-header">
+      <h2>Practica de Solfeo</h2>
+      <div class="practice-stats">
+        <div class="stat">
+          <span class="stat-label">Nivel:</span>
+          <span class="stat-value">{{ level }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Puntos:</span>
+          <span class="stat-value">{{ score }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sequence Display -->
+    <div class="sequence-display" *ngIf="sequence.length > 0">
+      <h3>Secuencia a practicar:</h3>
+      <div class="sequence-notes">
+        <div 
+          *ngFor="let note of sequence; let i = index"
+          class="sequence-note"
+          [class.completed]="i < userSequence.length">
+          {{ note }}
+        </div>
+      </div>
+    </div>
+
+    <!-- User Progress -->
+    <div class="user-progress" *ngIf="userSequence.length > 0">
+      <p>Has cantado:</p>
+      <div class="user-notes">
+        <div 
+          *ngFor="let note of userSequence"
+          class="user-note">
+          {{ note }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Note Selector -->
+    <div class="note-selector">
+      <h3>Selecciona una nota:</h3>
+      <div class="notes-grid">
+        <button 
+          *ngFor="let note of notes"
+          class="note-btn"
+          (click)="selectNote(note)"
+          type="button">
+          {{ note }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="practice-controls">
+      <button 
+        class="control-btn reset-btn"
+        (click)="resetPractice()"
+        type="button">
+        ↻ Reiniciar
+      </button>
+    </div>
+  </div>
+
+  <!-- Info Box -->
+  <div class="info-box">
+    <h3>💡 Consejos para practicar solfeo</h3>
+    <p>
+      El solfeo es la base de la lectura musical.<br>
+      Practica regularmente para mejorar tu capacidad de reconocer y entonar notas.<br>
+      Intenta cantar las notas en lugar de solo seleccionarlas.
+    </p>
+  </div>
+</div>

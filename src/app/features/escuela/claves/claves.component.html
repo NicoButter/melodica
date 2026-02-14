@@ -1,0 +1,228 @@
+<div class="claves-container">
+  <header class="section-header">
+    <h1>🎼 Claves Musicales</h1>
+    <p>Aprende a leer e identificar las diferentes claves musicales</p>
+  </header>
+
+  <!-- Main Menu -->
+  <div *ngIf="!selectedSection" class="sections-grid">
+    <div
+      *ngFor="let section of sections"
+      class="section-card"
+      (click)="selectSection(section.id)">
+      
+      <div class="section-icon">{{ section.icon }}</div>
+      <h3 class="section-title">{{ section.title }}</h3>
+      <p class="section-description">{{ section.description }}</p>
+      <div class="section-arrow">→</div>
+    </div>
+  </div>
+
+  <!-- Intro Section -->
+  <div *ngIf="selectedSection === 'intro'" class="content-section">
+    <div class="section-header-back">
+      <button class="back-btn" (click)="backToMenu()">← Atrás</button>
+      <h2>Introducción a las Claves Musicales</h2>
+    </div>
+
+    <div class="content-box">
+      <h3>¿Qué es una clave musical?</h3>
+      <p>
+        La clave es un símbolo que se coloca al inicio del pentagrama para indicar qué notas corresponden a cada línea y espacio. Es como un "mapa" que nos ayuda a leer la música correctamente.
+      </p>
+
+      <h3>¿Por qué existen diferentes claves?</h3>
+      <p>
+        Diferentes instrumentos tienen diferentes rangos de sonido. Algunos tocan notas muy agudas (altas) y otros muy graves (bajas). Las claves nos permiten usar el pentagrama de forma eficiente para todos los instrumentos.
+      </p>
+
+      <h3>Las tres claves principales</h3>
+      <div class="claves-list">
+        <div class="clave-item" *ngFor="let clave of claves">
+          <span class="clave-simbolo">{{ clave.simbolo }}</span>
+          <div class="clave-info">
+            <h4>{{ clave.nombre }}</h4>
+            <p><strong>Rango:</strong> {{ clave.rango }}</p>
+            <p><strong>Instrumentos:</strong> {{ clave.instrumentos }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Study Section -->
+  <div *ngIf="selectedSection === 'claves-estudio'" class="content-section">
+    <div class="section-header-back">
+      <button class="back-btn" (click)="backToMenu()">← Atrás</button>
+      <h2>Estudio Detallado de Claves</h2>
+    </div>
+
+    <div *ngIf="!selectedClaveId" class="claves-grid">
+      <div
+        *ngFor="let clave of claves"
+        class="clave-card"
+        (click)="selectClave(clave.id)">
+        
+        <div class="clave-card-icon">{{ clave.icon }}</div>
+        <h3>{{ clave.nombre }}</h3>
+        <p class="clave-rango">{{ clave.rango }}</p>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedClaveId" class="clave-detail">
+      <button class="back-btn" (click)="selectedClaveId = null">← Volver</button>
+      
+      <ng-container *ngIf="getClaveById(selectedClaveId) as clave">
+        <div class="detail-content">
+          <div class="clave-header">
+            <div class="clave-simbolo-large">{{ clave.simbolo }}</div>
+            <div class="clave-title">
+              <h2>{{ clave.nombre }}</h2>
+              <p class="note-ref">Nota referencia: <strong>{{ clave.notaReferencia }}</strong></p>
+            </div>
+          </div>
+
+          <div class="detail-info">
+            <div class="info-card">
+              <h4>Características</h4>
+              <p><strong>Posición:</strong> Línea {{ clave.linea }}</p>
+              <p><strong>Rango:</strong> {{ clave.rango }}</p>
+              <p><strong>Nota de referencia:</strong> {{ clave.notaReferencia }}</p>
+            </div>
+
+            <div class="info-card">
+              <h4>Descripción</h4>
+              <p>{{ clave.descripcion }}</p>
+            </div>
+
+            <div class="info-card">
+              <h4>Instrumentos que la usan</h4>
+              <p>{{ clave.instrumentos }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Practice Quiz Section -->
+  <div *ngIf="selectedSection === 'practiceQuiz'" class="content-section">
+    <div class="section-header-back">
+      <button class="back-btn" (click)="resetQuiz(); backToMenu()">← Atrás</button>
+      <h2>Practica: Identifica la Clave</h2>
+    </div>
+
+    <div *ngIf="currentQuizIndex < quizzes.length" class="quiz-container">
+      <div class="quiz-progress">
+        <div class="progress-bar">
+          <div 
+            class="progress-fill"
+            [style.width.%]="(currentQuizIndex / quizzes.length) * 100">
+          </div>
+        </div>
+        <p>Pregunta {{ currentQuizIndex + 1 }} de {{ quizzes.length }}</p>
+      </div>
+
+      <div class="quiz-question">
+        <h3>{{ quizzes[currentQuizIndex].pregunta }}</h3>
+        <div class="score-display">
+          Puntos: <strong>{{ quizScore }}</strong>
+        </div>
+      </div>
+
+      <div class="quiz-options">
+        <button
+          *ngFor="let opcion of quizzes[currentQuizIndex].opciones"
+          class="option-btn"
+          (click)="selectAnswer(opcion)"
+          type="button">
+          {{ opcion }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Complete Section -->
+  <div *ngIf="selectedSection === 'quizComplete'" class="content-section">
+    <div class="quiz-results">
+      <h2>¡Cuestionario Completado!</h2>
+      
+      <div class="results-card">
+        <div class="score-circle">
+          <div class="score-value">{{ getPercentage() }}%</div>
+          <div class="score-label">Puntuación Final</div>
+        </div>
+
+        <div class="results-details">
+          <p><strong>Respuestas Correctas:</strong> {{ quizScore }} de {{ quizzes.length }}</p>
+          <p *ngIf="getPercentage() === 100" class="perfect">¡Perfecto! ¡Dominas las claves musicales!</p>
+          <p *ngIf="getPercentage() >= 75 && getPercentage() < 100" class="good">¡Muy bien! Tienes un buen entendimiento de las claves.</p>
+          <p *ngIf="getPercentage() < 75" class="fair">Buen intento. Practica más para mejorar.</p>
+        </div>
+      </div>
+
+      <div class="results-actions">
+        <button class="action-btn" (click)="startQuiz()" type="button">
+          🔄 Intentar Again
+        </button>
+        <button class="action-btn" (click)="resetQuiz(); backToMenu()" type="button">
+          🏠 Volver al Menú
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Section -->
+  <div *ngIf="selectedSection === 'comparison'" class="content-section">
+    <div class="section-header-back">
+      <button class="back-btn" (click)="backToMenu()">← Atrás</button>
+      <h2>Comparación de Claves</h2>
+    </div>
+
+    <div class="comparison-table">
+      <div class="table-header">
+        <div class="table-cell">Aspecto</div>
+        <div class="table-cell" *ngFor="let clave of claves">{{ clave.nombre }}</div>
+      </div>
+
+      <div class="table-row">
+        <div class="table-cell"><strong>Símbolo</strong></div>
+        <div class="table-cell" *ngFor="let clave of claves">{{ clave.simbolo }}</div>
+      </div>
+
+      <div class="table-row">
+        <div class="table-cell"><strong>Rango</strong></div>
+        <div class="table-cell" *ngFor="let clave of claves">{{ clave.rango }}</div>
+      </div>
+
+      <div class="table-row">
+        <div class="table-cell"><strong>Línea Base</strong></div>
+        <div class="table-cell" *ngFor="let clave of claves">{{ clave.linea }}</div>
+      </div>
+
+      <div class="table-row">
+        <div class="table-cell"><strong>Nota Referencia</strong></div>
+        <div class="table-cell" *ngFor="let clave of claves">{{ clave.notaReferencia }}</div>
+      </div>
+
+      <div class="table-row">
+        <div class="table-cell"><strong>Instrumentos</strong></div>
+        <div class="table-cell" *ngFor="let clave of claves">
+          <small>{{ clave.instrumentos }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info Box -->
+  <div class="info-box" *ngIf="!selectedSection">
+    <h3>💡 Tip: Memorización</h3>
+    <p>
+      Para recordar las notas en cada clave, usa las frases mnemotécnicas.<br>
+      Clave de Sol: "Mi Sol Si Re Fa La Do"<br>
+      Clave de Fa: "La Si Do Re Mi Fa Sol"<br>
+      Practica regularmente para familiarizarte con cada clave.
+    </p>
+  </div>
+</div>
