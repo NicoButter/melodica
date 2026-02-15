@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isComposerPage = false;
   isNoteDetectorPage = false;
   isEscuelaPage = false;
-  isSpecialPage = false; // true si estamos en composer, note-detector o escuela
+  isSongbookPage = false;
+  isSpecialPage = false; // true si estamos en composer, note-detector, escuela o songbook
   pageTitle = '';
   currentStep = 1;
   showWizardProgress = false;
@@ -71,7 +72,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isComposerPage = url.includes('/compose');
     this.isNoteDetectorPage = url.includes('/note-detector');
     this.isEscuelaPage = url.includes('/escuela');
-    this.isSpecialPage = this.isComposerPage || this.isNoteDetectorPage || this.isEscuelaPage;
+    this.isSongbookPage = url.includes('/songbook');
+    this.isSpecialPage = this.isComposerPage || this.isNoteDetectorPage || this.isEscuelaPage || this.isSongbookPage;
     
     if (this.isComposerPage) {
       this.pageTitle = '🎼 Compositor Musical';
@@ -79,6 +81,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.pageTitle = '🎤 Detección de Nota';
     } else if (this.isEscuelaPage) {
       this.pageTitle = '🎓 Escuela Musical';
+    } else if (this.isSongbookPage) {
+      this.pageTitle = '🎵 Cancionero';
     } else {
       this.pageTitle = '';
     }
