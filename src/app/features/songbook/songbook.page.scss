@@ -1,16 +1,96 @@
-@use 'variables' as *;
+@use '../../shared/styles/variables' as *;
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-40px) rotate(360deg);
+    opacity: 0.7;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
 
 .songbook-container {
-  max-width: 800px;
+  min-height: 100vh;
+  padding: 2rem;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: $spacing-xl;
+  position: relative;
+  background: linear-gradient(135deg, #0047AB 0%, #4169E1 50%, #1E90FF 100%);
+  overflow: hidden;
   text-align: center;
 
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(65, 105, 225, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(100, 149, 237, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+    animation: pulse 8s ease-in-out infinite;
+  }
+
+  &::after {
+    content: '♫';
+    position: fixed;
+    top: 10%;
+    left: 15%;
+    font-size: 4.5rem;
+    color: rgba(65, 105, 225, 0.25);
+    pointer-events: none;
+    z-index: 1;
+    animation: float 6s ease-in-out infinite, sway 4s ease-in-out infinite;
+    font-weight: 300;
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
   h1 {
-    color: $text-light;
-    margin-bottom: $spacing-xl;
     font-size: 2.5rem;
     font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 1.5rem;
+    font-family: $font-family-heading;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -20,17 +100,21 @@
   margin-bottom: $spacing-xl;
   justify-content: center;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 
   .search-input {
     flex: 1;
     min-width: 250px;
     padding: $spacing-md;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: $border-radius-lg;
-    background: rgba(0, 0, 0, 0.5);
-    color: $text-light;
+    background: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
     font-size: 1rem;
+    font-weight: 500;
     backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 
     &::placeholder {
       color: rgba(255, 255, 255, 0.6);
@@ -38,25 +122,30 @@
 
     &:focus {
       outline: none;
-      border-color: $accent-color;
-      box-shadow: 0 0 0 2px rgba($accent-color, 0.3);
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.2);
     }
   }
 
   .search-button {
     padding: $spacing-md $spacing-lg;
-    background: linear-gradient(45deg, $accent-color, $secondary-color);
-    color: $text-color;
-    border: none;
+    background: linear-gradient(45deg, rgba(65, 105, 225, 0.3), rgba(30, 144, 255, 0.3));
+    color: #FFFFFF;
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: $border-radius-lg;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
     min-width: 120px;
+    backdrop-filter: blur(10px);
+    letter-spacing: 0.5px;
 
     &:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba($accent-color, 0.4);
+      background: linear-gradient(45deg, rgba(65, 105, 225, 0.5), rgba(30, 144, 255, 0.5));
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 12px rgba(65, 105, 225, 0.3);
     }
 
     &:disabled {
@@ -67,26 +156,33 @@
 }
 
 .results-section {
+  position: relative;
+  z-index: 2;
+
   .error-message {
-    color: #ff6b6b;
-    background: rgba(255, 107, 107, 0.1);
+    color: #FFE3E3;
+    background: rgba(255, 107, 107, 0.15);
     padding: $spacing-md;
     border-radius: $border-radius-lg;
     margin-bottom: $spacing-lg;
-    border: 1px solid rgba(255, 107, 107, 0.3);
+    border: 2px solid rgba(255, 107, 107, 0.4);
+    font-weight: 600;
+    backdrop-filter: blur(10px);
   }
 
   .no-results {
-    color: $text-light;
-    opacity: 0.7;
+    color: #D4E4FF;
+    opacity: 0.9;
     font-style: italic;
     padding: $spacing-xl;
+    font-size: 1.05rem;
   }
 
   .loading {
-    color: $text-light;
+    color: #FFFFFF;
     padding: $spacing-xl;
     font-size: 1.1rem;
+    font-weight: 600;
   }
 
   .songs-list {
@@ -95,35 +191,81 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
     .song-item {
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(65, 105, 225, 0.3);
       border-radius: $border-radius-lg;
       padding: $spacing-lg;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(10px);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(65, 105, 225, 0.1), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      &::after {
+        content: '♫';
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 2.5rem;
+        color: rgba(65, 105, 225, 0.15);
+        opacity: 0;
+        animation: float 6s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
 
       &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        border-color: rgba($accent-color, 0.3);
+        transform: translateY(-5px);
+        border-color: rgba(65, 105, 225, 0.8);
+        box-shadow: 0 8px 24px rgba(65, 105, 225, 0.3);
+
+        &::before {
+          opacity: 1;
+        }
+
+        &::after {
+          opacity: 0.4;
+        }
       }
 
       .song-title {
         font-size: 1.2rem;
-        font-weight: 600;
-        color: $text-light;
+        font-weight: 700;
+        color: #FFFFFF;
         margin-bottom: $spacing-sm;
+        position: relative;
+        z-index: 1;
       }
 
       .song-artist {
-        color: $accent-color;
-        font-weight: 500;
+        color: #D4E4FF;
+        font-weight: 600;
         margin-bottom: $spacing-sm;
+        font-size: 1rem;
+        position: relative;
+        z-index: 1;
       }
 
       .song-id {
         color: rgba(255, 255, 255, 0.6);
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        position: relative;
+        z-index: 1;
       }
     }
   }
@@ -131,7 +273,11 @@
 
 @media (max-width: 768px) {
   .songbook-container {
-    padding: $spacing-lg;
+    padding: 1rem;
+
+    h1 {
+      font-size: 2rem;
+    }
   }
 
   .search-section {
