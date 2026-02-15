@@ -34,7 +34,7 @@ export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       id: 'songbook',
       title: 'Cancionero',
-      description: 'Guarda y organiza tus composiciones favoritas',
+      description: 'Busca tus canciones favoritas',
       icon: '📖',
       route: '/songbook',
       color: 'bohemian-brown'
