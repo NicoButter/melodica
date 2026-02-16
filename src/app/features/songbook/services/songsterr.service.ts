@@ -14,16 +14,25 @@ export interface Song {
   providedIn: 'root'
 })
 export class SongsterrService {
-  private apiUrl = 'https://www.songsterr.com/a/ra/songs.json';
+  // Use Netlify Function to avoid CORS issues
+  private apiUrl = '/.netlify/functions/songsterr';
 
   constructor(private http: HttpClient) {}
 
   searchSongs(query: string): Observable<Song[]> {
-    const url = `${this.apiUrl}?pattern=${encodeURIComponent(query)}`;
-    return this.http.get<Song[]>(url).pipe(
+    if (!query || query.trim().length === 0) {
+      return throwError(() => new Error('Search query cannot be empty'));
+    }
+
+    const params = { pattern: query.trim() };
+    return this.http.get<Song[]>(this.apiUrl, { params }).pipe(
       catchError(error => {
-        console.error('Error fetching songs:', error);
-        return throwError(() => new Error('Failed to fetch songs'));
+        console.error('Song search failed:', {
+          message: error.message,
+          status: error.status,
+          query,
+        });
+        return throwError(() => new Error('Failed to search songs. Please try again.'));
       })
     );
   }

@@ -1,0 +1,7 @@
+[build]
+  command = "ng build"
+  functions = "netlify/functions"
+  publish = "dist/melodica/browser"
+
+[dev]
+  functions = "netlify/functions"
