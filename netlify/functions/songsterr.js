@@ -39,10 +39,12 @@ exports.handler = async (event) => {
       `https://www.songsterr.com/a/ra/songs.json?pattern=${encodeURIComponent(pattern)}`
     );
 
+    // Handle Songsterr API errors
     if (!response.ok) {
+      console.warn(`Songsterr API error: ${response.status}`);
       return {
-        statusCode: response.status,
-        body: JSON.stringify({ error: `Songsterr API returned ${response.status}` }),
+        statusCode: 200,
+        body: JSON.stringify({ results: [] }),
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
@@ -51,10 +53,11 @@ exports.handler = async (event) => {
     }
 
     const data = await response.json();
+    const results = Array.isArray(data) ? data : [];
 
     return {
       statusCode: 200,
-      body: JSON.stringify(data),
+      body: JSON.stringify({ results }),
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 export interface Song {
   id: number;
@@ -25,7 +25,8 @@ export class SongsterrService {
     }
 
     const params = { pattern: query.trim() };
-    return this.http.get<Song[]>(this.apiUrl, { params }).pipe(
+    return this.http.get<{ results: Song[] }>(this.apiUrl, { params }).pipe(
+      map(response => response.results || []),
       catchError(error => {
         console.error('Song search failed:', {
           message: error.message,
