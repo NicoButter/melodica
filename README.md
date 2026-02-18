@@ -14,6 +14,8 @@ Una aplicación web interactiva para amantes de la música, diseñada para ayuda
 Accesibles desde la sección principal después del hero:
 - **Compositor**: Crea melodías paso a paso con un asistente guiado interactivo
 - **Cancionero**: Almacena y organiza tus composiciones
+  - 🔍 **Búsqueda de Canciones**: Integración con Songsterr para buscar millones de canciones
+  - Explora tablaturas y arreglos de artistas y géneros variados
 - **Taller Musical**: Aprende y practica con instrumentos interactivos
 
 ### 📚 **Escuela Musical**
@@ -31,6 +33,13 @@ Sección educativa completa para aprender teoría musical:
 - Usa el micrófono para detectar notas en tiempo real
 - Visualiza confianza y precisión de la detección
 - Integrado en el paso "Nota Raíz" del compositor
+
+### 🔍 **Búsqueda de Canciones (Songsterr Integration)**
+- Integración con la API de Songsterr para buscar millones de canciones
+- Busca por título o artista en tiempo real
+- Acceso a tablaturas y arreglos de la comunidad
+- Proxy vía Netlify Functions para evitar problemas de CORS
+- Cache inteligente en el servidor para mejor rendimiento
 
 ### 🎯 **Selector de Acordes**
 - Explora acordes con sugerencias inteligentes
