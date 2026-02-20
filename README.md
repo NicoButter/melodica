@@ -222,6 +222,4 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ---
 
-Hecho con ❤️ y 🎵 por Nicolás Butterfield
-
 © 2026 Melodica. Todos los derechos reservados.
