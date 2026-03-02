@@ -110,7 +110,7 @@
         "nombre": "Trompeta",
         "seccion": "viento-metal",
         "descripcion": "Sonido brillante y penetrante. Perfecta para fanfarrias y pasajes heroicos.",
-        "imagenUrl": "/assets/images/orquesta/trompeta.png",
+        "imagenUrl": "/assets/images/orquesta/trompeta.jpeg",
         "audioUrl": "/assets/audio/orquesta/trompeta-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/dOtsBDkK_LI",
         "datosCuriosos": [
@@ -133,7 +133,7 @@
         "nombre": "Trompa (Corno Francés)",
         "seccion": "viento-metal",
         "descripcion": "Sonido cálido y redondeado. Elemento armónico fundamental.",
-        "imagenUrl": "/assets/images/orquesta/trompa.png",
+        "imagenUrl": "/assets/images/orquesta/trompa.jpeg",
         "audioUrl": "/assets/audio/orquesta/trompa-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/jKu3fDbbqwY",
         "datosCuriosos": [
@@ -156,7 +156,7 @@
         "nombre": "Trombón",
         "seccion": "viento-metal",
         "descripcion": "Sonido poderoso y versátil. Puede variar de suave a muy fuerte.",
-        "imagenUrl": "/assets/images/orquesta/trombon.png",
+        "imagenUrl": "/assets/images/orquesta/trombon.jpeg",
         "audioUrl": "/assets/audio/orquesta/trombon-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/r8aegdbzJYk",
         "datosCuriosos": [
@@ -179,7 +179,7 @@
         "nombre": "Tuba",
         "seccion": "viento-metal",
         "descripcion": "Sonido más profundo de los metales. Proporciona la base armónica.",
-        "imagenUrl": "/assets/images/orquesta/tuba.png",
+        "imagenUrl": "/assets/images/orquesta/tuba.jpeg",
         "audioUrl": "/assets/audio/orquesta/tuba-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/NFSqcCB8G10",
         "datosCuriosos": [
@@ -210,7 +210,7 @@
         "nombre": "Timbal",
         "seccion": "percusion",
         "descripcion": "Parche de sonoridad grave. Fundamental para el ritmo orquestal.",
-        "imagenUrl": "/assets/images/orquesta/timbal.png",
+        "imagenUrl": "/assets/images/orquesta/timbal.jpeg",
         "audioUrl": "/assets/audio/orquesta/timbal-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/jMM1_YKdZKg",
         "datosCuriosos": [
@@ -233,7 +233,7 @@
         "nombre": "Platillos",
         "seccion": "percusion",
         "descripcion": "Sonido brillante y resonante. Crea impacto y dramatismo.",
-        "imagenUrl": "/assets/images/orquesta/platillos.png",
+        "imagenUrl": "/assets/images/orquesta/platillos.jpeg",
         "audioUrl": "/assets/audio/orquesta/platillos-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/jTYXwE_6MQU",
         "datosCuriosos": [
@@ -256,7 +256,7 @@
         "nombre": "Xilófono",
         "seccion": "percusion",
         "descripcion": "Sonido brillante y agudo. Frecuentemente toca en pasajes de decoración.",
-        "imagenUrl": "/assets/images/orquesta/xilofono.png",
+        "imagenUrl": "/assets/images/orquesta/xilofono.jpeg",
         "audioUrl": "/assets/audio/orquesta/xilofono-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/Z2S11ujBhKE",
         "datosCuriosos": [
@@ -279,7 +279,7 @@
         "nombre": "Gong",
         "seccion": "percusion",
         "descripcion": "Sonido profundo y resonante que puede variar por la forma de golpear.",
-        "imagenUrl": "/assets/images/orquesta/gong.png",
+        "imagenUrl": "/assets/images/orquesta/gong.jpeg",
         "audioUrl": "/assets/audio/orquesta/gong-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/5k3kXDUtgFE",
         "datosCuriosos": [
@@ -310,7 +310,7 @@
         "nombre": "Violín",
         "seccion": "cuerda",
         "descripcion": "Sonido agudo y expresivo. Frecuentemente lleva las melodías principales.",
-        "imagenUrl": "/assets/images/orquesta/violin.png",
+        "imagenUrl": "/assets/images/orquesta/violin.jpeg",
         "audioUrl": "/assets/audio/orquesta/violin-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/hLQl3WQQoQ0",
         "datosCuriosos": [
@@ -333,7 +333,7 @@
         "nombre": "Viola",
         "seccion": "cuerda",
         "descripcion": "Sonido más profundo que el violín. Proporciona elementos armónicos.",
-        "imagenUrl": "/assets/images/orquesta/viola.png",
+        "imagenUrl": "/assets/images/orquesta/viola.jpeg",
         "audioUrl": "/assets/audio/orquesta/viola-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/WRiKaFz_d-E",
         "datosCuriosos": [
@@ -356,7 +356,7 @@
         "nombre": "Violonchelo",
         "seccion": "cuerda",
         "descripcion": "Sonido profundo y expresivo. Frecuentemente lleva contramelodías.",
-        "imagenUrl": "/assets/images/orquesta/violonchelo.png",
+        "imagenUrl": "/assets/images/orquesta/violonchelo.jpeg",
         "audioUrl": "/assets/audio/orquesta/violonchelo-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/mGQLXRTl3Z0",
         "datosCuriosos": [
@@ -379,7 +379,7 @@
         "nombre": "Contrabajo",
         "seccion": "cuerda",
         "descripcion": "Sonido más profundo de la orquesta. Proporciona la base harmónica.",
-        "imagenUrl": "/assets/images/orquesta/contrabajo.png",
+        "imagenUrl": "/assets/images/orquesta/contrabajo.jpeg",
         "audioUrl": "/assets/audio/orquesta/contrabajo-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/vQVeaIHWWck",
         "datosCuriosos": [
