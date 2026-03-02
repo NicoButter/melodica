@@ -37,7 +37,8 @@ export class OrquestaComponent implements OnInit {
   isLoading = true;
   error: string | null = null;
   reproduciendo: string | null = null;
-  instrumentoExpandido: string | null = null;
+  instrumentoSeleccionado: Instrumento | null = null;
+  modalAbierto = false;
 
   constructor(
     private orquestaService: OrquestaService,
@@ -90,21 +91,29 @@ export class OrquestaComponent implements OnInit {
   }
 
   /**
-   * Expande o colapsa una tarjeta de instrumento
+   * Abre el modal con la información del instrumento
    */
-  toggleInstrumento(instrumentoId: string): void {
-    if (this.instrumentoExpandido === instrumentoId) {
-      this.instrumentoExpandido = null;
-    } else {
-      this.instrumentoExpandido = instrumentoId;
+  abrirModal(instrumento: Instrumento): void {
+    if (this.tieneContenidoExpandible(instrumento)) {
+      this.instrumentoSeleccionado = instrumento;
+      this.modalAbierto = true;
+      // Prevenir scroll del body cuando el modal está abierto
+      if (isPlatformBrowser(this.platformId)) {
+        document.body.style.overflow = 'hidden';
+      }
     }
   }
 
   /**
-   * Verifica si un instrumento está expandido
+   * Cierra el modal
    */
-  isExpandido(instrumentoId: string): boolean {
-    return this.instrumentoExpandido === instrumentoId;
+  cerrarModal(): void {
+    this.modalAbierto = false;
+    this.instrumentoSeleccionado = null;
+    // Restaurar scroll del body
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.style.overflow = 'auto';
+    }
   }
 
   /**

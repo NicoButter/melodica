@@ -36,118 +36,41 @@
         <article
           *ngFor="let instrumento of seccion.instrumentos"
           class="instrumento-card"
-          [class.expandido]="isExpandido(instrumento.id)"
           [class.expandible]="tieneContenidoExpandible(instrumento)"
+          (click)="abrirModal(instrumento)"
         >
-          <!-- Frontal de la Tarjeta -->
-          <div class="card-front" (click)="tieneContenidoExpandible(instrumento) && toggleInstrumento(instrumento.id)">
-            <!-- Imagen del Instrumento -->
-            <div class="instrumento-imagen">
-              <img
-                [src]="instrumento.imagenUrl"
-                [alt]="instrumento.nombre"
-                class="instrumento-pic"
-                onerror="this.src='/assets/images/placeholder-instrumento.png'"
-              />
-              <div class="imagen-overlay">
-                <button
-                  class="reproducir-btn"
-                  (click)="$event.stopPropagation(); reproducirSonido(instrumento)"
-                  [disabled]="!instrumento.audioUrl"
-                  [class.reproduciendo]="reproduciendo === instrumento.id"
-                  [attr.aria-label]="'Reproducir sonido de ' + instrumento.nombre"
-                >
-                  <span class="icon">
-                    {{ reproduciendo === instrumento.id ? '⏸️' : '▶️' }}
-                  </span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Info Básica -->
-            <div class="instrumento-info">
-              <h3 class="instrumento-nombre">{{ instrumento.nombre }}</h3>
-              <p class="instrumento-descripcion">{{ instrumento.descripcion }}</p>
-              
-              <!-- Indicador de Expandible -->
-              <div class="expand-indicator" *ngIf="tieneContenidoExpandible(instrumento)">
-                <span class="expand-text">{{ isExpandido(instrumento.id) ? 'Ver menos' : 'Explorar más' }}</span>
-                <span class="expand-icon">{{ isExpandido(instrumento.id) ? '▲' : '▼' }}</span>
-              </div>
+          <!-- Imagen del Instrumento -->
+          <div class="instrumento-imagen">
+            <img
+              [src]="instrumento.imagenUrl"
+              [alt]="instrumento.nombre"
+              class="instrumento-pic"
+              onerror="this.src='/assets/images/placeholder-instrumento.png'"
+            />
+            <div class="imagen-overlay">
+              <button
+                class="reproducir-btn"
+                (click)="$event.stopPropagation(); reproducirSonido(instrumento)"
+                [disabled]="!instrumento.audioUrl"
+                [class.reproduciendo]="reproduciendo === instrumento.id"
+                [attr.aria-label]="'Reproducir sonido de ' + instrumento.nombre"
+              >
+                <span class="icon">
+                  {{ reproduciendo === instrumento.id ? '⏸️' : '▶️' }}
+                </span>
+              </button>
             </div>
           </div>
 
-          <!-- Contenido Expandido -->
-          <div class="card-expanded" *ngIf="isExpandido(instrumento.id)">
-            <div class="expanded-content">
-              <!-- Video -->
-              <div class="expanded-section video-section" *ngIf="instrumento.videoUrl">
-                <h4>🎬 Video demostrativo</h4>
-                <div class="video-container">
-                  <iframe
-                    [src]="instrumento.videoUrl | safeUrl"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-              </div>
-
-              <!-- Datos Curiosos -->
-              <div class="expanded-section curiosidades-section" *ngIf="instrumento.datosCuriosos?.length">
-                <h4>💡 Datos curiosos</h4>
-                <ul class="curiosidades-list">
-                  <li *ngFor="let dato of instrumento.datosCuriosos">
-                    <span class="bullet">•</span>
-                    <span class="dato-texto">{{ dato }}</span>
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Rango Tonal -->
-              <div class="expanded-section rango-section" *ngIf="instrumento.rangoTonal">
-                <h4>🎵 Rango tonal</h4>
-                <div class="rango-container">
-                  <div class="rango-item">
-                    <span class="rango-label">Nota mínima</span>
-                    <span class="rango-value">{{ instrumento.rangoTonal.notaMinima }}</span>
-                  </div>
-                  <div class="rango-divider">→</div>
-                  <div class="rango-item">
-                    <span class="rango-label">Nota máxima</span>
-                    <span class="rango-value">{{ instrumento.rangoTonal.notaMaxima }}</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Ubicación en la Orquesta -->
-              <div class="expanded-section ubicacion-section" *ngIf="instrumento.ubicacionOrquesta">
-                <h4>📍 Ubicación en la orquesta</h4>
-                <div class="ubicacion-container">
-                  <div class="ubicacion-item">
-                    <span class="ubicacion-icon">🎭</span>
-                    <div class="ubicacion-info">
-                      <span class="ubicacion-label">Fila</span>
-                      <span class="ubicacion-value">{{ instrumento.ubicacionOrquesta.fila }}</span>
-                    </div>
-                  </div>
-                  <div class="ubicacion-item">
-                    <span class="ubicacion-icon">📌</span>
-                    <div class="ubicacion-info">
-                      <span class="ubicacion-label">Posición</span>
-                      <span class="ubicacion-value">{{ instrumento.ubicacionOrquesta.posicion }}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Botón Ver en Orquesta Completa -->
-              <div class="expanded-section action-section">
-                <button class="btn-orquesta-completa" (click)="$event.stopPropagation()">
-                  <span class="btn-icon">🎼</span>
-                  <span class="btn-text">Ver en la orquesta completa</span>
-                </button>
-              </div>
+          <!-- Info Básica -->
+          <div class="instrumento-info">
+            <h3 class="instrumento-nombre">{{ instrumento.nombre }}</h3>
+            <p class="instrumento-descripcion">{{ instrumento.descripcion }}</p>
+            
+            <!-- Indicador de Explorar -->
+            <div class="expand-indicator" *ngIf="tieneContenidoExpandible(instrumento)">
+              <span class="expand-text">Ver más información</span>
+              <span class="expand-icon">👁️</span>
             </div>
           </div>
         </article>
@@ -162,10 +85,92 @@
       <div class="footer-text">
         <h3>Explora cada instrumento</h3>
         <p>
-          Haz clic en las tarjetas para descubrir videos, curiosidades y datos técnicos sobre cada instrumento.
+          Haz clic en las tarjetas para ver videos y descubrir más información.
           Usa el botón de reproducción para escuchar su sonido característico.
         </p>
       </div>
     </div>
   </footer>
+
+  <!-- Modal de Instrumento -->
+  <div class="modal-overlay" *ngIf="modalAbierto && instrumentoSeleccionado" (click)="cerrarModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <!-- Botón Cerrar -->
+      <button class="modal-close" (click)="cerrarModal()" aria-label="Cerrar modal">
+        <span>✕</span>
+      </button>
+
+      <!-- Header del Modal -->
+      <div class="modal-header">
+        <h2 class="modal-titulo">{{ instrumentoSeleccionado.nombre }}</h2>
+        <p class="modal-descripcion">{{ instrumentoSeleccionado.descripcion }}</p>
+      </div>
+
+      <!-- Contenido del Modal -->
+      <div class="modal-content">
+        <!-- Video Principal -->
+        <div class="modal-video" *ngIf="instrumentoSeleccionado.videoUrl">
+          <div class="video-wrapper">
+            <iframe
+              [src]="instrumentoSeleccionado.videoUrl | safeUrl"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Grid de Información -->
+        <div class="modal-info-grid">
+          <!-- Datos Curiosos -->
+          <div class="modal-section curiosidades-section" *ngIf="instrumentoSeleccionado.datosCuriosos?.length">
+            <h3>💡 Datos curiosos</h3>
+            <ul class="curiosidades-list">
+              <li *ngFor="let dato of instrumentoSeleccionado.datosCuriosos">
+                <span class="bullet">•</span>
+                <span class="dato-texto">{{ dato }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Rango Tonal -->
+          <div class="modal-section rango-section" *ngIf="instrumentoSeleccionado.rangoTonal">
+            <h3>🎵 Rango tonal</h3>
+            <div class="rango-container">
+              <div class="rango-item">
+                <span class="rango-label">Nota mínima</span>
+                <span class="rango-value">{{ instrumentoSeleccionado.rangoTonal.notaMinima }}</span>
+              </div>
+              <div class="rango-divider">→</div>
+              <div class="rango-item">
+                <span class="rango-label">Nota máxima</span>
+                <span class="rango-value">{{ instrumentoSeleccionado.rangoTonal.notaMaxima }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ubicación en la Orquesta -->
+          <div class="modal-section ubicacion-section" *ngIf="instrumentoSeleccionado.ubicacionOrquesta">
+            <h3>📍 Ubicación en la orquesta</h3>
+            <div class="ubicacion-container">
+              <div class="ubicacion-item">
+                <span class="ubicacion-icon">🎭</span>
+                <div class="ubicacion-info">
+                  <span class="ubicacion-label">Fila</span>
+                  <span class="ubicacion-value">{{ instrumentoSeleccionado.ubicacionOrquesta.fila }}</span>
+                </div>
+              </div>
+              <div class="ubicacion-item">
+                <span class="ubicacion-icon">📌</span>
+                <div class="ubicacion-info">
+                  <span class="ubicacion-label">Posición</span>
+                  <span class="ubicacion-value">{{ instrumentoSeleccionado.ubicacionOrquesta.posicion }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

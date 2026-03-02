@@ -34,7 +34,22 @@
         "seccion": "viento-madera",
         "descripcion": "Sonido cálido y expresivo. Frecuentemente toca solos melódicos.",
         "imagenUrl": "/assets/images/orquesta/oboe.png",
-        "audioUrl": "/assets/audio/orquesta/oboe-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/oboe-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/YVbJgHAHgT0",
+        "datosCuriosos": [
+          "Da la nota 'La' para que toda la orquesta afine antes del concierto",
+          "Su nombre viene del francés 'hautbois' que significa madera alta",
+          "Es uno de los instrumentos más difíciles de tocar",
+          "Tiene un sonido muy característico que lo hace inconfundible"
+        ],
+        "rangoTonal": {
+          "notaMinima": "Bb3 (Sib3)",
+          "notaMaxima": "A6 (La6)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Segunda fila",
+          "posicion": "Centro-izquierda"
+        }
       },
       {
         "id": "clarinete",
@@ -65,7 +80,22 @@
         "seccion": "viento-madera",
         "descripcion": "Sonido profundo y resonante. Proporciona cuerpo al sonido orquestal.",
         "imagenUrl": "/assets/images/orquesta/fagot.png",
-        "audioUrl": "/assets/audio/orquesta/fagot-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/fagot-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/IwSdUuh5FPo",
+        "datosCuriosos": [
+          "Es el más grave de los instrumentos de viento de madera",
+          "Mide aproximadamente 1.35 metros cuando está armado",
+          "Su tubo si se extendiera mediría cerca de 2.5 metros",
+          "Vivaldi escribió 39 conciertos para fagot"
+        ],
+        "rangoTonal": {
+          "notaMinima": "Bb1 (Sib1)",
+          "notaMaxima": "E5 (Mi5)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Segunda fila",
+          "posicion": "Centro-derecha"
+        }
       }
     ]
   },
@@ -104,7 +134,22 @@
         "seccion": "viento-metal",
         "descripcion": "Sonido cálido y redondeado. Elemento armónico fundamental.",
         "imagenUrl": "/assets/images/orquesta/trompa.png",
-        "audioUrl": "/assets/audio/orquesta/trompa-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/trompa-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/jKu3fDbbqwY",
+        "datosCuriosos": [
+          "Su tubo mide aproximadamente 3.7 metros de largo",
+          "Es considerado uno de los instrumentos más difíciles de tocar",
+          "Los músicos meten la mano derecha en la campana para modificar el sonido",
+          "Puede tocar tanto pasajes heroicos como melodías muy suaves"
+        ],
+        "rangoTonal": {
+          "notaMinima": "F2 (Fa2)",
+          "notaMaxima": "F5 (Fa5)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Tercera fila",
+          "posicion": "Centro"
+        }
       },
       {
         "id": "trombon",
@@ -112,7 +157,22 @@
         "seccion": "viento-metal",
         "descripcion": "Sonido poderoso y versátil. Puede variar de suave a muy fuerte.",
         "imagenUrl": "/assets/images/orquesta/trombon.png",
-        "audioUrl": "/assets/audio/orquesta/trombon-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/trombon-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/r8aegdbzJYk",
+        "datosCuriosos": [
+          "Es el único instrumento de viento que puede hacer glissandos continuos",
+          "La vara tiene 7 posiciones que cambian la longitud del tubo",
+          "Su nombre viene del italiano y significa 'trompeta grande'",
+          "Mozart lo usó para representar lo divino y sobrenatural en sus óperas"
+        ],
+        "rangoTonal": {
+          "notaMinima": "E2 (Mi2)",
+          "notaMaxima": "F5 (Fa5)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Tercera fila",
+          "posicion": "Derecha del director"
+        }
       },
       {
         "id": "tuba",
@@ -120,7 +180,22 @@
         "seccion": "viento-metal",
         "descripcion": "Sonido más profundo de los metales. Proporciona la base armónica.",
         "imagenUrl": "/assets/images/orquesta/tuba.png",
-        "audioUrl": "/assets/audio/orquesta/tuba-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/tuba-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/NFSqcCB8G10",
+        "datosCuriosos": [
+          "Es el instrumento de viento más grande y grave de la orquesta",
+          "Fue inventada en 1835 por Wilhelm Wieprecht y Johann Moritz",
+          "Puede pesar hasta 15 kilogramos dependiendo del modelo",
+          "En algunas orquestas se toca de pie, en otras sentado"
+        ],
+        "rangoTonal": {
+          "notaMinima": "D1 (Re1)",
+          "notaMaxima": "F4 (Fa4)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Tercera fila",
+          "posicion": "Extremo derecho"
+        }
       }
     ]
   },
@@ -136,7 +211,22 @@
         "seccion": "percusion",
         "descripcion": "Parche de sonoridad grave. Fundamental para el ritmo orquestal.",
         "imagenUrl": "/assets/images/orquesta/timbal.png",
-        "audioUrl": "/assets/audio/orquesta/timbal-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/timbal-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/jMM1_YKdZKg",
+        "datosCuriosos": [
+          "Son los únicos instrumentos de percusión que pueden afinar notas específicas",
+          "Se tocan con baquetas cubiertas de fieltro para controlar el sonido",
+          "Generalmente vienen en sets de 2 a 4 timbales",
+          "Se pueden afinar durante la interpretación usando pedales"
+        ],
+        "rangoTonal": {
+          "notaMinima": "D2 (Re2)",
+          "notaMaxima": "A3 (La3)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Fondo de la orquesta",
+          "posicion": "Centro-izquierda"
+        }
       },
       {
         "id": "platillos",
@@ -144,7 +234,22 @@
         "seccion": "percusion",
         "descripcion": "Sonido brillante y resonante. Crea impacto y dramatismo.",
         "imagenUrl": "/assets/images/orquesta/platillos.png",
-        "audioUrl": "/assets/audio/orquesta/platillos-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/platillos-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/jTYXwE_6MQU",
+        "datosCuriosos": [
+          "Pueden producirse efectos tocando con baquetas, escobillas o mazos",
+          "Los platillos suspendidos se cuelgan y se tocan con baquetas",
+          "Los platillos chocados se tocan uno contra otro",
+          "Su sonido puede durar varios segundos después del golpe"
+        ],
+        "rangoTonal": {
+          "notaMinima": "Sonido indefinido",
+          "notaMaxima": "Armónicos variables"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Fondo de la orquesta",
+          "posicion": "Centro"
+        }
       },
       {
         "id": "xilofono",
@@ -152,7 +257,22 @@
         "seccion": "percusion",
         "descripcion": "Sonido brillante y agudo. Frecuentemente toca en pasajes de decoración.",
         "imagenUrl": "/assets/images/orquesta/xilofono.png",
-        "audioUrl": "/assets/audio/orquesta/xilofono-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/xilofono-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/Z2S11ujBhKE",
+        "datosCuriosos": [
+          "Su nombre viene del griego 'xylon' (madera) y 'phone' (sonido)",
+          "Las láminas son de madera dura, generalmente palisandro o palo rosa",
+          "Se toca con mazos que tienen cabezas de diferentes durezas",
+          "Puede tocar melodías muy rápidas por su respuesta instantánea"
+        ],
+        "rangoTonal": {
+          "notaMinima": "F4 (Fa4)",
+          "notaMaxima": "C8 (Do8)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Fondo de la orquesta",
+          "posicion": "Centro-derecha"
+        }
       },
       {
         "id": "gong",
@@ -160,7 +280,22 @@
         "seccion": "percusion",
         "descripcion": "Sonido profundo y resonante que puede variar por la forma de golpear.",
         "imagenUrl": "/assets/images/orquesta/gong.png",
-        "audioUrl": "/assets/audio/orquesta/gong-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/gong-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/5k3kXDUtgFE",
+        "datosCuriosos": [
+          "Originario de China, se usa desde hace más de 3000 años",
+          "El sonido varía según el punto donde se golpea y la fuerza aplicada",
+          "Se fabrica con una alección especial de bronce",
+          "Su sonido evoca momentos solemnes, dramáticos o místicos"
+        ],
+        "rangoTonal": {
+          "notaMinima": "Sonido indefinido grave",
+          "notaMaxima": "Armónicos complejos"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Fondo de la orquesta",
+          "posicion": "Extremo derecho"
+        }
       }
     ]
   },
@@ -199,7 +334,22 @@
         "seccion": "cuerda",
         "descripcion": "Sonido más profundo que el violín. Proporciona elementos armónicos.",
         "imagenUrl": "/assets/images/orquesta/viola.png",
-        "audioUrl": "/assets/audio/orquesta/viola-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/viola-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/WRiKaFz_d-E",
+        "datosCuriosos": [
+          "Es un poco más grande que el violín, produciendo un sonido más oscuro",
+          "Lee música en clave de do en tercera, diferente al violín",
+          "Mozart y Beethoven preferían tocar la viola en ensambles de cámara",
+          "Sus cuerdas son Do, Sol, Re, La (una quinta más grave que el violín)"
+        ],
+        "rangoTonal": {
+          "notaMinima": "C3 (Do3)",
+          "notaMaxima": "E6 (Mi6)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Primera fila",
+          "posicion": "Centro-derecha"
+        }
       },
       {
         "id": "violonchelo",
@@ -230,7 +380,22 @@
         "seccion": "cuerda",
         "descripcion": "Sonido más profundo de la orquesta. Proporciona la base harmónica.",
         "imagenUrl": "/assets/images/orquesta/contrabajo.png",
-        "audioUrl": "/assets/audio/orquesta/contrabajo-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/contrabajo-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/vQVeaIHWWck",
+        "datosCuriosos": [
+          "Es el instrumento de cuerda más grande y grave de la orquesta",
+          "Mide aproximadamente 1.8 metros de altura",
+          "Se toca de pie o sentado en un banquillo alto",
+          "Es fundamental tanto en orquestas clásicas como en bandas de jazz"
+        ],
+        "rangoTonal": {
+          "notaMinima": "E1 (Mi1)",
+          "notaMaxima": "C5 (Do5)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Segunda fila",
+          "posicion": "Extremo derecho"
+        }
       }
     ]
   }
