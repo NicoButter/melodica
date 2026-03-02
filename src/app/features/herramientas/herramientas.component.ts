@@ -29,7 +29,8 @@ export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
       description: 'Busca tus canciones favoritas',
       icon: '📖',
       route: '/songbook',
-      color: 'bohemian-brown'
+      color: 'bohemian-brown',
+      enConstruccion: true
     },
     {
       id: 'note-detector',

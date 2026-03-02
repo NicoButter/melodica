@@ -142,6 +142,39 @@
     &[data-color="bohemian-sage"] {
       border-top-color: #9caf88;
     }
+
+    &.en-construccion {
+      opacity: 0.75;
+      cursor: not-allowed;
+
+      &:hover {
+        transform: translateY(0);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-color: rgba(210, 180, 140, 0.3);
+
+        &::before {
+          opacity: 0;
+        }
+
+        .tool-icon {
+          transform: scale(1);
+
+          .icon-glow {
+            opacity: 0;
+            transform: scale(1);
+          }
+        }
+
+        .tool-action .action-arrow {
+          transform: translateX(0);
+        }
+
+        .card-decoration .note {
+          opacity: 0;
+          transform: translateY(0) rotate(0);
+        }
+      }
+    }
   }
 
   .tool-icon {
@@ -352,6 +385,19 @@
       animation: revealFadeInScale 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards;
     }
   }
+}
+
+.badge-construccion {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 165, 0, 0.15);
+  border: 1px solid rgba(255, 165, 0, 0.4);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #FFA500;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 768px) {

@@ -196,6 +196,21 @@
     outline: 2px solid $accent-color;
     outline-offset: 4px;
   }
+
+  &.en-construccion {
+    opacity: 0.75;
+    cursor: not-allowed;
+
+    &:hover {
+      transform: translateY(0);
+      border-color: rgba(212, 175, 55, 0.2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+      .card-glow { opacity: 0; }
+      .card-arrow { transform: translateX(0); }
+      .card-icon { animation: none; }
+    }
+  }
 }
 
 .card-icon {
@@ -287,4 +302,17 @@
     box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
     .cta-arrow { transform: translateX(5px); }
   }
+}
+
+.badge-construccion {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 165, 0, 0.15);
+  border: 1px solid rgba(255, 165, 0, 0.4);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #FFA500;
+  letter-spacing: 0.05em;
 }

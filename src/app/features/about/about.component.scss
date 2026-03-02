@@ -156,6 +156,55 @@
             border-radius: $border-radius-md;
           }
         }
+
+        .soundcloud-player {
+          margin-top: $spacing-lg;
+
+          .soundcloud-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            margin-top: 1rem;
+            background: linear-gradient(135deg, $secondary-color 0%, #A0522D 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+
+            .link-icon {
+              font-size: 1.1rem;
+            }
+
+            .link-text {
+              letter-spacing: 0.03em;
+            }
+
+            .link-arrow {
+              transition: transform 0.25s ease;
+            }
+
+            &:hover {
+              transform: translateY(-3px);
+              background: linear-gradient(135deg, #A0522D 0%, $secondary-color 100%);
+              box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+              border-color: rgba(255, 255, 255, 0.2);
+
+              .link-arrow {
+                transform: translateX(3px);
+              }
+            }
+
+            &:active {
+              transform: translateY(-1px);
+            }
+          }
+        }
       }
     }
   }

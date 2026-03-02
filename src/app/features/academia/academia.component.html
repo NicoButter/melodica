@@ -16,16 +16,18 @@
       <div
         *ngFor="let modulo of modulos"
         class="modulo-card"
-        (click)="navegarA(modulo.route)"
+        [class.en-construccion]="modulo.enConstruccion"
+        (click)="!modulo.enConstruccion && navegarA(modulo.route)"
+        [attr.aria-label]="'Ir a ' + modulo.title"
         role="button"
         tabindex="0"
-        [attr.aria-label]="'Ir a ' + modulo.title"
       >
         <div class="card-glow"></div>
         <div class="card-icon">{{ modulo.icon }}</div>
         <div class="card-body">
           <h3 class="card-title">{{ modulo.title }}</h3>
           <p class="card-description">{{ modulo.description }}</p>
+          <div *ngIf="modulo.enConstruccion" class="badge-construccion">🚧 En construcción</div>
         </div>
         <div class="card-footer">
           <span class="card-cta">Explorar</span>

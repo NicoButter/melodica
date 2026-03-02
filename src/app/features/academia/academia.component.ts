@@ -74,7 +74,8 @@ export class AcademiaComponent {
       icon: '🇦🇷',
       description: 'Aprende nuestras canciones tradicionales argentinas',
       route: '/escuela/canciones-patrias',
-      color: '#6B8E23'
+      color: '#6B8E23',
+      enConstruccion: true
     }
   ];
 

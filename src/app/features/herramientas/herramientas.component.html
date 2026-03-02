@@ -17,8 +17,9 @@
         class="tool-card"
         [attr.data-tool-id]="tool.id"
         [class.revealed]="cardAnimationState[tool.id]"
+        [class.en-construccion]="tool.enConstruccion"
         [attr.data-color]="tool.color"
-        (click)="navigateTo(tool)"
+        (click)="!tool.enConstruccion && navigateTo(tool)"
         role="button"
         tabindex="0"
         [attr.aria-label]="'Ir a ' + tool.title">
@@ -31,6 +32,7 @@
         <div class="tool-content">
           <h3 class="tool-title">{{ tool.title }}</h3>
           <p class="tool-description">{{ tool.description }}</p>
+          <div *ngIf="tool.enConstruccion" class="badge-construccion">🚧 En construcción</div>
         </div>
         
         <div class="tool-action">
