@@ -60,6 +60,14 @@ export class EscuelaComponent implements OnInit, OnDestroy {
       description: 'Aprende a leer e identificar las claves',
       route: '/escuela/claves',
       image: 'assets/images/escuela/claves.png'
+    },
+    {
+      id: 'canciones-patrias',
+      title: 'Canciones Patrias',
+      icon: '🇦🇷',
+      description: 'Aprende a tocar nuestras canciones tradicionales argentinas',
+      route: '/escuela/canciones-patrias',
+      image: 'assets/images/escuela/canciones-patrias.png'
     }
   ];
 

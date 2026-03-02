@@ -1,0 +1,68 @@
+{
+  "id": "aurora-alta-en-el-cielo",
+  "titulo": "Aurora (Alta en el cielo)",
+  "compositor": {
+    "musica": "Héctor Panizza",
+    "letra": "Luigi Illica"
+  },
+  "year": 1908,
+  "tono": "G",
+  "modo": "mayor",
+  "compas": "4/4",
+  "tempo": 88,
+  "dificultad": "intermedia",
+  "instrumentos": ["guitarra", "piano", "flauta"],
+  "descripcion": "Canción patriótica argentina basada en el aria 'Alta en el cielo' de la ópera Aurora.",
+  "metadata": {
+    "fuente": "Uso educativo",
+    "midiPrepared": false,
+    "tipo": "Canción patriótica"
+  },
+  "lyricWithChords": [
+    {
+      "line": "Alta en el cielo un águila guerrera",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D", "position": 18 }
+      ]
+    },
+    {
+      "line": "audaz se eleva en vuelo triunfal",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 20 }
+      ]
+    }
+  ],
+  "melodia": [
+    { "note": "G4", "midi": 67, "position": 6, "duration": "quarter", "measure": 1, "audioNote": "G4" },
+    { "note": "B4", "midi": 71, "position": 4, "duration": "quarter", "measure": 1, "audioNote": "B4" },
+    { "note": "D5", "midi": 74, "position": 2, "duration": "quarter", "measure": 1, "audioNote": "D5" },
+    { "note": "G5", "midi": 79, "position": -1, "duration": "half", "measure": 1, "audioNote": "G5" },
+
+    { "note": "F#5", "midi": 78, "position": 0, "duration": "quarter", "measure": 2, "audioNote": "F#5" },
+    { "note": "E5", "midi": 76, "position": 1, "duration": "quarter", "measure": 2, "audioNote": "E5" },
+    { "note": "D5", "midi": 74, "position": 2, "duration": "quarter", "measure": 2, "audioNote": "D5" },
+    { "note": "B4", "midi": 71, "position": 4, "duration": "quarter", "measure": 2, "audioNote": "B4" }
+  ],
+  "acordes": [
+    {
+      "measure": 1,
+      "chord": {
+        "name": "G",
+        "quality": "major",
+        "intervalos": ["1", "3", "5"],
+        "guitarra": ["3", "2", "0", "0", "0", "3"]
+      }
+    },
+    {
+      "measure": 2,
+      "chord": {
+        "name": "D",
+        "quality": "major",
+        "intervalos": ["1", "3", "5"],
+        "guitarra": ["0", "0", "0", "2", "3", "2"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+.song-viewer-display {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.instrument-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+
+  .icon {
+    font-size: 1.8rem;
+  }
+
+  .message {
+    flex: 1;
+  }
+}
+
+.staff-pages {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.staff-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  page-break-inside: avoid;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+    color: #666;
+
+    .page-number {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .tempo-info {
+      background: #f0f4ff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-weight: 600;
+      color: #667eea;
+    }
+  }
+}
+
+.musical-staff {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+
+  .staff-lines line {
+    stroke: #000;
+    stroke-width: 2;
+  }
+
+  .notes {
+    cursor: pointer;
+
+    .note-circle {
+      fill: #667eea;
+      stroke: #333;
+      stroke-width: 1;
+      transition: all 0.2s ease;
+
+      &:hover {
+        r: 11;
+        filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.4));
+      }
+
+      &.active {
+        fill: #764ba2;
+        r: 12;
+        filter: drop-shadow(0 0 8px rgba(118, 75, 162, 0.6));
+      }
+
+      &.playable {
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    .note-label {
+      font-size: 11px;
+      font-weight: 600;
+      fill: #333;
+      user-select: none;
+      pointer-events: none;
+    }
+  }
+
+  .ledger-lines line {
+    stroke: #ccc;
+    stroke-width: 1;
+    opacity: 0.5;
+  }
+
+  .duration-indicators rect {
+    fill: #333;
+  }
+}
+
+.chords-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-left: 4px solid #667eea;
+  border-radius: 4px;
+
+  .chords-label {
+    font-weight: 700;
+    color: #667eea;
+    font-size: 0.95rem;
+  }
+
+  .chords-display {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .chord-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #f0f0f0;
+
+    .measure-number {
+      font-size: 0.85rem;
+      color: #999;
+      font-weight: 500;
+    }
+
+    .chord-names {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+
+      .chord-name {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.4rem 0.8rem;
+        background: #f0f4ff;
+        color: #667eea;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border: 1px solid #667eea;
+
+        &.with-diagram {
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+
+    .guitar-diagram-placeholder {
+      margin-top: 0.5rem;
+      padding: 1rem;
+      background: #f5f5f5;
+      border-radius: 4px;
+      text-align: center;
+      color: #999;
+      font-size: 0.9rem;
+      border: 1px dashed #ddd;
+
+      small {
+        display: block;
+      }
+    }
+  }
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #555;
+    font-size: 0.95rem;
+
+    .legend-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #667eea;
+      border: 2px solid #333;
+    }
+
+    .legend-info {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #667eea;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.midi-notice {
+  padding: 1rem;
+  background: #c8e6c9;
+  color: #2e7d32;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  border-left: 4px solid #2e7d32;
+
+  p {
+    margin: 0;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .instrument-info,
+  .legend,
+  .midi-notice {
+    display: none;
+  }
+
+  .staff-page {
+    page-break-inside: avoid;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .staff-page {
+    padding: 1rem;
+  }
+
+  .musical-staff {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .chords-section {
+    .chords-display {
+      flex-direction: column;
+    }
+
+    .chord-names {
+      flex-direction: column;
+    }
+  }
+
+  .legend {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lyrics-section {
+  margin-top: 2rem;
+}

@@ -1,0 +1,30 @@
+<div class="lyrics-container">
+  <div class="lyrics-header">
+    <h3>🎵 Letra con Acordes</h3>
+  </div>
+
+  <div class="lyrics-content">
+    <div *ngFor="let line of lyrics" class="lyric-line">
+      <!-- Acordes dibujados -->
+      <div class="chords-diagrams" *ngIf="showChordDiagrams">
+        <app-guitar-chord
+          *ngFor="let chord of line.chords"
+          [chordName]="chord.chord"
+          [compact]="true"
+          class="chord-diagram-inline"
+        >
+        </app-guitar-chord>
+      </div>
+
+      <!-- Letra con espacios para acordes -->
+      <div class="lyric-text">
+        <span *ngFor="let fragment of getLineFragments(line)" 
+              [class.chord-label]="fragment.chord"
+              [title]="fragment.chord ? 'Acorde: ' + fragment.chord : ''">
+          {{ fragment.chord ? '' : fragment.text }}
+          <span *ngIf="fragment.chord" class="chord-name">[{{ fragment.chord }}]</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

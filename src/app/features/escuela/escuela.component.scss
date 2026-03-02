@@ -61,11 +61,20 @@
 
 .escuela-container {
   min-height: 100vh;
-  padding: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
+  background: linear-gradient(135deg, 
+    rgba(44, 62, 80, 0.95) 0%, 
+    rgba(52, 73, 94, 0.97) 50%,
+    rgba(44, 62, 80, 0.95) 100%
+  ),
+  url('/assets/images/hero/background_hero_1.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  padding: 100px 0 $spacing-xl 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
-  background: linear-gradient(135deg, #0047AB 0%, #4169E1 50%, #1E90FF 100%);
   overflow: hidden;
 
   // Decorative animated background pattern
@@ -77,9 +86,9 @@
     width: 100%;
     height: 100%;
     background-image: 
-      radial-gradient(circle at 20% 80%, rgba(65, 105, 225, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, rgba(100, 149, 237, 0.1) 0%, transparent 50%);
+      radial-gradient(circle at 20% 80%, rgba(100, 149, 237, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(79, 112, 180, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(100, 149, 237, 0.08) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
     animation: pulse 8s ease-in-out infinite;
@@ -92,30 +101,31 @@
     top: 10%;
     left: 15%;
     font-size: 4.5rem;
-    color: rgba(65, 105, 225, 0.25);
+    color: rgba(100, 149, 237, 0.15);
     pointer-events: none;
     z-index: 1;
     animation: float 6s ease-in-out infinite, sway 4s ease-in-out infinite;
     font-weight: 300;
   }
 
-  // Additional floating notes with pseudo-elements styling via JS or multiple decorative elements
-  // Using box-shadows and gradients to create multiple notes effect
-  
   // Content wrapper
   > * {
     position: relative;
     z-index: 2;
   }
-
-  // Extra floating notes - using background positioning trick
-  background-attachment: fixed;
 }
 
 // Create floating notes with additional pseudo decorative approach
 .escuela-header {
   position: relative;
   z-index: 2;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+  max-width: 1400px;
+  width: 100%;
+  padding: 0 $spacing-xl;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   &::before {
     content: '♪';
@@ -123,7 +133,7 @@
     top: -2rem;
     right: 10%;
     font-size: 3.5rem;
-    color: rgba(65, 105, 225, 0.2);
+    color: rgba(100, 149, 237, 0.12);
     animation: float 7s ease-in-out infinite 1s, bounce 3s ease-in-out infinite 0.5s;
     pointer-events: none;
   }
@@ -134,30 +144,54 @@
     bottom: -1.5rem;
     left: 5%;
     font-size: 3rem;
-    color: rgba(30, 144, 255, 0.2);
+    color: rgba(79, 112, 180, 0.1);
     animation: float 8s ease-in-out infinite 2s, bounce 4s ease-in-out infinite 1s;
     pointer-events: none;
   }
-}
-
-.escuela-header {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding: 2rem 0;
 
   .title {
-    font-size: 2.5rem;
+    font-family: $font-family-secondary;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
-    color: #FFFFFF;
-    margin-bottom: 0.5rem;
-    font-family: $font-family-heading;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: $spacing-sm;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #ffffff 0%, #f5deb3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .subtitle {
-    font-size: 1.1rem;
-    color: #E0E6FF;
-    font-weight: 300;
+    font-family: $font-family-primary;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    opacity: 0.95;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  // Hide title on scroll (when it appears in header)
+  @media (min-width: 769px) {
+    .title {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// Add scroll detection for hiding title
+:host-context(body.scrolled) .escuela-header {
+  .title {
+    opacity: 0;
+    transform: translateY(-30px);
+    pointer-events: none;
+  }
+  
+  .subtitle {
+    opacity: 0;
+    transform: translateY(-20px);
   }
 }
 
@@ -168,11 +202,14 @@
   margin-bottom: 3rem;
   position: relative;
   z-index: 2;
+  max-width: 1400px;
+  width: 100%;
+  padding: 0 $spacing-xl;
 }
 
 .section-card {
   background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(65, 105, 225, 0.3);
+  border: 2px solid rgba(100, 149, 237, 0.3);
   border-radius: 16px;
   padding: 2rem;
   text-decoration: none;
@@ -188,6 +225,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  backdrop-filter: blur(10px);
 
   &::before {
     content: '';
@@ -196,7 +234,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(65, 105, 225, 0.1), transparent);
+    background: linear-gradient(135deg, rgba(100, 149, 237, 0.1), transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -208,7 +246,7 @@
     top: 10px;
     right: 15px;
     font-size: 2.5rem;
-    color: rgba(65, 105, 225, 0.15);
+    color: rgba(100, 149, 237, 0.1);
     opacity: 0;
     animation: float 6s ease-in-out infinite;
     pointer-events: none;
@@ -217,8 +255,8 @@
 
   &:hover {
     transform: translateY(-5px);
-    border-color: rgba(65, 105, 225, 0.8);
-    box-shadow: 0 8px 24px rgba(65, 105, 225, 0.3);
+    border-color: rgba(100, 149, 237, 0.8);
+    box-shadow: 0 8px 24px rgba(100, 149, 237, 0.3);
 
     &::before {
       opacity: 1;
@@ -277,17 +315,25 @@
     bottom: 1.5rem;
     right: 1.5rem;
     font-size: 1.5rem;
-    color: #1E90FF;
+    color: #8db3ff;
     transition: transform 0.3s ease;
   }
 }
 
-@media (max-width: 768px) {
-  .escuela-container {
-    padding: 1rem;
-  }
+// Content container for nested components
+.escuela-container > div:last-of-type,
+router-outlet {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  width: 100%;
+  padding: 0 $spacing-xl;
+}
 
+@media (max-width: 768px) {
   .escuela-header {
+    padding: 0 $spacing-md;
+    
     .title {
       font-size: 2rem;
       color: #FFFFFF;
@@ -297,5 +343,11 @@
   .sections-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
+    padding: 0 $spacing-md;
+  }
+
+  .escuela-container > div:last-of-type,
+  router-outlet {
+    padding: 0 $spacing-md;
   }
 }

@@ -1,0 +1,90 @@
+<div class="canciones-patrias-container">
+  <!-- Header -->
+  <header class="canciones-header">
+    <h1>🇦🇷 Canciones Patrias</h1>
+    <p class="subtitle">Aprende a tocar nuestras canciones tradicionales</p>
+  </header>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <p>Cargando canciones...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !isLoading" class="error-state">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Main Content -->
+  <div *ngIf="!isLoading && !error" class="content-grid">
+    <!-- Left Sidebar: Lista de Canciones -->
+    <aside class="songs-list-sidebar">
+      <div class="sidebar-header">
+        <h3>Canciones Disponibles</h3>
+        <span class="song-count">{{ songs.length }}</span>
+      </div>
+
+      <div class="songs-list">
+        <button
+          *ngFor="let song of songs"
+          (click)="selectSong(song)"
+          [class.active]="selectedSong?.id === song.id"
+          class="song-list-item"
+        >
+          <div class="song-title">{{ song.titulo }}</div>
+          <div class="song-meta">
+            <small *ngIf="song.compositor">{{ song.compositor }}</small>
+            <small class="difficulty" [class]="song.dificultad">
+              {{ song.dificultad | uppercase }}
+            </small>
+          </div>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Right Content: Visualizador de Canción -->
+    <main class="song-viewer-section" *ngIf="selectedSong">
+      <!-- Song Info Header -->
+      <header class="song-info-header">
+        <h2>{{ selectedSong.titulo }}</h2>
+        <div class="song-info-details">
+          <span *ngIf="selectedSong.compositor" class="info-item">
+            📝 {{ selectedSong.compositor }}
+          </span>
+          <span class="info-item">🎵 Tonalidad: {{ selectedSong.tono }}</span>
+          <span class="info-item">⏱️ Tempo: {{ selectedSong.tempo }} BPM</span>
+          <span class="info-item">📏 Compás: {{ selectedSong.compas }}</span>
+        </div>
+        <p *ngIf="selectedSong.descripcion" class="song-description">
+          {{ selectedSong.descripcion }}
+        </p>
+      </header>
+
+      <!-- Instrument Selector -->
+      <section class="instrument-selector">
+        <h3>Instrumento</h3>
+        <div class="instrument-buttons">
+          <button
+            *ngFor="let instrument of instruments"
+            (click)="selectInstrument(instrument.type)"
+            [disabled]="!isInstrumentAvailable(instrument.type)"
+            [class.active]="selectedInstrument === instrument.type"
+            [class.disabled]="!isInstrumentAvailable(instrument.type)"
+            class="instrument-btn"
+          >
+            <span class="icon">{{ instrument.icon }}</span>
+            <span class="name">{{ instrument.displayName }}</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Song Display Component -->
+      <section class="song-display">
+        <app-song-viewer-display
+          [song]="selectedSong"
+          [instrument]="selectedInstrument"
+        ></app-song-viewer-display>
+      </section>
+    </main>
+  </div>
+</div>

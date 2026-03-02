@@ -1,0 +1,50 @@
+[
+  {
+    "id": "himno-nacional-argentino",
+    "titulo": "Himno Nacional Argentino",
+    "compositor": {
+      "musica": "Blas Parera",
+      "letra": "Vicente López y Planes"
+    },
+    "year": 1813,
+    "tono": "E",
+    "modo": "mayor",
+    "compas": "4/4",
+    "tempo": 100,
+    "dificultad": "intermedia",
+    "instrumentos": ["guitarra", "piano", "flauta"],
+    "descripcion": "El himno nacional de la República Argentina, símbolo de identidad y soberanía nacional."
+  },
+  {
+    "id": "marcha-sanlorenzo",
+    "titulo": "Marcha de San Lorenzo",
+    "compositor": {
+      "musica": "Blas Parera",
+      "letra": "Bartolomé Hidalgo"
+    },
+    "year": 1813,
+    "tono": "D",
+    "modo": "mayor",
+    "compas": "2/4",
+    "tempo": 120,
+    "dificultad": "intermedia",
+    "instrumentos": ["guitarra", "piano", "trompeta"],
+    "descripcion": "Marcha patriótica que conmemora la batalla de San Lorenzo. Ritmo marcial característico argentino."
+  },
+  {
+    "id": "aurora",
+    "titulo": "Aurora",
+    "compositor": {
+      "musica": "Juan Pedro Esnaola",
+      "letra": "Tradicional"
+    },
+    "year": 1850,
+    "tono": "G",
+    "modo": "mayor",
+    "compas": "4/4",
+    "tempo": 90,
+    "dificultad": "basica",
+    "instrumentos": ["guitarra", "piano", "flauta"],
+    "descripcion": "Canción patriótica argentina que representa el amanecer nacional. Melodía lírica y emotiva."
+  }
+]

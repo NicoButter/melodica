@@ -1,0 +1,153 @@
+<div class="song-viewer-display">
+  <!-- Instrument Info Banner -->
+  <div class="instrument-info">
+    <span class="icon">{{ getInstrumentDisplayData()[instrument].icon }}</span>
+    <span class="message">{{ getInstrumentDisplayData()[instrument].info }}</span>
+  </div>
+
+  <!-- Staff Pages -->
+  <div class="staff-pages">
+    <div *ngFor="let page of staffPages; let pageIndex = index" class="staff-page">
+      <!-- Page Header -->
+      <div class="page-header">
+        <span class="page-number">Compás {{ (pageIndex * notesPerStaff) + 1 }}</span>
+        <span class="tempo-info" *ngIf="pageIndex === 0">
+          ♩ = {{ song.tempo }} BPM
+        </span>
+      </div>
+
+      <!-- Musical Staff -->
+      <svg
+        [attr.width]="staffWidth"
+        [attr.height]="staffHeight"
+        class="musical-staff"
+      >
+        <!-- Staff Lines -->
+        <g class="staff-lines">
+          <line
+            *ngFor="let line of staffLines"
+            [attr.x1]="leftMargin"
+            [attr.y1]="line * lineSpacing"
+            [attr.x2]="staffWidth - 20"
+            [attr.y2]="line * lineSpacing"
+            stroke="#000"
+            stroke-width="1"
+          />
+        </g>
+
+        <!-- Ledger Lines -->
+        <g class="ledger-lines" *ngFor="let note of page">
+          <line
+            *ngIf="shouldShowLedgerLine(note.position)"
+            [attr.x1]="getNoteX(page.indexOf(note), page.length) - 15"
+            [attr.y1]="getNoteY(note.position)"
+            [attr.x2]="getNoteX(page.indexOf(note), page.length) + 15"
+            [attr.y2]="getNoteY(note.position)"
+            stroke="#999"
+            stroke-width="1"
+            stroke-dasharray="5,3"
+          />
+        </g>
+
+        <!-- Notes -->
+        <g class="notes">
+          <circle
+            *ngFor="let note of page; let i = index"
+            [attr.cx]="getNoteX(i, page.length)"
+            [attr.cy]="getNoteY(note.position)"
+            r="8"
+            [class.active]="activeNote === note.audioNote"
+            [class.playable]="instrument === 'guitarra' || instrument === 'piano'"
+            (click)="playNote(note)"
+            class="note-circle"
+          />
+
+          <!-- Note Labels (for debugging/learning) -->
+          <text
+            *ngFor="let note of page; let i = index"
+            [attr.x]="getNoteX(i, page.length)"
+            [attr.y]="getNoteY(note.position) - 20"
+            text-anchor="middle"
+            class="note-label"
+          >
+            {{ getNoteName(note) }}
+          </text>
+        </g>
+
+        <!-- Duration Indicators -->
+        <g class="duration-indicators">
+          <rect
+            *ngFor="let note of page; let i = index"
+            [attr.x]="getNoteX(i, page.length) - 4"
+            [attr.y]="getNoteY(note.position) + 20"
+            width="8"
+            [attr.height]="note.duration === 'whole' ? 3 : note.duration === 'half' ? 4 : note.duration === 'quarter' ? 6 : 8"
+            fill="#333"
+            class="duration-mark"
+          />
+        </g>
+      </svg>
+
+      <!-- Chords Display for This Page -->
+      <div class="chords-section" *ngIf="getChordsForPage(pageIndex).length > 0">
+        <div class="chords-label">Acordes:</div>
+        <div class="chords-display">
+          <div
+            *ngFor="let measure of getChordsForPage(pageIndex)"
+            class="chord-item"
+          >
+            <div class="measure-number">Compás {{ (measure?.measureNumber ?? 0) + 1 }}</div>
+            <div class="chord-names">
+              <span
+                *ngFor="let chord of measure?.chords ?? []"
+                class="chord-name"
+                [class]="instrument === 'guitarra' ? 'with-diagram' : ''"
+              >
+                {{ chord.name }}
+              </span>
+            </div>
+
+            <!-- Guitar Chord Diagram (preparado para futura visualización) -->
+            <div
+              *ngIf="instrument === 'guitarra' && (measure?.chords?.length ?? 0) > 0"
+              class="guitar-diagram-placeholder"
+            >
+              <small>Diagrama de guitarra para: {{ measure?.chords?.[0]?.name }}</small>
+              <!-- Aquí se puede integrar librería de diagramas de acordes -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item">
+      <span class="legend-icon note-circle"></span>
+      <span>Haz clic en una nota para escucharla</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-info">♩</span>
+      <span>Nota de duración variable</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-info">Am, G, D...</span>
+      <span>Acordes para {{ instrument }}</span>
+    </div>
+  </div>
+
+  <!-- MIDI Preparation Notice (futuro) -->
+  <div *ngIf="song.midiPrepared" class="midi-notice">
+    <p>✓ Esta canción está preparada para reproducción MIDI</p>
+  </div>
+
+  <!-- Lyrics with Chords (only for guitar) -->
+  <div *ngIf="instrument === 'guitarra' && song.lyricWithChords && song.lyricWithChords.length > 0" class="lyrics-section">
+    <app-lyrics-with-chords
+      [lyrics]="song.lyricWithChords"
+      [showChordDiagrams]="true"
+    >
+    </app-lyrics-with-chords>
+  </div>
+</div>
