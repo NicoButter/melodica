@@ -1,0 +1,46 @@
+<section class="academia" id="academia">
+  <div class="academia-bg-overlay"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header-section">
+      <span class="section-label">✦ Aprende y crece ✦</span>
+      <h2 class="section-title">Academia Musical</h2>
+      <p class="section-subtitle">
+        Descubre el lenguaje de la música paso a paso, con lecciones interactivas y visuales
+      </p>
+    </div>
+
+    <!-- Grid de módulos -->
+    <div class="modulos-grid">
+      <div
+        *ngFor="let modulo of modulos"
+        class="modulo-card"
+        (click)="navegarA(modulo.route)"
+        role="button"
+        tabindex="0"
+        [attr.aria-label]="'Ir a ' + modulo.title"
+      >
+        <div class="card-glow"></div>
+        <div class="card-icon">{{ modulo.icon }}</div>
+        <div class="card-body">
+          <h3 class="card-title">{{ modulo.title }}</h3>
+          <p class="card-description">{{ modulo.description }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-cta">Explorar</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA principal -->
+    <div class="cta-section">
+      <button class="cta-btn" (click)="navegarA('/escuela')">
+        <span class="cta-icon">🎓</span>
+        <span>Ver todo el contenido</span>
+        <span class="cta-arrow">→</span>
+      </button>
+    </div>
+  </div>
+</section>

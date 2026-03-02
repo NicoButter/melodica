@@ -24,14 +24,6 @@ export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
       color: 'bohemian-gold'
     },
     {
-      id: 'escuela',
-      title: 'Escuelita',
-      description: 'Aprende teoría musical de forma interactiva y visual',
-      icon: '🎓',
-      route: '/escuela',
-      color: 'bohemian-purple'
-    },
-    {
       id: 'songbook',
       title: 'Cancionero',
       description: 'Busca tus canciones favoritas',
