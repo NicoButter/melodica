@@ -10,9 +10,9 @@
         "nombre": "Flauta Traversa",
         "seccion": "viento-madera",
         "descripcion": "Sonido brillante y agudo. Frecuentemente dobla la melodía principal.",
-        "imagenUrl": "/assets/images/orquesta/flauta.png",
+        "imagenUrl": "/assets/images/orquesta/flauta.jpeg",
         "audioUrl": "/assets/audio/orquesta/flauta-sample.mp3",
-        "videoUrl": "https://www.youtube.com/embed/Z6XkgzZ-fL4",
+        "videoUrl": "https://www.youtube.com/embed/xsg48QPwSA8",
         "datosCuriosos": [
           "Es el instrumento de viento más agudo de la orquesta",
           "Su nombre proviene del latín 'flare' que significa soplar",
@@ -33,7 +33,7 @@
         "nombre": "Oboe",
         "seccion": "viento-madera",
         "descripcion": "Sonido cálido y expresivo. Frecuentemente toca solos melódicos.",
-        "imagenUrl": "/assets/images/orquesta/oboe.png",
+        "imagenUrl": "/assets/images/orquesta/oboe.jpeg",
         "audioUrl": "/assets/audio/orquesta/oboe-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/YVbJgHAHgT0",
         "datosCuriosos": [
@@ -56,7 +56,7 @@
         "nombre": "Clarinete",
         "seccion": "viento-madera",
         "descripcion": "Sonido versátil que puede ser suave o penetrante según el registro.",
-        "imagenUrl": "/assets/images/orquesta/clarinete.png",
+        "imagenUrl": "/assets/images/orquesta/clarinete.jpeg",
         "audioUrl": "/assets/audio/orquesta/clarinete-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/xuKGp5M5tZM",
         "datosCuriosos": [
@@ -79,7 +79,7 @@
         "nombre": "Fagot",
         "seccion": "viento-madera",
         "descripcion": "Sonido profundo y resonante. Proporciona cuerpo al sonido orquestal.",
-        "imagenUrl": "/assets/images/orquesta/fagot.png",
+        "imagenUrl": "/assets/images/orquesta/fagot.jpeg",
         "audioUrl": "/assets/audio/orquesta/fagot-sample.mp3",
         "videoUrl": "https://www.youtube.com/embed/IwSdUuh5FPo",
         "datosCuriosos": [
