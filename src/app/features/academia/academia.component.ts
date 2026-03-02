@@ -81,6 +81,7 @@ export class AcademiaComponent {
   constructor(private router: Router) {}
 
   navegarA(route: string): void {
+    window.scrollTo(0, 0);
     this.router.navigate([route]);
   }
 }
