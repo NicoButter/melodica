@@ -35,7 +35,7 @@
         "descripcion": "Sonido cálido y expresivo. Frecuentemente toca solos melódicos.",
         "imagenUrl": "/assets/images/orquesta/oboe.jpeg",
         "audioUrl": "/assets/audio/orquesta/oboe-sample.mp3",
-        "videoUrl": "https://www.youtube.com/embed/YVbJgHAHgT0",
+        "videoUrl": "https://www.youtube.com/embed/2WJhax7Jmxs",
         "datosCuriosos": [
           "Da la nota 'La' para que toda la orquesta afine antes del concierto",
           "Su nombre viene del francés 'hautbois' que significa madera alta",
@@ -58,7 +58,7 @@
         "descripcion": "Sonido versátil que puede ser suave o penetrante según el registro.",
         "imagenUrl": "/assets/images/orquesta/clarinete.jpeg",
         "audioUrl": "/assets/audio/orquesta/clarinete-sample.mp3",
-        "videoUrl": "https://www.youtube.com/embed/xuKGp5M5tZM",
+        "videoUrl": "https://www.youtube.com/embed/L7W-OoQVEE0",
         "datosCuriosos": [
           "Tiene el rango más amplio de todos los vientos de madera",
           "Mozart escribió su concierto para clarinete en su lecho de muerte",
@@ -81,7 +81,7 @@
         "descripcion": "Sonido profundo y resonante. Proporciona cuerpo al sonido orquestal.",
         "imagenUrl": "/assets/images/orquesta/fagot.jpeg",
         "audioUrl": "/assets/audio/orquesta/fagot-sample.mp3",
-        "videoUrl": "https://www.youtube.com/embed/IwSdUuh5FPo",
+        "videoUrl": "https://www.youtube.com/embed/xidC7TZRxkA",
         "datosCuriosos": [
           "Es el más grave de los instrumentos de viento de madera",
           "Mide aproximadamente 1.35 metros cuando está armado",
@@ -112,7 +112,7 @@
         "descripcion": "Sonido brillante y penetrante. Perfecta para fanfarrias y pasajes heroicos.",
         "imagenUrl": "/assets/images/orquesta/trompeta.jpeg",
         "audioUrl": "/assets/audio/orquesta/trompeta-sample.mp3",
-        "videoUrl": "https://www.youtube.com/embed/dOtsBDkK_LI",
+        "videoUrl": "https://www.youtube.com/embed/ftP9f_G1Bt8",
         "datosCuriosos": [
           "Es uno de los instrumentos más antiguos, data de 1500 a.C.",
           "Se usa en jazz, clásica y música popular",
@@ -135,7 +135,7 @@
         "descripcion": "Sonido cálido y redondeado. Elemento armónico fundamental.",
         "imagenUrl": "/assets/images/orquesta/trompa.jpeg",
         "audioUrl": "/assets/audio/orquesta/trompa-sample.mp3",
-        "videoUrl": "https://www.youtube.com/embed/jKu3fDbbqwY",
+        "videoUrl": "https://www.youtube.com/embed/dRPVN4b77I4",
         "datosCuriosos": [
           "Su tubo mide aproximadamente 3.7 metros de largo",
           "Es considerado uno de los instrumentos más difíciles de tocar",
@@ -158,7 +158,7 @@
         "descripcion": "Sonido poderoso y versátil. Puede variar de suave a muy fuerte.",
         "imagenUrl": "/assets/images/orquesta/trombon.jpeg",
         "audioUrl": "/assets/audio/orquesta/trombon-sample.mp3",
-        "videoUrl": "https://www.youtube.com/embed/r8aegdbzJYk",
+        "videoUrl": "https://www.youtube.com/embed/wCoAkNoqxUQ",
         "datosCuriosos": [
           "Es el único instrumento de viento que puede hacer glissandos continuos",
           "La vara tiene 7 posiciones que cambian la longitud del tubo",
@@ -181,7 +181,7 @@
         "descripcion": "Sonido más profundo de los metales. Proporciona la base armónica.",
         "imagenUrl": "/assets/images/orquesta/tuba.jpeg",
         "audioUrl": "/assets/audio/orquesta/tuba-sample.mp3",
-        "videoUrl": "https://www.youtube.com/embed/NFSqcCB8G10",
+        "videoUrl": "https://www.youtube.com/embed/OTWpW5pz_mU?list=RDOTWpW5pz_mU",
         "datosCuriosos": [
           "Es el instrumento de viento más grande y grave de la orquesta",
           "Fue inventada en 1835 por Wilhelm Wieprecht y Johann Moritz",

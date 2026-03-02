@@ -37,10 +37,9 @@
           *ngFor="let instrumento of seccion.instrumentos"
           class="instrumento-card"
           [class.expandible]="tieneContenidoExpandible(instrumento)"
-          (click)="abrirModal(instrumento)"
         >
           <!-- Imagen del Instrumento -->
-          <div class="instrumento-imagen">
+          <div class="instrumento-imagen" (click)="abrirModal(instrumento)">
             <img
               [src]="instrumento.imagenUrl"
               [alt]="instrumento.nombre"
@@ -49,8 +48,9 @@
             />
             <div class="imagen-overlay">
               <button
+                type="button"
                 class="reproducir-btn"
-                (click)="$event.stopPropagation(); reproducirSonido(instrumento)"
+                (click)="reproducirSonido(instrumento); abrirModal(instrumento); $event.stopPropagation()"
                 [disabled]="!instrumento.audioUrl"
                 [class.reproduciendo]="reproduciendo === instrumento.id"
                 [attr.aria-label]="'Reproducir sonido de ' + instrumento.nombre"

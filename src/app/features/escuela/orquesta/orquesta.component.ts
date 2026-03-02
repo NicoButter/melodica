@@ -57,6 +57,7 @@ export class OrquestaComponent implements OnInit {
   private cargarOrquesta(): void {
     this.orquestaService.getOrquesta().subscribe(
       data => {
+        console.log('Datos de orquesta cargados:', data);
         this.secciones = data;
         this.isLoading = false;
       },
@@ -72,6 +73,8 @@ export class OrquestaComponent implements OnInit {
    * Reproduce el sonido de un instrumento
    */
   reproducirSonido(instrumento: Instrumento): void {
+    console.log('Reproduciendo:', instrumento.nombre, 'URL:', instrumento.audioUrl);
+    
     if (!instrumento.audioUrl) {
       console.warn(`No hay audio disponible para ${instrumento.nombre}`);
       return;
@@ -82,6 +85,10 @@ export class OrquestaComponent implements OnInit {
     // Crear elemento de audio para reproducir
     const audio = new Audio(instrumento.audioUrl);
     audio.onended = () => {
+      this.reproduciendo = null;
+    };
+    audio.onerror = () => {
+      console.error(`Error al reproducir audio de ${instrumento.nombre}`);
       this.reproduciendo = null;
     };
     audio.play().catch(err => {
