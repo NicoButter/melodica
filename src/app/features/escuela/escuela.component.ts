@@ -62,6 +62,14 @@ export class EscuelaComponent implements OnInit, OnDestroy {
       image: 'assets/images/escuela/claves.png'
     },
     {
+      id: 'orquesta',
+      title: 'La Orquesta',
+      icon: '🎼',
+      description: 'Conoce los instrumentos de la orquesta sinfónica',
+      route: '/escuela/orquesta',
+      image: 'assets/images/escuela/orquesta.png'
+    },
+    {
       id: 'canciones-patrias',
       title: 'Canciones Patrias',
       icon: '🇦🇷',

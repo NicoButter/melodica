@@ -1,0 +1,162 @@
+[
+  {
+    "id": "viento-madera",
+    "nombre": "Vientos de Madera",
+    "icon": "🎷",
+    "color": "#8B5A2B",
+    "instrumentos": [
+      {
+        "id": "flauta",
+        "nombre": "Flauta Traversa",
+        "seccion": "viento-madera",
+        "descripcion": "Sonido brillante y agudo. Frecuentemente dobla la melodía principal.",
+        "imagenUrl": "/assets/images/orquesta/flauta.png",
+        "audioUrl": "/assets/audio/orquesta/flauta-sample.mp3"
+      },
+      {
+        "id": "oboe",
+        "nombre": "Oboe",
+        "seccion": "viento-madera",
+        "descripcion": "Sonido cálido y expresivo. Frecuentemente toca solos melódicos.",
+        "imagenUrl": "/assets/images/orquesta/oboe.png",
+        "audioUrl": "/assets/audio/orquesta/oboe-sample.mp3"
+      },
+      {
+        "id": "clarinete",
+        "nombre": "Clarinete",
+        "seccion": "viento-madera",
+        "descripcion": "Sonido versátil que puede ser suave o penetrante según el registro.",
+        "imagenUrl": "/assets/images/orquesta/clarinete.png",
+        "audioUrl": "/assets/audio/orquesta/clarinete-sample.mp3"
+      },
+      {
+        "id": "fagot",
+        "nombre": "Fagot",
+        "seccion": "viento-madera",
+        "descripcion": "Sonido profundo y resonante. Proporciona cuerpo al sonido orquestal.",
+        "imagenUrl": "/assets/images/orquesta/fagot.png",
+        "audioUrl": "/assets/audio/orquesta/fagot-sample.mp3"
+      }
+    ]
+  },
+  {
+    "id": "viento-metal",
+    "nombre": "Vientos de Metal",
+    "icon": "🎺",
+    "color": "#DAA520",
+    "instrumentos": [
+      {
+        "id": "trompeta",
+        "nombre": "Trompeta",
+        "seccion": "viento-metal",
+        "descripcion": "Sonido brillante y penetrante. Perfecta para fanfarrias y pasajes heroicos.",
+        "imagenUrl": "/assets/images/orquesta/trompeta.png",
+        "audioUrl": "/assets/audio/orquesta/trompeta-sample.mp3"
+      },
+      {
+        "id": "trompa",
+        "nombre": "Trompa (Corno Francés)",
+        "seccion": "viento-metal",
+        "descripcion": "Sonido cálido y redondeado. Elemento armónico fundamental.",
+        "imagenUrl": "/assets/images/orquesta/trompa.png",
+        "audioUrl": "/assets/audio/orquesta/trompa-sample.mp3"
+      },
+      {
+        "id": "trombon",
+        "nombre": "Trombón",
+        "seccion": "viento-metal",
+        "descripcion": "Sonido poderoso y versátil. Puede variar de suave a muy fuerte.",
+        "imagenUrl": "/assets/images/orquesta/trombon.png",
+        "audioUrl": "/assets/audio/orquesta/trombon-sample.mp3"
+      },
+      {
+        "id": "tuba",
+        "nombre": "Tuba",
+        "seccion": "viento-metal",
+        "descripcion": "Sonido más profundo de los metales. Proporciona la base armónica.",
+        "imagenUrl": "/assets/images/orquesta/tuba.png",
+        "audioUrl": "/assets/audio/orquesta/tuba-sample.mp3"
+      }
+    ]
+  },
+  {
+    "id": "percusion",
+    "nombre": "Percusión",
+    "icon": "🥁",
+    "color": "#808080",
+    "instrumentos": [
+      {
+        "id": "timbal",
+        "nombre": "Timbal",
+        "seccion": "percusion",
+        "descripcion": "Parche de sonoridad grave. Fundamental para el ritmo orquestal.",
+        "imagenUrl": "/assets/images/orquesta/timbal.png",
+        "audioUrl": "/assets/audio/orquesta/timbal-sample.mp3"
+      },
+      {
+        "id": "platillos",
+        "nombre": "Platillos",
+        "seccion": "percusion",
+        "descripcion": "Sonido brillante y resonante. Crea impacto y dramatismo.",
+        "imagenUrl": "/assets/images/orquesta/platillos.png",
+        "audioUrl": "/assets/audio/orquesta/platillos-sample.mp3"
+      },
+      {
+        "id": "xilofono",
+        "nombre": "Xilófono",
+        "seccion": "percusion",
+        "descripcion": "Sonido brillante y agudo. Frecuentemente toca en pasajes de decoración.",
+        "imagenUrl": "/assets/images/orquesta/xilofono.png",
+        "audioUrl": "/assets/audio/orquesta/xilofono-sample.mp3"
+      },
+      {
+        "id": "gong",
+        "nombre": "Gong",
+        "seccion": "percusion",
+        "descripcion": "Sonido profundo y resonante que puede variar por la forma de golpear.",
+        "imagenUrl": "/assets/images/orquesta/gong.png",
+        "audioUrl": "/assets/audio/orquesta/gong-sample.mp3"
+      }
+    ]
+  },
+  {
+    "id": "cuerda",
+    "nombre": "Cuerda",
+    "icon": "🎻",
+    "color": "#D2691E",
+    "instrumentos": [
+      {
+        "id": "violin",
+        "nombre": "Violín",
+        "seccion": "cuerda",
+        "descripcion": "Sonido agudo y expresivo. Frecuentemente lleva las melodías principales.",
+        "imagenUrl": "/assets/images/orquesta/violin.png",
+        "audioUrl": "/assets/audio/orquesta/violin-sample.mp3"
+      },
+      {
+        "id": "viola",
+        "nombre": "Viola",
+        "seccion": "cuerda",
+        "descripcion": "Sonido más profundo que el violín. Proporciona elementos armónicos.",
+        "imagenUrl": "/assets/images/orquesta/viola.png",
+        "audioUrl": "/assets/audio/orquesta/viola-sample.mp3"
+      },
+      {
+        "id": "violonchelo",
+        "nombre": "Violonchelo",
+        "seccion": "cuerda",
+        "descripcion": "Sonido profundo y expresivo. Frecuentemente lleva contramelodías.",
+        "imagenUrl": "/assets/images/orquesta/violonchelo.png",
+        "audioUrl": "/assets/audio/orquesta/violonchelo-sample.mp3"
+      },
+      {
+        "id": "contrabajo",
+        "nombre": "Contrabajo",
+        "seccion": "cuerda",
+        "descripcion": "Sonido más profundo de la orquesta. Proporciona la base harmónica.",
+        "imagenUrl": "/assets/images/orquesta/contrabajo.png",
+        "audioUrl": "/assets/audio/orquesta/contrabajo-sample.mp3"
+      }
+    ]
+  }
+]

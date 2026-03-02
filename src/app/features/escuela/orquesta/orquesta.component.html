@@ -1,0 +1,82 @@
+<div class="orquesta-container">
+  <!-- Header -->
+  <header class="orquesta-header">
+    <h1>🎼 La Orquesta Sinfónica</h1>
+    <p class="subtitle">Conoce los instrumentos y sus sonidos</p>
+  </header>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <p>Cargando orquesta...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !isLoading" class="error-state">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Main Content -->
+  <div *ngIf="!isLoading && !error" class="orquesta-content">
+    <!-- Secciones de la Orquesta -->
+    <section
+      *ngFor="let seccion of secciones"
+      class="seccion"
+      [style.border-left-color]="getSeccionBorderColor(seccion)"
+      [style.background-color]="getSeccionColor(seccion)"
+    >
+      <!-- Seccion Header -->
+      <div class="seccion-header">
+        <span class="seccion-icon">{{ seccion.icon }}</span>
+        <h2 class="seccion-titulo">{{ seccion.nombre }}</h2>
+      </div>
+
+      <!-- Grid de Instrumentos -->
+      <div class="instrumentos-grid">
+        <div
+          *ngFor="let instrumento of seccion.instrumentos"
+          class="instrumento-card"
+        >
+          <!-- Imagen del Instrumento -->
+          <div class="instrumento-imagen">
+            <img
+              [src]="instrumento.imagenUrl"
+              [alt]="instrumento.nombre"
+              class="instrumento-pic"
+              onerror="this.src='/assets/images/placeholder-instrumento.png'"
+            />
+            <div class="instrumento-overlay">
+              <button
+                class="reproducir-btn"
+                (click)="reproducirSonido(instrumento)"
+                [disabled]="!instrumento.audioUrl"
+                [class.reproduciendo]="reproduciendo === instrumento.id"
+              >
+                <span class="icon">
+                  {{ reproduciendo === instrumento.id ? '⏸️' : '🔊' }}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Info del Instrumento -->
+          <div class="instrumento-info">
+            <h3 class="instrumento-nombre">{{ instrumento.nombre }}</h3>
+            <p class="instrumento-descripcion">{{ instrumento.descripcion }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer Info -->
+  <footer class="orquesta-footer" *ngIf="!isLoading && !error">
+    <div class="footer-content">
+      <h3>💡 Tip</h3>
+      <p>
+        Haz clic en los botones de sonido para escuchar cómo suenan los
+        diferentes instrumentos. Observa cómo cada sección contribuye a crear
+        la música orquestal.
+      </p>
+    </div>
+  </footer>
+</div>

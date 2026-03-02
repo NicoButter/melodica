@@ -15,6 +15,7 @@ import { PentagramaComponent } from './features/escuela/pentagrama/pentagrama.co
 import { RitmoComponent } from './features/escuela/ritmo/ritmo.component';
 import { SolfeoComponent } from './features/escuela/solfeo/solfeo.component';
 import { ClavesComponent } from './features/escuela/claves/claves.component';
+import { OrquestaComponent } from './features/escuela/orquesta/orquesta.component';
 import { CancionesPatriasComponent } from './features/escuela/canciones-patrias/canciones-patrias.component';
 
 export const routes: Routes = [
@@ -37,6 +38,7 @@ export const routes: Routes = [
       { path: 'ritmo', component: RitmoComponent },
       { path: 'solfeo', component: SolfeoComponent },
       { path: 'claves', component: ClavesComponent },
+      { path: 'orquesta', component: OrquestaComponent },
       { path: 'canciones-patrias', component: CancionesPatriasComponent }
     ]
   },
