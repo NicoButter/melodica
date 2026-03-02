@@ -28,6 +28,7 @@ footer {
   position: relative;
   z-index: 10;
   overflow: hidden;
+  width: 100%;
 
   // Gradient border top
   &::before {

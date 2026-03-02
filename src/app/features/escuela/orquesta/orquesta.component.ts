@@ -1,7 +1,23 @@
-import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject, Pipe, PipeTransform } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { OrquestaService, SeccionOrquesta, Instrumento } from './orquesta.service';
 import { AudioService } from '../services/audio.service';
+
+/**
+ * Pipe para sanitizar URLs de video
+ */
+@Pipe({
+  name: 'safeUrl',
+  standalone: true
+})
+export class SafeUrlPipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+
+  transform(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
 
 /**
  * Componente para visualizar la orquesta y sus instrumentos
@@ -10,7 +26,7 @@ import { AudioService } from '../services/audio.service';
 @Component({
   selector: 'app-orquesta',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SafeUrlPipe],
   templateUrl: './orquesta.component.html',
   styleUrls: ['./orquesta.component.scss']
 })
@@ -21,6 +37,7 @@ export class OrquestaComponent implements OnInit {
   isLoading = true;
   error: string | null = null;
   reproduciendo: string | null = null;
+  instrumentoExpandido: string | null = null;
 
   constructor(
     private orquestaService: OrquestaService,
@@ -70,6 +87,36 @@ export class OrquestaComponent implements OnInit {
       console.error('Error reproduciendo audio:', err);
       this.reproduciendo = null;
     });
+  }
+
+  /**
+   * Expande o colapsa una tarjeta de instrumento
+   */
+  toggleInstrumento(instrumentoId: string): void {
+    if (this.instrumentoExpandido === instrumentoId) {
+      this.instrumentoExpandido = null;
+    } else {
+      this.instrumentoExpandido = instrumentoId;
+    }
+  }
+
+  /**
+   * Verifica si un instrumento está expandido
+   */
+  isExpandido(instrumentoId: string): boolean {
+    return this.instrumentoExpandido === instrumentoId;
+  }
+
+  /**
+   * Verifica si un instrumento tiene contenido expandible
+   */
+  tieneContenidoExpandible(instrumento: Instrumento): boolean {
+    return !!(
+      instrumento.videoUrl ||
+      instrumento.datosCuriosos?.length ||
+      instrumento.rangoTonal ||
+      instrumento.ubicacionOrquesta
+    );
   }
 
   /**

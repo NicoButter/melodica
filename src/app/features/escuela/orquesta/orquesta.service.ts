@@ -9,6 +9,16 @@ export interface Instrumento {
   descripcion: string;
   imagenUrl: string;
   audioUrl?: string;
+  videoUrl?: string;
+  datosCuriosos?: string[];
+  rangoTonal?: {
+    notaMinima: string;
+    notaMaxima: string;
+  };
+  ubicacionOrquesta?: {
+    fila: string;
+    posicion: string;
+  };
 }
 
 export interface SeccionOrquesta {

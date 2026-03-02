@@ -11,7 +11,22 @@
         "seccion": "viento-madera",
         "descripcion": "Sonido brillante y agudo. Frecuentemente dobla la melodía principal.",
         "imagenUrl": "/assets/images/orquesta/flauta.png",
-        "audioUrl": "/assets/audio/orquesta/flauta-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/flauta-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/Z6XkgzZ-fL4",
+        "datosCuriosos": [
+          "Es el instrumento de viento más agudo de la orquesta",
+          "Su nombre proviene del latín 'flare' que significa soplar",
+          "Mozart y Bach escribieron conciertos famosos para este instrumento",
+          "Puede alcanzar velocidades de digitación increíbles en manos expertas"
+        ],
+        "rangoTonal": {
+          "notaMinima": "C4 (Do central)",
+          "notaMaxima": "C7 (Do séptimo)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Segunda fila",
+          "posicion": "Centro-izquierda"
+        }
       },
       {
         "id": "oboe",
@@ -27,7 +42,22 @@
         "seccion": "viento-madera",
         "descripcion": "Sonido versátil que puede ser suave o penetrante según el registro.",
         "imagenUrl": "/assets/images/orquesta/clarinete.png",
-        "audioUrl": "/assets/audio/orquesta/clarinete-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/clarinete-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/xuKGp5M5tZM",
+        "datosCuriosos": [
+          "Tiene el rango más amplio de todos los vientos de madera",
+          "Mozart escribió su concierto para clarinete en su lecho de muerte",
+          "Se usa tanto en orquestas como en bandas de jazz",
+          "Su caña es de bambú y debe ser reemplazada regularmente"
+        ],
+        "rangoTonal": {
+          "notaMinima": "D3 (Re3)",
+          "notaMaxima": "C7 (Do7)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Segunda fila",
+          "posicion": "Centro"
+        }
       },
       {
         "id": "fagot",
@@ -51,7 +81,22 @@
         "seccion": "viento-metal",
         "descripcion": "Sonido brillante y penetrante. Perfecta para fanfarrias y pasajes heroicos.",
         "imagenUrl": "/assets/images/orquesta/trompeta.png",
-        "audioUrl": "/assets/audio/orquesta/trompeta-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/trompeta-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/dOtsBDkK_LI",
+        "datosCuriosos": [
+          "Es uno de los instrumentos más antiguos, data de 1500 a.C.",
+          "Se usa en jazz, clásica y música popular",
+          "Tiene tres válvulas que cambian el largo del tubo",
+          "Louis Armstrong la popularizó en el jazz"
+        ],
+        "rangoTonal": {
+          "notaMinima": "F#3 (Fa#3)",
+          "notaMaxima": "C6 (Do6)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Tercera fila",
+          "posicion": "Centro-derecha"
+        }
       },
       {
         "id": "trompa",
@@ -131,7 +176,22 @@
         "seccion": "cuerda",
         "descripcion": "Sonido agudo y expresivo. Frecuentemente lleva las melodías principales.",
         "imagenUrl": "/assets/images/orquesta/violin.png",
-        "audioUrl": "/assets/audio/orquesta/violin-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/violin-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/hLQl3WQQoQ0",
+        "datosCuriosos": [
+          "Es considerado el rey de los instrumentos de cuerda",
+          "Los Stradivarius pueden valer millones de dólares",
+          "Tiene 4 cuerdas afinadas en quintas: Sol, Re, La, Mi",
+          "El violín más antiguo data del siglo XVI"
+        ],
+        "rangoTonal": {
+          "notaMinima": "G3 (Sol3)",
+          "notaMaxima": "E7 (Mi7)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Primera fila",
+          "posicion": "Izquierda del director"
+        }
       },
       {
         "id": "viola",
@@ -147,7 +207,22 @@
         "seccion": "cuerda",
         "descripcion": "Sonido profundo y expresivo. Frecuentemente lleva contramelodías.",
         "imagenUrl": "/assets/images/orquesta/violonchelo.png",
-        "audioUrl": "/assets/audio/orquesta/violonchelo-sample.mp3"
+        "audioUrl": "/assets/audio/orquesta/violonchelo-sample.mp3",
+        "videoUrl": "https://www.youtube.com/embed/mGQLXRTl3Z0",
+        "datosCuriosos": [
+          "Su rango tonal es el más cercano a la voz humana",
+          "Se toca sentado con el instrumento entre las piernas",
+          "Bach escribió 6 suites famosas para violonchelo solo",
+          "Su nombre completo es violoncello en italiano"
+        ],
+        "rangoTonal": {
+          "notaMinima": "C2 (Do2)",
+          "notaMaxima": "A5 (La5)"
+        },
+        "ubicacionOrquesta": {
+          "fila": "Segunda fila",
+          "posicion": "Derecha del director"
+        }
       },
       {
         "id": "contrabajo",
