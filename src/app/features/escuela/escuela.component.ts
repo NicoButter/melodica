@@ -75,7 +75,8 @@ export class EscuelaComponent implements OnInit, OnDestroy {
       icon: '🇦🇷',
       description: 'Aprende a tocar nuestras canciones tradicionales argentinas',
       route: '/escuela/canciones-patrias',
-      image: 'assets/images/escuela/canciones-patrias.png'
+      image: 'assets/images/escuela/canciones-patrias.png',
+      enConstruccion: true
     }
   ];
 

@@ -318,6 +318,51 @@
     color: #8db3ff;
     transition: transform 0.3s ease;
   }
+
+  &.en-construccion {
+    opacity: 0.75;
+    cursor: not-allowed;
+
+    &:hover {
+      transform: translateY(0);
+      border-color: rgba(100, 149, 237, 0.3);
+      box-shadow: 0 4px 12px rgba(100, 149, 237, 0.15);
+
+      &::before {
+        opacity: 0;
+      }
+
+      &::after {
+        opacity: 0;
+      }
+
+      .section-arrow {
+        transform: translateX(0);
+      }
+
+      .section-icon {
+        transform: scale(1);
+      }
+
+      .section-image {
+        transform: scale(1);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+
+  .badge-construccion {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 165, 0, 0.15);
+    border: 1px solid rgba(255, 165, 0, 0.4);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #FFA500;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
 }
 
 // Content container for nested components

@@ -7,14 +7,16 @@
   <div class="sections-grid">
     <button 
       *ngFor="let section of sections" 
-      (click)="navigateToSection(section.route)"
+      (click)="!section.enConstruccion && navigateToSection(section.route)"
       class="section-card"
+      [class.en-construccion]="section.enConstruccion"
       [attr.data-id]="section.id"
       type="button">
       <img [src]="section.image" alt="{{ section.title }}" class="section-image">
       <div class="section-icon">{{ section.icon }}</div>
       <h2 class="section-title">{{ section.title }}</h2>
       <p class="section-description">{{ section.description }}</p>
+      <div *ngIf="section.enConstruccion" class="badge-construccion">🚧 En construcción</div>
       <div class="section-arrow">→</div>
     </button>
   </div>
