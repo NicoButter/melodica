@@ -30,9 +30,9 @@ nav {
 }
 
 .nav-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   gap: $spacing-xl;
   width: 100%;
 }
@@ -42,6 +42,7 @@ nav {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: $spacing-lg;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -49,6 +50,7 @@ nav {
     text-decoration: none;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: $spacing-sm;
 
     .brand-text {
@@ -74,10 +76,19 @@ nav {
   flex-direction: column;
   align-items: center;
   gap: 0;
-  flex: 1;
   min-width: 0;
-  max-width: 600px;
-  margin: 0 auto;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  header.shrunk & {
+    gap: $spacing-md;
+  }
 }
 
 .page-title-container {
@@ -218,22 +229,11 @@ nav {
 }
 
 // Social and Support Container
-.social-and-support {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: $spacing-sm;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-  header.shrunk & {
-    gap: $spacing-xs;
-  }
-}
-
 .social-icons {
   display: flex;
   gap: $spacing-md;
   align-items: center;
+  flex-shrink: 0;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   header.shrunk & {
@@ -317,6 +317,7 @@ nav {
 .cafecito-container {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   .cafecito-btn {
@@ -501,12 +502,20 @@ nav {
   }
 
   .nav-container {
-    flex-wrap: wrap;
+    grid-template-columns: auto auto auto;
     gap: $spacing-md;
   }
 
   .brand .brand-text {
     font-size: 1.5rem;
+  }
+
+  .right-section {
+    gap: $spacing-sm;
+  }
+
+  .page-context {
+    display: none;
   }
 
   .action-buttons {
@@ -519,17 +528,14 @@ nav {
       min-width: 120px;
     }
   }
-
-  .cafecito-container {
-    order: 3;
-  }
-
-  .social-icons {
-    order: 4;
-  }
 }
 
 @media (max-width: 480px) {
+  .nav-container {
+    grid-template-columns: auto auto auto;
+    gap: $spacing-sm;
+  }
+
   .social-icons {
     gap: $spacing-sm;
 
@@ -544,12 +550,16 @@ nav {
     }
   }
 
-  .action-buttons .btn {
-    padding: $spacing-xs $spacing-sm;
-    font-size: 0.8rem;
+  .brand .brand-text {
+    font-size: 1.8rem;
   }
 
   .cafecito-container .cafecito-btn img {
     height: 30px;
+  }
+
+  .action-buttons .btn {
+    padding: $spacing-xs $spacing-sm;
+    font-size: 0.8rem;
   }
 }
