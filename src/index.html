@@ -6,15 +6,9 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="favicon.png">
-  <!-- Google Fonts loaded dynamically to avoid build inline issues -->
-  <script defer>
-    if (typeof document !== 'undefined' && !document.querySelector('link[href*="fonts.googleapis"]')) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&family=Fira+Code:wght@300;400;500&family=Noto+Music&display=swap';
-      document.head.appendChild(link);
-    }
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&family=Fira+Code:wght@300;400;500&family=Noto+Music&display=swap">
 </head>
 <body>
   <app-root></app-root>
