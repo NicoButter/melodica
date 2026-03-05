@@ -38,7 +38,8 @@ export class HerramientasComponent implements OnInit, AfterViewInit, OnDestroy {
       description: 'Detecta notas con tu micrófono y obtén sugerencias de progresiones en tiempo real',
       icon: '🎤',
       route: '/note-detector',
-      color: 'bohemian-accent'
+      color: 'bohemian-accent',
+      enConstruccion: true
     }
     // {
     //   id: 'workshop',
