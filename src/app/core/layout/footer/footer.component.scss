@@ -69,14 +69,14 @@ footer {
 
   // Top Section
   .footer-top {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
+    display: flex;
+    align-items: center;
     gap: 3rem;
     margin-bottom: 3rem;
     animation: fadeInUp 0.6s ease-out;
 
     @media (max-width: 992px) {
-      grid-template-columns: 1fr;
+      flex-wrap: wrap;
       gap: 2.5rem;
     }
   }
@@ -84,12 +84,12 @@ footer {
   // Brand Section
   .footer-brand {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    align-items: center;
+    flex-shrink: 0;
 
     .brand-logo {
       .studio-logo {
-        width: 180px;
+        width: 120px;
         height: auto;
         filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.3));
         transition: all 0.3s ease;
@@ -100,32 +100,18 @@ footer {
         }
       }
     }
-
-    .brand-info {
-      .brand-title {
-        font-family: $font-family-secondary;
-        font-size: 2rem;
-        font-weight: 700;
-        margin: 0 0 0.5rem 0;
-        background: linear-gradient(135deg, #FFFFFF 0%, $accent-color 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .brand-tagline {
-        font-size: 0.95rem;
-        color: rgba(255, 255, 255, 0.7);
-        line-height: 1.6;
-        margin: 0;
-      }
-    }
   }
 
   // Links Section
   .footer-links {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
+    flex: 1;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
 
     .links-column {
       flex: 1;
@@ -181,17 +167,8 @@ footer {
   // Social Section
   .footer-social {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-
-    h4 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: $accent-color;
-      margin: 0;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
+    align-items: center;
+    flex-shrink: 0;
 
     .social-icons {
       display: flex;
@@ -225,33 +202,36 @@ footer {
         }
       }
     }
+  }
 
-    .support-section {
-      margin-top: 0.5rem;
+  // Support Section
+  .support-section {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 
-      .cafecito-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.8rem 1.5rem;
-        background: linear-gradient(135deg, $accent-color 0%, #E6C200 100%);
-        color: #1a1a1a;
-        text-decoration: none;
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    .cafecito-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, $accent-color 0%, #E6C200 100%);
+      color: #1a1a1a;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 
-        .btn-icon {
-          font-size: 1.2rem;
-        }
+      .btn-icon {
+        font-size: 1.2rem;
+      }
 
-        &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-          background: linear-gradient(135deg, #E6C200 0%, $accent-color 100%);
-        }
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        background: linear-gradient(135deg, #E6C200 0%, $accent-color 100%);
       }
     }
   }

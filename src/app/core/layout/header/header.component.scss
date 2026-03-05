@@ -30,11 +30,22 @@ nav {
 }
 
 .nav-container {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
   gap: $spacing-xl;
   width: 100%;
+
+  .brand {
+    flex-shrink: 0;
+  }
+
+  .page-context {
+    flex: 1;
+  }
+
+  .right-section {
+    margin-left: auto;
+  }
 }
 
 // Brand/Logo

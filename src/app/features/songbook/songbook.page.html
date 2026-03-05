@@ -1,41 +1,51 @@
 <div class="songbook-container">
-  <h1>Cancionero</h1>
+  <div class="songbook-layout">
+    <!-- Panel izquierdo: búsqueda -->
+    <aside class="search-panel">
+      <h1>Cancionero</h1>
+      <div class="search-section">
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="searchSongs()"
+          placeholder="Buscar canción o artista..."
+          class="search-input"
+        />
+        <button
+          (click)="searchSongs()"
+          [disabled]="isLoading"
+          class="search-button"
+        >
+          {{ isLoading ? 'Buscando...' : 'Buscar' }}
+        </button>
+      </div>
+    </aside>
 
-  <div class="search-section">
-    <input
-      type="text"
-      [(ngModel)]="searchQuery"
-      (keyup.enter)="searchSongs()"
-      placeholder="Buscar canción o artista..."
-      class="search-input"
-    />
-    <button
-      (click)="searchSongs()"
-      [disabled]="isLoading"
-      class="search-button"
-    >
-      {{ isLoading ? 'Buscando...' : 'Buscar' }}
-    </button>
-  </div>
+    <!-- Panel derecho: resultados -->
+    <div class="results-panel">
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
 
-  <div class="results-section">
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
+      <div *ngIf="songs.length === 0 && !isLoading && !errorMessage && searchQuery" class="no-results">
+        No se encontraron resultados para "{{ searchQuery }}"
+      </div>
 
-    <div *ngIf="songs.length === 0 && !isLoading && !errorMessage && searchQuery" class="no-results">
-      No se encontraron resultados para "{{ searchQuery }}"
-    </div>
+      <div *ngIf="isLoading" class="loading">
+        Buscando canciones...
+      </div>
 
-    <div *ngIf="isLoading" class="loading">
-      Buscando canciones...
-    </div>
-
-    <div class="songs-list" *ngIf="songs.length > 0">
-      <div *ngFor="let song of songs" class="song-item">
-        <div class="song-title">{{ song.title }}</div>
-        <div class="song-artist">{{ song.artist.name }}</div>
-        <div class="song-id">ID: {{ song.id }}</div>
+      <div class="songs-list" *ngIf="songs.length > 0">
+        <div *ngFor="let song of songs" class="song-item">
+          <div class="song-icon-container">
+            <img src="assets/images/songbook/song-placeholder.png" alt="" class="song-icon-img" />
+          </div>
+          <div class="song-info">
+            <div class="song-title">{{ song.title }}</div>
+            <div class="song-artist">{{ song.artist.name }}</div>
+            <div class="song-id">ID: {{ song.id }}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
